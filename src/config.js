@@ -5,7 +5,7 @@ import {
 
 import {RFPercentage} from 'react-native-responsive-fontsize';
 
-export const fontSize = val => RFPercentage(val / 7.6);
+export const fontSz = val => RFPercentage(val / 7.6);
 
 export const heightPercentage = val => {
   // get scaled height equivalent of design height
