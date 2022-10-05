@@ -7,16 +7,17 @@ interface ButtonProps {
   buttonText: string;
   buttonStyle?: object;
   buttonTextStyle?: object;
-  onPress?: Function;
+  onPress: () => void;
 }
 
 const Button: React.FC<ButtonProps> = ({
   buttonText,
   buttonStyle,
   buttonTextStyle,
+  onPress,
 }) => {
   return (
-    <TouchableOpacity style={[styles.button, buttonStyle]}>
+    <TouchableOpacity onPress={onPress} style={[styles.button, buttonStyle]}>
       <Text style={[styles.text, buttonTextStyle]}>{buttonText}</Text>
     </TouchableOpacity>
   );
