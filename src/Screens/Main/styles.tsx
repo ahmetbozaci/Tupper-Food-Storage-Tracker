@@ -12,10 +12,9 @@ const styles = StyleSheet.create({
     width: widthPercentage(200),
     height: widthPercentage(200),
     borderRadius: widthPercentage(100),
-    backgroundColor: COLORS.gray,
+    backgroundColor: COLORS.white,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
   },
   logoText: {
     fontSize: fontSz(32),
