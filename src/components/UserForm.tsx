@@ -1,10 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Button, TextInput, View, Text} from 'react-native';
 import {globalStyles} from './globalStyles';
 import {Formik} from 'formik';
 
 const UserForm = () => {
+  const [userInformation, setUserInformation] = useState({
+    name: '',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
+  });
+
   return (
     <View style={globalStyles.container}>
       <Formik
@@ -15,7 +22,7 @@ const UserForm = () => {
           passwordConfirmation: '',
         }}
         onSubmit={values => {
-          console.log(values);
+          setUserInformation(values);
         }}>
         {({values, handleChange, handleSubmit}) => (
           <View>
