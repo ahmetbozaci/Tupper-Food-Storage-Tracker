@@ -1,71 +1,64 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useState} from 'react';
-import {Button, TextInput, View, Text} from 'react-native';
+import {
+  Button,
+  TextInput,
+  View,
+  Text,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 import {Formik} from 'formik';
-import * as Yup from 'yup';
 import styles from './styles';
+import {initialValuesInterface} from './types';
+import validationSchema from './validationSchema';
+import CustomButton from '../../shared/Button';
 
-const UserForm = () => {
+const UserForm: React.FC = () => {
   const [userInformation, setUserInformation] = useState({
     name: '',
     email: '',
     password: '',
     passwordConfirmation: '',
   });
-
+  const initialValues: initialValuesInterface = {
+    name: '',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
+    agree: false,
+  };
   return (
-    <View>
-      <Formik
-        initialValues={{
-          name: '',
-          email: '',
-          password: '',
-          passwordConfirmation: '',
-          agree: false,
-        }}
-        //! object().shape() or only object() ????
-        validationSchema={Yup.object({
-          name: Yup.string().required('Please, provide your name'),
-          email: Yup.string().email().required('Please provide your email'),
-          password: Yup.string()
-            .min(8, 'Password should minimum 8 characters.')
-            .required(),
-          passwordConfirmation: Yup.string().when('password', {
-            is: (val: string | any[]) => (val && val.length > 0 ? true : false),
-            then: Yup.string().oneOf(
-              [Yup.ref('password')],
-              'Both password need to be the same',
-            ),
-          }),
-        })}
-        onSubmit={values => {
-          setUserInformation(values);
-          console.log('hello');
-        }}>
-        {({values, handleChange, handleSubmit, dirty, errors, touched}) => (
-          <View>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={(values, actions) => {
+        actions.resetForm();
+        setUserInformation(values);
+      }}
+    >
+      {({values, handleChange, handleSubmit, isValid, errors, touched}) => (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.screen}>
+            <Text style={styles.titleText}>Sign Up</Text>
             <TextInput
               style={styles.input}
-              placeholder="Enter username"
+              placeholder="Name"
               onChangeText={handleChange('name')}
               value={values.name}
             />
             {touched.name && errors.name && (
-              <Text style={{fontSize: 12, color: '#FF0D10'}}>
-                {errors.name}
-              </Text>
+              <Text style={styles.errorText}>{errors.name}</Text>
             )}
             <TextInput
               style={styles.input}
               multiline
-              placeholder="Enter email"
+              placeholder="Email"
               onChangeText={handleChange('email')}
               value={values.email}
             />
             {touched.email && errors.email && (
-              <Text style={{fontSize: 12, color: '#FF0D10'}}>
-                {errors.email}
-              </Text>
+              <Text style={styles.errorText}>{errors.email}</Text>
             )}
             <TextInput
               style={styles.input}
@@ -74,9 +67,7 @@ const UserForm = () => {
               value={values.password}
             />
             {touched.password && errors.password && (
-              <Text style={{fontSize: 12, color: '#FF0D10'}}>
-                {errors.password}
-              </Text>
+              <Text style={styles.errorText}>{errors.password}</Text>
             )}
             <TextInput
               style={styles.input}
@@ -85,20 +76,22 @@ const UserForm = () => {
               value={values.passwordConfirmation}
             />
             {touched.passwordConfirmation && errors.passwordConfirmation && (
-              <Text style={{fontSize: 12, color: '#FF0D10'}}>
+              <Text style={styles.errorText}>
                 {errors.passwordConfirmation}
               </Text>
             )}
-            <Button
-              color="maroon"
-              title="Submit"
+            <CustomButton
+              buttonText="Sign up"
               onPress={handleSubmit}
-              disabled={!dirty}
+              disabled={!isValid}
+              buttonStyle={styles.button}
+              // buttonTextStyle={styles.buttonText}
+              // onPress={() => navigation.navigate('Signup')}
             />
           </View>
-        )}
-      </Formik>
-    </View>
+        </TouchableWithoutFeedback>
+      )}
+    </Formik>
   );
 };
 

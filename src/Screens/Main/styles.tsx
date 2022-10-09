@@ -12,24 +12,20 @@ const styles = StyleSheet.create({
     width: widthPercentage(200),
     height: widthPercentage(200),
     borderRadius: widthPercentage(100),
-    backgroundColor: COLORS.white,
-    flexDirection: 'row',
+    backgroundColor: COLORS.gray2,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   logoText: {
     fontSize: fontSz(32),
     fontWeight: '500',
+    color: COLORS.white,
   },
   buttonWrapper: {
     marginTop: heightPercentage(150),
   },
   button: {
     marginBottom: heightPercentage(15),
-    paddingVertical: heightPercentage(15),
-  },
-  buttonText: {
-    fontSize: fontSz(24),
-    fontWeight: '400',
   },
 });
 
