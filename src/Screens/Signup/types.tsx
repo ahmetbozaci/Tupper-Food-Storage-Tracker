@@ -3,5 +3,4 @@ export interface initialValuesInterface {
   email: string;
   password: string;
   passwordConfirmation: string;
-  agree: boolean;
 }

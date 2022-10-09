@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {heightPercentage, fontSz} from '../config';

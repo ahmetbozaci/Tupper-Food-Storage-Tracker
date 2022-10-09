@@ -1,8 +1,12 @@
 import React from 'react';
+import {Provider} from 'react-redux';
+import store from './src/Redux/store';
 import MainStack from './src/navigation';
 
-const App = () => {
-  return <MainStack />;
-};
+const App = () => (
+  <Provider store={store}>
+    <MainStack />
+  </Provider>
+);
 
 export default App;

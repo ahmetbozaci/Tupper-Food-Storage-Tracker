@@ -8,26 +8,43 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
-import {Formik} from 'formik';
+import {Form, Formik} from 'formik';
 import styles from './styles';
 import {initialValuesInterface} from './types';
 import validationSchema from './validationSchema';
 import CustomButton from '../../shared/Button';
+import {useDispatch} from 'react-redux';
+import createUser from '../../Redux/Signup/API';
 
-const UserForm: React.FC = () => {
+const UserForm = () => {
+  const dispatch = useDispatch();
+
   const [userInformation, setUserInformation] = useState({
     name: '',
     email: '',
     password: '',
     passwordConfirmation: '',
   });
+  const {name, email, password} = userInformation;
+
   const initialValues: initialValuesInterface = {
     name: '',
     email: '',
     password: '',
     passwordConfirmation: '',
-    agree: false,
   };
+
+  const signUp = () => {
+    // event.preventDefault();
+    // const newUser = {
+    //   name,
+    //   email,
+    //   password,
+    // };
+    // dispatch(createUser(newUser));
+    console.log('hello');
+  };
+
   return (
     <Formik
       initialValues={initialValues}
@@ -35,9 +52,8 @@ const UserForm: React.FC = () => {
       onSubmit={(values, actions) => {
         actions.resetForm();
         setUserInformation(values);
-      }}
-    >
-      {({values, handleChange, handleSubmit, isValid, errors, touched}) => (
+      }}>
+      {({values, handleChange, isValid, errors, touched, handleSubmit}) => (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.screen}>
             <Text style={styles.titleText}>Sign Up</Text>
@@ -82,9 +98,11 @@ const UserForm: React.FC = () => {
             )}
             <CustomButton
               buttonText="Sign up"
-              onPress={handleSubmit}
+              onPress={() => {
+                handleSubmit();
+                signUp();
+              }}
               disabled={!isValid}
-              buttonStyle={styles.button}
               // buttonTextStyle={styles.buttonText}
               // onPress={() => navigation.navigate('Signup')}
             />
