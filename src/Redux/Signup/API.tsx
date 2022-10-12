@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import axios from 'axios';
+// import axios from 'axios';
 import {Dispatch} from 'redux';
 import {createUserSuccess} from './signUpReducer';
 import {Action} from './types';

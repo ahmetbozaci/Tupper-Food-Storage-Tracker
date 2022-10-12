@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {createSlice, PayloadAction, createAsyncThunk} from '@reduxjs/toolkit';
-import axios from 'axios';
+// import axios from 'axios';
 const baseURL = 'https://tupper-backend.herokuapp.com/api/user/signup';
 
 export const signUp = createAsyncThunk(
