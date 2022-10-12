@@ -18,9 +18,13 @@ const Button: React.FC<ButtonProps> = ({
   buttonStyle,
   buttonTextStyle,
   onPress,
+  disabled,
 }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.button, buttonStyle]}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.button, buttonStyle]}
+      disabled={disabled}>
       <Text style={[styles.text, buttonTextStyle]}>{buttonText}</Text>
     </TouchableOpacity>
   );
@@ -33,8 +37,8 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     paddingVertical: heightPercentage(20),
     marginVertical: heightPercentage(5),
-    backgroundColor: COLORS.gray6,
-    width: '100%',
+    backgroundColor: COLORS.black,
+    width: '50%',
     justifyContent: 'center',
     alignItems: 'center',
   },

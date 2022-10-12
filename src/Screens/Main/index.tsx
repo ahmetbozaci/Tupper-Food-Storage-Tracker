@@ -20,11 +20,11 @@ const Main: React.FC<Props> = ({navigation}) => {
             buttonStyle={styles.button}
             onPress={() => navigation.navigate('Signup')}
           />
-          {/* <CustomButton
+          <CustomButton
             buttonText="Log in"
             buttonStyle={styles.button}
             onPress={() => navigation.navigate('Login')}
-          /> */}
+          />
         </View>
       </View>
     </SafeAreaView>

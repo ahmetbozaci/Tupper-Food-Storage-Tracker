@@ -8,7 +8,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
-import {Formik} from 'formik';
+import {Form, Formik} from 'formik';
 import styles from '../loginSignupStyles';
 import {initialValuesInterface} from './types';
 import validationSchema from './validationSchema';
@@ -16,27 +16,15 @@ import CustomButton from '../../shared/Button';
 import {useDispatch} from 'react-redux';
 import createUser from '../../Redux/Signup/API';
 
-const UserForm = () => {
-  const dispatch = useDispatch();
-
-  const [userInformation, setUserInformation] = useState({
-    name: '',
-    email: '',
-    zipcode: '',
-    password: '',
-    passwordConfirmation: '',
-  });
-  const {name, email, zipcode, password} = userInformation;
+const LoginForm = () => {
+  // const dispatch = useDispatch();
 
   const initialValues: initialValuesInterface = {
-    name: '',
     email: '',
-    zipcode: '',
     password: '',
-    passwordConfirmation: '',
   };
 
-  const signUp = () => {
+  const login = () => {
     // event.preventDefault();
     // const newUser = {
     //   name,
@@ -53,29 +41,11 @@ const UserForm = () => {
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
         actions.resetForm();
-        setUserInformation(values);
       }}>
-      {({
-        values,
-        handleChange,
-        dirty,
-        isSubmitting,
-        errors,
-        touched,
-        handleSubmit,
-      }) => (
+      {({values, handleChange, isValid, errors, touched, handleSubmit}) => (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.screen}>
-            <Text style={styles.titleText}>Sign Up</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Name"
-              onChangeText={handleChange('name')}
-              value={values.name}
-            />
-            {touched.name && errors.name && (
-              <Text style={styles.errorText}>{errors.name}</Text>
-            )}
+            <Text style={styles.titleText}>Log In</Text>
             <TextInput
               style={styles.input}
               multiline
@@ -88,16 +58,6 @@ const UserForm = () => {
             )}
             <TextInput
               style={styles.input}
-              multiline
-              placeholder="Zip Code"
-              onChangeText={handleChange('zipcode')}
-              value={values.zipcode}
-            />
-            {touched.zipcode && errors.zipcode && (
-              <Text style={styles.errorText}>{errors.zipcode}</Text>
-            )}
-            <TextInput
-              style={styles.input}
               placeholder="Password"
               onChangeText={handleChange('password')}
               value={values.password}
@@ -105,28 +65,17 @@ const UserForm = () => {
             {touched.password && errors.password && (
               <Text style={styles.errorText}>{errors.password}</Text>
             )}
-            <TextInput
-              style={styles.input}
-              placeholder="Password Confirmation"
-              onChangeText={handleChange('passwordConfirmation')}
-              value={values.passwordConfirmation}
-            />
-            {touched.passwordConfirmation && errors.passwordConfirmation && (
-              <Text style={styles.errorText}>
-                {errors.passwordConfirmation}
-              </Text>
-            )}
+
             <CustomButton
-              buttonText="Sign up"
+              buttonText="Log In"
               onPress={() => {
                 handleSubmit();
-                signUp();
+                login();
               }}
-              disabled={!dirty && !isSubmitting}
+              disabled={!isValid}
               // buttonTextStyle={styles.buttonText}
               // onPress={() => navigation.navigate('Signup')}
             />
-            <Button disabled={true} title="text" />
           </View>
         </TouchableWithoutFeedback>
       )}
@@ -134,4 +83,4 @@ const UserForm = () => {
   );
 };
 
-export default UserForm;
+export default LoginForm;

@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {StyleSheet} from 'react-native';
-import COLORS from '../../color';
-import {fontSz, widthPercentage, heightPercentage} from '../../config';
+import COLORS from '../color';
+import {fontSz, widthPercentage, heightPercentage} from '../config';
 
 const styles = StyleSheet.create({
   titleText: {
