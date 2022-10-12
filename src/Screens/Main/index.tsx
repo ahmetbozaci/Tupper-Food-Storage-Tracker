@@ -1,7 +1,7 @@
 import {Text, SafeAreaView, View} from 'react-native';
 import React from 'react';
 import styles from './styles';
-import CustomButton from '../../components/Button';
+import CustomButton from '../../shared/Button';
 
 interface Props {
   navigation: any;
@@ -18,13 +18,11 @@ const Main: React.FC<Props> = ({navigation}) => {
           <CustomButton
             buttonText="Sign up"
             buttonStyle={styles.button}
-            buttonTextStyle={styles.buttonText}
             onPress={() => navigation.navigate('Signup')}
           />
           <CustomButton
             buttonText="Log in"
             buttonStyle={styles.button}
-            buttonTextStyle={styles.buttonText}
             onPress={() => navigation.navigate('Login')}
           />
         </View>
