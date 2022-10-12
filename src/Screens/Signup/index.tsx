@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useState} from 'react';
 import {
-  Button,
   TextInput,
   View,
   Text,
@@ -13,8 +12,7 @@ import styles from '../loginSignupStyles';
 import {initialValuesInterface} from './types';
 import validationSchema from './validationSchema';
 import CustomButton from '../../shared/Button';
-import createUser from '../../Redux/Signup/API';
-import {useAppDispatch} from '../../Redux/store';
+import {useAppDispatch} from '../../features/store';
 
 const SignUpForm = () => {
   const dispatch = useAppDispatch();
@@ -37,13 +35,13 @@ const SignUpForm = () => {
   };
 
   const signUp = async () => {
-    const newUser = {
-      name,
-      email,
-      zipCode,
-      password,
-    };
-    dispatch(createUser(newUser));
+    // const newUser = {
+    //   name,
+    //   email,
+    //   zipCode,
+    //   password,
+    // };
+    // dispatch(createUser(newUser));
     console.log('signUpFunction');
   };
 

@@ -11,50 +11,49 @@ import {
 } from 'react-native';
 import {Formik} from 'formik';
 import styles from '../loginSignupStyles';
-import {initialValuesInterface} from './types';
 import validationSchema from './validationSchema';
 import CustomButton from '../../shared/Button';
-import createUser from '../../Redux/Signup/API';
-import {useAppDispatch} from '../../Redux/store';
-import {fetchUser} from '../../Redux/features/loginSlice';
+import {useAppDispatch, useAppSelector} from '../../features/store';
+import {loginUser} from '../../features/loginSlice';
 
 const LoginForm = () => {
   const dispatch = useAppDispatch();
+  const loginData = useAppSelector(state => state.login);
   const [userInformation, setUserInformation] = useState({
-    email: '',
-    password: '',
+    email: '', //omodauda@yahoo.com
+    password: '', //testing
   });
 
-  const initialValues: initialValuesInterface = {
+  const initialValues = {
     email: '',
     password: '',
   };
 
   const login = () => {
-    dispatch(fetchUser(userInformation.email));
-    console.log('login');
+    console.log(loginData);
+    dispatch(loginUser(userInformation));
   };
-
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
         login();
-        console.log(values);
         actions.resetForm();
-      }}
-    >
+      }}>
       {({values, handleChange, errors, touched, handleSubmit}) => (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.screen}>
             <Text style={styles.titleText}>Log In</Text>
             <TextInput
               style={styles.input}
-              multiline
               placeholder="Email"
-              onChangeText={handleChange('email')}
+              onChangeText={value => {
+                handleChange('email')(value);
+                setUserInformation({...userInformation, email:value});
+              }}
               value={values.email}
+              name="email"
             />
             {touched.email && errors.email && (
               <Text style={styles.errorText}>{errors.email}</Text>
@@ -62,8 +61,12 @@ const LoginForm = () => {
             <TextInput
               style={styles.input}
               placeholder="Password"
-              onChangeText={handleChange('password')}
+              onChangeText={value => {
+                handleChange('password')(value);
+                setUserInformation({...userInformation, password:value});
+              }}
               value={values.password}
+              name="password"
             />
             {touched.password && errors.password && (
               <Text style={styles.errorText}>{errors.password}</Text>
