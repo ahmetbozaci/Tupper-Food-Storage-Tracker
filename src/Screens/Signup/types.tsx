@@ -1,7 +1,7 @@
 export interface initialValuesInterface {
   name: string;
   email: string;
-  zipcode: string;
+  zipCode: string;
   password: string;
   passwordConfirmation: string;
 }

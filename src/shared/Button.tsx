@@ -9,7 +9,6 @@ interface ButtonProps {
   buttonText: string;
   buttonStyle?: object;
   buttonTextStyle?: object;
-  disabled?: boolean;
   onPress?: () => void;
 }
 
@@ -18,13 +17,9 @@ const Button: React.FC<ButtonProps> = ({
   buttonStyle,
   buttonTextStyle,
   onPress,
-  disabled,
 }) => {
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={[styles.button, buttonStyle]}
-      disabled={disabled}>
+    <TouchableOpacity onPress={onPress} style={[styles.button, buttonStyle]}>
       <Text style={[styles.text, buttonTextStyle]}>{buttonText}</Text>
     </TouchableOpacity>
   );
@@ -38,7 +33,7 @@ const styles = StyleSheet.create({
     paddingVertical: heightPercentage(20),
     marginVertical: heightPercentage(5),
     backgroundColor: COLORS.black,
-    width: '50%',
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },

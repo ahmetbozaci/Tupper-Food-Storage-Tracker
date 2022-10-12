@@ -1,12 +1,25 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import {Action, ActionType} from './types';
+import {Dispatch} from 'redux';
 const CREATE_USER_SUCCESS = 'colab14/users/CREATE_USER_SUCCESS';
-const CREATE_USER_FAILURE = 'colab14/users/CREATE_USER_FAILURE';
+// const CREATE_USER_FAILURE = 'colab14/users/CREATE_USER_FAILURE';
 
-const initialState = {
+interface initialStateInterface {
+  user: Array<User>;
+  status: boolean;
+}
+
+interface User {
+  name: string;
+}
+
+const initialState: initialStateInterface = {
   user: [],
   status: false,
 };
 
-const reducer = (state = initialState, action: {type?: any; payload?: any}) => {
+//! Reducer
+const reducer = (state = {initialState}, action: Action) => {
   const {payload} = action;
   switch (action.type) {
     case CREATE_USER_SUCCESS:
@@ -14,22 +27,42 @@ const reducer = (state = initialState, action: {type?: any; payload?: any}) => {
         user: payload,
         status: true,
       };
-    case CREATE_USER_FAILURE:
-      return {
-        ...state,
-        errors: payload.error,
-      };
+    // case CREATE_USER_FAILURE:
+    //   return {
+    //     ...state,
+    //     errors: payload,
+    //   };
     default:
       return state;
   }
 };
 
-export const createUserSuccess = (apiState: any) => ({
-  type: CREATE_USER_SUCCESS,
-  payload: apiState,
-});
-export const createUserFailure = (error: any) => ({
-  type: CREATE_USER_FAILURE,
-  payload: {error},
-});
+//! Action Creator
+// export const createUserSuccess = (apiState: any) => ({
+//   type: CREATE_USER_SUCCESS,
+//   payload: apiState,
+// });
+
+export const createUserSuccess = (apiState: string) => {
+  return (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.CREATE_USER_SUCCESS,
+      payload: apiState,
+    });
+  };
+};
+
+// export const createUserFailure = (apiState: string) => {
+//   return (dispatch: Dispatch<Action>) => {
+//     dispatch({
+//       type: ActionType.CREATE_USER_FAILURE,
+//       payload: apiState,
+//     });
+//   };
+// };
+
+// export const createUserFailure = (error: any) => ({
+//   type: CREATE_USER_FAILURE,
+//   payload: {error},
+// });
 export default reducer;

@@ -13,38 +13,38 @@ import styles from '../loginSignupStyles';
 import {initialValuesInterface} from './types';
 import validationSchema from './validationSchema';
 import CustomButton from '../../shared/Button';
-import {useDispatch} from 'react-redux';
 import createUser from '../../Redux/Signup/API';
+import {useAppDispatch} from '../../Redux/store';
 
-const UserForm = () => {
-  const dispatch = useDispatch();
+const SignUpForm = () => {
+  const dispatch = useAppDispatch();
 
   const [userInformation, setUserInformation] = useState({
     name: '',
     email: '',
-    zipcode: '',
+    zipCode: '',
     password: '',
     passwordConfirmation: '',
   });
-  const {name, email, zipcode, password} = userInformation;
+  const {name, email, zipCode, password} = userInformation;
 
   const initialValues: initialValuesInterface = {
     name: '',
     email: '',
-    zipcode: '',
+    zipCode: '',
     password: '',
     passwordConfirmation: '',
   };
 
-  const signUp = () => {
-    // event.preventDefault();
-    // const newUser = {
-    //   name,
-    //   email,
-    //   password,
-    // };
-    // dispatch(createUser(newUser));
-    console.log('hello');
+  const signUp = async () => {
+    const newUser = {
+      name,
+      email,
+      zipCode,
+      password,
+    };
+    dispatch(createUser(newUser));
+    console.log('signUpFunction');
   };
 
   return (
@@ -52,18 +52,11 @@ const UserForm = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
+        signUp();
         actions.resetForm();
         setUserInformation(values);
       }}>
-      {({
-        values,
-        handleChange,
-        dirty,
-        isSubmitting,
-        errors,
-        touched,
-        handleSubmit,
-      }) => (
+      {({values, handleChange, errors, touched, handleSubmit}) => (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.screen}>
             <Text style={styles.titleText}>Sign Up</Text>
@@ -90,11 +83,11 @@ const UserForm = () => {
               style={styles.input}
               multiline
               placeholder="Zip Code"
-              onChangeText={handleChange('zipcode')}
-              value={values.zipcode}
+              onChangeText={handleChange('zipCode')}
+              value={values.zipCode}
             />
-            {touched.zipcode && errors.zipcode && (
-              <Text style={styles.errorText}>{errors.zipcode}</Text>
+            {touched.zipCode && errors.zipCode && (
+              <Text style={styles.errorText}>{errors.zipCode}</Text>
             )}
             <TextInput
               style={styles.input}
@@ -120,13 +113,9 @@ const UserForm = () => {
               buttonText="Sign up"
               onPress={() => {
                 handleSubmit();
-                signUp();
               }}
-              disabled={!dirty && !isSubmitting}
-              // buttonTextStyle={styles.buttonText}
-              // onPress={() => navigation.navigate('Signup')}
+              //! add disabled prop
             />
-            <Button disabled={true} title="text" />
           </View>
         </TouchableWithoutFeedback>
       )}
@@ -134,4 +123,4 @@ const UserForm = () => {
   );
 };
 
-export default UserForm;
+export default SignUpForm;

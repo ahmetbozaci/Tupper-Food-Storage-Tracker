@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useState} from 'react';
 import {
@@ -8,16 +9,21 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
-import {Form, Formik} from 'formik';
+import {Formik} from 'formik';
 import styles from '../loginSignupStyles';
 import {initialValuesInterface} from './types';
 import validationSchema from './validationSchema';
 import CustomButton from '../../shared/Button';
-import {useDispatch} from 'react-redux';
 import createUser from '../../Redux/Signup/API';
+import {useAppDispatch} from '../../Redux/store';
+import {fetchUser} from '../../Redux/features/loginSlice';
 
 const LoginForm = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const [userInformation, setUserInformation] = useState({
+    email: '',
+    password: '',
+  });
 
   const initialValues: initialValuesInterface = {
     email: '',
@@ -25,14 +31,8 @@ const LoginForm = () => {
   };
 
   const login = () => {
-    // event.preventDefault();
-    // const newUser = {
-    //   name,
-    //   email,
-    //   password,
-    // };
-    // dispatch(createUser(newUser));
-    console.log('hello');
+    dispatch(fetchUser(userInformation.email));
+    console.log('login');
   };
 
   return (
@@ -40,9 +40,12 @@ const LoginForm = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
+        login();
+        console.log(values);
         actions.resetForm();
-      }}>
-      {({values, handleChange, isValid, errors, touched, handleSubmit}) => (
+      }}
+    >
+      {({values, handleChange, errors, touched, handleSubmit}) => (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.screen}>
             <Text style={styles.titleText}>Log In</Text>
@@ -70,9 +73,8 @@ const LoginForm = () => {
               buttonText="Log In"
               onPress={() => {
                 handleSubmit();
-                login();
               }}
-              disabled={!isValid}
+              // disabled={!isValid}
               // buttonTextStyle={styles.buttonText}
               // onPress={() => navigation.navigate('Signup')}
             />

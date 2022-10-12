@@ -3,7 +3,7 @@ import * as yup from 'yup';
 const validationSchema = yup.object({
   name: yup.string().required('Please, provide your name'),
   email: yup.string().email().required('Please provide your email'),
-  zipcode: yup.string().required('Please provide your zipcode'),
+  zipCode: yup.string().required('Please provide your zipcode'),
   password: yup
     .string()
     .min(8, 'Password should minimum 8 characters.')
