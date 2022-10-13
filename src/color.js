@@ -17,6 +17,7 @@ const COLORS = {
   green2: '#27AE60',
   red: '#EB5757',
   shadow: '#8A959E',
+  background: '#F5F5F5',
 };
 
 export default COLORS;
