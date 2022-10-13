@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   TextInput,
   View,
@@ -10,20 +10,11 @@ import {Formik} from 'formik';
 import styles from '../loginSignupStyles';
 import validationSchema from './validationSchema';
 import CustomButton from '../../shared/Button';
-import {useAppDispatch, useAppSelector} from '../../features/store';
+import {useAppDispatch} from '../../features/store';
 import {signupFetch} from '../../features/signupSlice';
 
 const SignupForm = ({navigation}) => {
   const dispatch = useAppDispatch();
-  const signupData = useAppSelector(state => state.signup);
-  const {status} = signupData;
-  const [userInformation, setUserInformation] = useState({
-    name: '',
-    email: '',
-    zipCode: '',
-    password: '',
-    passwordConfirmation: '',
-  });
 
   const initialValues = {
     name: '',
@@ -32,13 +23,16 @@ const SignupForm = ({navigation}) => {
     password: '',
     passwordConfirmation: '',
   };
-  const navigateToHome = () => {
-    if (status === 'success') {
+
+  const navigateToHome = data => {
+    if (data === 'success') {
       navigation.navigate('Login'); // Change it to home page
     }
   };
-  const signup = async () => {
-    dispatch(signupFetch(userInformation));
+
+  const signup = async values => {
+    const data = await dispatch(signupFetch(values));
+    navigateToHome(data.payload.status);
   };
 
   return (
@@ -46,8 +40,7 @@ const SignupForm = ({navigation}) => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
-        signup();
-        navigateToHome();
+        signup(values);
         actions.resetForm();
       }}>
       {({values, handleChange, errors, touched, handleSubmit}) => (
@@ -57,10 +50,7 @@ const SignupForm = ({navigation}) => {
             <TextInput
               style={styles.input}
               placeholder="Name"
-              onChangeText={value => {
-                handleChange('name')(value);
-                setUserInformation({...userInformation, name: value});
-              }}
+              onChangeText={handleChange('name')}
               value={values.name}
             />
             {touched.name && errors.name && (
@@ -70,10 +60,7 @@ const SignupForm = ({navigation}) => {
               style={styles.input}
               multiline
               placeholder="Email"
-              onChangeText={value => {
-                handleChange('email')(value);
-                setUserInformation({...userInformation, email: value});
-              }}
+              onChangeText={handleChange('email')}
               value={values.email}
             />
             {touched.email && errors.email && (
@@ -82,10 +69,7 @@ const SignupForm = ({navigation}) => {
             <TextInput
               style={styles.input}
               placeholder="Zip Code"
-              onChangeText={value => {
-                handleChange('zipCode')(value);
-                setUserInformation({...userInformation, zipCode: value});
-              }}
+              onChangeText={handleChange('zipCode')}
               value={values.zipCode}
             />
             {touched.zipCode && errors.zipCode && (
@@ -94,10 +78,7 @@ const SignupForm = ({navigation}) => {
             <TextInput
               style={styles.input}
               placeholder="Password"
-              onChangeText={value => {
-                handleChange('password')(value);
-                setUserInformation({...userInformation, password: value});
-              }}
+              onChangeText={handleChange('password')}
               value={values.password}
             />
             {touched.password && errors.password && (
@@ -106,14 +87,7 @@ const SignupForm = ({navigation}) => {
             <TextInput
               style={styles.input}
               placeholder="Password Confirmation"
-              onChangeText={value => {
-                handleChange('passwordConfirmation')(value);
-                setUserInformation({
-                  ...userInformation,
-                  passwordConfirmation: value,
-                });
-              }}
-              value={values.passwordConfirmation}
+              onChangeText={handleChange('passwordConfirmation')}
             />
             {touched.passwordConfirmation && errors.passwordConfirmation && (
               <Text style={styles.errorText}>
