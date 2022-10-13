@@ -1,8 +1,5 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useState} from 'react';
 import {
-  Button,
   TextInput,
   View,
   Text,
@@ -16,23 +13,26 @@ import CustomButton from '../../shared/Button';
 import {useAppDispatch, useAppSelector} from '../../features/store';
 import {loginUser} from '../../features/loginSlice';
 
-const LoginForm = () => {
+const LoginForm = ({navigation}) => {
   const dispatch = useAppDispatch();
   const loginData = useAppSelector(state => state.login);
   const [userInformation, setUserInformation] = useState({
     email: '', //omodauda@yahoo.com
     password: '', //testing
   });
-
+  const {status} = loginData;
   const initialValues = {
     email: '',
     password: '',
   };
+  const navigateToHome = () => {
+    if (status === 'success') {
+      navigation.navigate('Signup'); // Change it to home page
+    }
+  };
 
   const login = () => {
     dispatch(loginUser(userInformation));
-    console.log('state2', loginData);
-
   };
   return (
     <Formik
@@ -40,7 +40,8 @@ const LoginForm = () => {
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
         login();
-        // actions.resetForm();
+        navigateToHome();
+        actions.resetForm();
       }}>
       {({values, handleChange, errors, touched, handleSubmit}) => (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -51,7 +52,7 @@ const LoginForm = () => {
               placeholder="Email"
               onChangeText={value => {
                 handleChange('email')(value);
-                setUserInformation({...userInformation, email:value});
+                setUserInformation({...userInformation, email: value});
               }}
               value={values.email}
               name="email"
@@ -64,7 +65,7 @@ const LoginForm = () => {
               placeholder="Password"
               onChangeText={value => {
                 handleChange('password')(value);
-                setUserInformation({...userInformation, password:value});
+                setUserInformation({...userInformation, password: value});
               }}
               value={values.password}
               name="password"
@@ -78,9 +79,6 @@ const LoginForm = () => {
               onPress={() => {
                 handleSubmit();
               }}
-              // disabled={!isValid}
-              // buttonTextStyle={styles.buttonText}
-              // onPress={() => navigation.navigate('Signup')}
             />
           </View>
         </TouchableWithoutFeedback>
