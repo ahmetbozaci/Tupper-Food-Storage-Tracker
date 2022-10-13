@@ -30,12 +30,8 @@ export const signupFetch = createAsyncThunk(
 
       if (data.status === 'success') {
         //! Add local storage
-        console.log('response', data);
-
         return data;
       } else {
-        console.log('response error', data);
-
         return thunkAPI.rejectWithValue(data);
       }
     } catch (e) {
@@ -53,8 +49,6 @@ const signupSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(signupFetch.fulfilled, (state, action) => {
-      console.log('case2', action);
-
       const {status, message} = action.payload;
       if (status === 'success') {
         state.loading = true;
@@ -65,15 +59,12 @@ const signupSlice = createSlice({
         state.loading = false;
         state.message = message;
       }
-      console.log('case2', state);
     });
     builder.addCase(signupFetch.rejected, (state, action) => {
-      console.log('case3', action);
       const {message, status} = action.payload;
       state.loading = false;
       state.status = status;
       state.message = message;
-      console.log('case3', state);
     });
   },
 });

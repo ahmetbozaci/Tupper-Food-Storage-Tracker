@@ -50,7 +50,7 @@ const SignupForm = ({navigation}) => {
       onSubmit={(values, actions) => {
         signup();
         navigateToHome();
-        // actions.resetForm();
+        actions.resetForm();
       }}>
       {({values, handleChange, errors, touched, handleSubmit}) => (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
