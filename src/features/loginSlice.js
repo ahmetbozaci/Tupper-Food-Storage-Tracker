@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const initialState = {
   status: '',
+  error: '',
   data: {
     email: '',
   },
@@ -27,7 +28,7 @@ export const loginUser = createAsyncThunk(
         }),
       });
       const data = await response.json();
-      console.log('response', data);
+      return data;
       // if (response.status === 200) {
       //   localStorage.setItem('token', data.token);
       //   return data;
@@ -35,7 +36,7 @@ export const loginUser = createAsyncThunk(
       //   return thunkAPI.rejectWithValue(data);
       // }
     } catch (e) {
-      console.log('Error', e.response.data);
+      // console.log('Error', e.response.data);
       thunkAPI.rejectWithValue(e.response.data);
     }
   },
@@ -43,49 +44,27 @@ export const loginUser = createAsyncThunk(
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-    [loginUser.fulfilled]: (state, {payload}) => {
-      console.log('payload', payload);
-      state.email = payload.email;
-      state.username = payload.name;
-      state.isFetching = false;
-      state.isSuccess = true;
-      return state;
-    },
-    [loginUser.rejected]: (state, {payload}) => {
-      console.log('payload', payload);
-      state.isFetching = false;
-      state.isError = true;
-      state.errorMessage = payload.message;
-    },
-    [loginUser.pending]: state => {
-      state.isFetching = true;
-    },
+  reducers: {},
+  extraReducers: builder => {
+    builder.addCase(loginUser.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(loginUser.fulfilled, (state, {payload}) => {
+      if (payload.status === 'fail') {
+        state.error = payload.status;
+        state.loading = false;
+      } else {
+        console.log('state1', payload);
+        state.data.email = payload.data.email;
+        state.status = payload.status;
+        console.log('state1', state);
+      }
+    });
+    builder.addCase(loginUser.rejected, (state, action) => {
+      console.log(action);
+      state.loading = false;
+    });
   },
-  // extraReducers: {
-  //   [loginUser.fulfilled]: (state, {payload}) => {
-  //     console.log('hello', payload);
-  //     state.data.email = payload.email;
-  //     state.status = payload.status;
-  //     return state;
-  //   },
-  // },
-  // extraReducers: builder => {
-  //   builder.addCase(loginUser.pending, (state, action) => {
-  //     state.loading = true;
-  //     state.error = '';
-  //   });
-
-  //   builder.addCase(loginUser.fulfilled, (state, action) => {
-  //     state.data.email = action.payload.email;
-  //     state.loading = false;
-  //   });
-  //   builder.addCase(loginUser.rejected, (state, action) => {
-  //     state.loading = false;
-  //     state.error = 'Error fetching user data';
-  //   });
-  // },
-  //   },
 });
 
 export default userSlice.reducer;

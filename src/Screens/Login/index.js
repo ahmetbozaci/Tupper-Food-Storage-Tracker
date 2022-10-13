@@ -30,8 +30,9 @@ const LoginForm = () => {
   };
 
   const login = () => {
-    console.log(loginData);
     dispatch(loginUser(userInformation));
+    console.log('state2', loginData);
+
   };
   return (
     <Formik
@@ -39,7 +40,7 @@ const LoginForm = () => {
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
         login();
-        actions.resetForm();
+        // actions.resetForm();
       }}>
       {({values, handleChange, errors, touched, handleSubmit}) => (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
