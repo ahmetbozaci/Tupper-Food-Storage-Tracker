@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   TextInput,
   View,
@@ -10,38 +10,37 @@ import {Formik} from 'formik';
 import styles from '../loginSignupStyles';
 import validationSchema from './validationSchema';
 import CustomButton from '../../shared/Button';
-import {useAppDispatch, useAppSelector} from '../../features/store';
+
+import {useAppDispatch} from '../../features/store';
 import {loginFetch} from '../../features/loginSlice';
 
 const LoginForm = ({navigation}) => {
   const dispatch = useAppDispatch();
-  const loginData = useAppSelector(state => state.login);
-  const {status} = loginData;
 
-  const [userInformation, setUserInformation] = useState({
-    email: '', //omodauda@yahoo.com
-    password: '', //testing
-  });
+  //email //omodauda@yahoo.com
+  //password //testing
+
   const initialValues = {
     email: '',
     password: '',
   };
-  const navigateToHome = () => {
-    if (status === 'success') {
+  const navigateToHome = data => {
+    if (data === 'success') {
       navigation.navigate('Signup'); // Change it to home page
     }
   };
 
-  const login = () => {
-    dispatch(loginFetch(userInformation));
+  const login = async values => {
+    const data = await dispatch(loginFetch(values));
+    navigateToHome(data.payload.status);
   };
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
-        login();
-        navigateToHome();
+        login(values);
         actions.resetForm();
       }}>
       {({values, handleChange, errors, touched, handleSubmit}) => (
@@ -51,10 +50,7 @@ const LoginForm = ({navigation}) => {
             <TextInput
               style={styles.input}
               placeholder="Email"
-              onChangeText={value => {
-                handleChange('email')(value);
-                setUserInformation({...userInformation, email: value});
-              }}
+              onChangeText={handleChange('email')}
               value={values.email}
               name="email"
             />
@@ -64,10 +60,7 @@ const LoginForm = ({navigation}) => {
             <TextInput
               style={styles.input}
               placeholder="Password"
-              onChangeText={value => {
-                handleChange('password')(value);
-                setUserInformation({...userInformation, password: value});
-              }}
+              onChangeText={handleChange('password')}
               value={values.password}
               name="password"
             />
