@@ -7,7 +7,7 @@ const COLORS = {
   gray5: '#E0E0E0',
   gray6: '#676767',
   blurGray: '#F0F0F0',
-  black: '#303030',
+  black: '#000000',
   black3: '#606060',
   brown: '#B4916C',
   lightBrown: '#E4CBAD',
@@ -18,6 +18,7 @@ const COLORS = {
   red: '#EB5757',
   shadow: '#8A959E',
   background: '#F5F5F5',
+  primary: '#07AF87',
 };
 
 export default COLORS;
