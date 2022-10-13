@@ -1,0 +1,22 @@
+{
+  "error": {"message": "Rejected"},
+  "meta": {
+    "aborted": false,
+    "arg": {
+      "email": "ahmt@teest.com",
+      "name": "Ahme Bozaci",
+      "password": "123456789test",
+      "passwordConfirmation": "123456789test",
+      "zipCode": "10100102"
+    },
+    "condition": false,
+    "rejectedWithValue": true,
+    "requestId": "CP2jM4pP8marzNtoNoHJN",
+    "requestStatus": "rejected"
+  },
+  "payload": {
+    "message": "user with email ahmt@teest.com already exist",
+    "status": "fail"
+  },
+  "type": "users/login/rejected"
+}

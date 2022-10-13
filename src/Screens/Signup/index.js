@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useState} from 'react';
 import {
   TextInput,
@@ -9,14 +8,15 @@ import {
 } from 'react-native';
 import {Formik} from 'formik';
 import styles from '../loginSignupStyles';
-import {initialValuesInterface} from './types';
 import validationSchema from './validationSchema';
 import CustomButton from '../../shared/Button';
-import {useAppDispatch} from '../../features/store';
+import {useAppDispatch, useAppSelector} from '../../features/store';
+import {signupFetch} from '../../features/signupSlice';
 
-const SignUpForm = () => {
+const SignupForm = ({navigation}) => {
   const dispatch = useAppDispatch();
-
+  const signupData = useAppSelector(state => state.signup);
+  const {status} = signupData;
   const [userInformation, setUserInformation] = useState({
     name: '',
     email: '',
@@ -24,25 +24,23 @@ const SignUpForm = () => {
     password: '',
     passwordConfirmation: '',
   });
-  const {name, email, zipCode, password} = userInformation;
 
-  const initialValues: initialValuesInterface = {
+  const initialValues = {
     name: '',
     email: '',
     zipCode: '',
     password: '',
     passwordConfirmation: '',
   };
-
-  const signUp = async () => {
-    // const newUser = {
-    //   name,
-    //   email,
-    //   zipCode,
-    //   password,
-    // };
-    // dispatch(createUser(newUser));
-    console.log('signUpFunction');
+  const navigateToHome = () => {
+    console.log('navigate');
+    if (status === 'success') {
+      navigation.navigate('Login'); // Change it to home page
+    }
+  };
+  const signup = async () => {
+    dispatch(signupFetch(userInformation));
+    console.log('signupData', signupData);
   };
 
   return (
@@ -50,9 +48,9 @@ const SignUpForm = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
-        signUp();
-        actions.resetForm();
-        setUserInformation(values);
+        signup();
+        navigateToHome();
+        // actions.resetForm();
       }}>
       {({values, handleChange, errors, touched, handleSubmit}) => (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -61,7 +59,10 @@ const SignUpForm = () => {
             <TextInput
               style={styles.input}
               placeholder="Name"
-              onChangeText={handleChange('name')}
+              onChangeText={value => {
+                handleChange('name')(value);
+                setUserInformation({...userInformation, name: value});
+              }}
               value={values.name}
             />
             {touched.name && errors.name && (
@@ -71,7 +72,10 @@ const SignUpForm = () => {
               style={styles.input}
               multiline
               placeholder="Email"
-              onChangeText={handleChange('email')}
+              onChangeText={value => {
+                handleChange('email')(value);
+                setUserInformation({...userInformation, email: value});
+              }}
               value={values.email}
             />
             {touched.email && errors.email && (
@@ -79,9 +83,11 @@ const SignUpForm = () => {
             )}
             <TextInput
               style={styles.input}
-              multiline
               placeholder="Zip Code"
-              onChangeText={handleChange('zipCode')}
+              onChangeText={value => {
+                handleChange('zipCode')(value);
+                setUserInformation({...userInformation, zipCode: value});
+              }}
               value={values.zipCode}
             />
             {touched.zipCode && errors.zipCode && (
@@ -90,7 +96,10 @@ const SignUpForm = () => {
             <TextInput
               style={styles.input}
               placeholder="Password"
-              onChangeText={handleChange('password')}
+              onChangeText={value => {
+                handleChange('password')(value);
+                setUserInformation({...userInformation, password: value});
+              }}
               value={values.password}
             />
             {touched.password && errors.password && (
@@ -99,7 +108,13 @@ const SignUpForm = () => {
             <TextInput
               style={styles.input}
               placeholder="Password Confirmation"
-              onChangeText={handleChange('passwordConfirmation')}
+              onChangeText={value => {
+                handleChange('passwordConfirmation')(value);
+                setUserInformation({
+                  ...userInformation,
+                  passwordConfirmation: value,
+                });
+              }}
               value={values.passwordConfirmation}
             />
             {touched.passwordConfirmation && errors.passwordConfirmation && (
@@ -121,4 +136,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default SignupForm;

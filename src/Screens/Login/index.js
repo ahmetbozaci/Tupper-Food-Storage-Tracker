@@ -11,16 +11,17 @@ import styles from '../loginSignupStyles';
 import validationSchema from './validationSchema';
 import CustomButton from '../../shared/Button';
 import {useAppDispatch, useAppSelector} from '../../features/store';
-import {loginUser} from '../../features/loginSlice';
+import {loginFetch} from '../../features/loginSlice';
 
 const LoginForm = ({navigation}) => {
   const dispatch = useAppDispatch();
   const loginData = useAppSelector(state => state.login);
+  const {status} = loginData;
+
   const [userInformation, setUserInformation] = useState({
     email: '', //omodauda@yahoo.com
     password: '', //testing
   });
-  const {status} = loginData;
   const initialValues = {
     email: '',
     password: '',
@@ -32,7 +33,7 @@ const LoginForm = ({navigation}) => {
   };
 
   const login = () => {
-    dispatch(loginUser(userInformation));
+    dispatch(loginFetch(userInformation));
   };
   return (
     <Formik

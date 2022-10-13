@@ -4,16 +4,14 @@ const initialState = {
   status: '',
   message: '',
   loading: false,
-  data: {},
 };
 
-const baseURL = 'https://tupper-backend.herokuapp.com/api/user/login';
+const baseURL = 'https://tupper-backend.herokuapp.com/api/user/signup';
 
-export const loginFetch = createAsyncThunk(
-  'users/login',
+export const signupFetch = createAsyncThunk(
+  'users/signup',
   async (userInformation, thunkAPI) => {
-    const {email, password} = userInformation;
-
+    const {name, email, zipCode, password} = userInformation;
     try {
       const response = await fetch(baseURL, {
         method: 'POST',
@@ -22,15 +20,22 @@ export const loginFetch = createAsyncThunk(
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          name,
           email,
+          zipCode,
           password,
         }),
       });
       const data = await response.json();
+
       if (data.status === 'success') {
         //! Add local storage
+        console.log('response', data);
+
         return data;
       } else {
+        console.log('response error', data);
+
         return thunkAPI.rejectWithValue(data);
       }
     } catch (e) {
@@ -38,20 +43,21 @@ export const loginFetch = createAsyncThunk(
     }
   },
 );
-const loginSlice = createSlice({
+const signupSlice = createSlice({
   name: 'login',
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(loginFetch.pending, (state, action) => {
+    builder.addCase(signupFetch.pending, (state, action) => {
+      console.log('case1', action);
       state.loading = true;
     });
-    builder.addCase(loginFetch.fulfilled, (state, action) => {
-      const {status, message, data} = action.payload;
-      const {email} = data;
+    builder.addCase(signupFetch.fulfilled, (state, action) => {
+      console.log('case2', action);
+
+      const {status, message} = action.payload;
       if (status === 'success') {
         state.loading = true;
-        state.data.email = email;
         state.status = status;
         state.message = message;
       } else {
@@ -59,14 +65,17 @@ const loginSlice = createSlice({
         state.loading = false;
         state.message = message;
       }
+      console.log('case2', state);
     });
-    builder.addCase(loginFetch.rejected, (state, action) => {
+    builder.addCase(signupFetch.rejected, (state, action) => {
+      console.log('case3', action);
       const {message, status} = action.payload;
       state.loading = false;
       state.status = status;
       state.message = message;
+      console.log('case3', state);
     });
   },
 });
 
-export default loginSlice.reducer;
+export default signupSlice.reducer;
