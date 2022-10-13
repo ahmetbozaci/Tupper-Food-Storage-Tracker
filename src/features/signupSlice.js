@@ -45,7 +45,6 @@ const signupSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(signupFetch.pending, (state, action) => {
-      console.log('case1', action);
       state.loading = true;
     });
     builder.addCase(signupFetch.fulfilled, (state, action) => {

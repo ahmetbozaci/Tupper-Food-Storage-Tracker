@@ -33,14 +33,12 @@ const SignupForm = ({navigation}) => {
     passwordConfirmation: '',
   };
   const navigateToHome = () => {
-    console.log('navigate');
     if (status === 'success') {
       navigation.navigate('Login'); // Change it to home page
     }
   };
   const signup = async () => {
     dispatch(signupFetch(userInformation));
-    console.log('signupData', signupData);
   };
 
   return (
