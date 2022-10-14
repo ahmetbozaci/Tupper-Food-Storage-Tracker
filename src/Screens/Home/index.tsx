@@ -10,9 +10,9 @@ import React from 'react';
 import COLORS from '../../color';
 import AppHeader from '../../shared/AppHeader';
 import {fontSz, heightPercentage, widthPercentage} from '../../config';
-import DATA from '../../assets/mock/data';
-import AddIcon from '../../assets/svg/add.svg';
-import ChevronRight from '../../assets/svg/chevron-right.svg';
+import DATA from '../../../assets/mock/data';
+import AddIcon from '../../../assets/svg/add.svg';
+import ChevronRight from '../../../assets/svg/chevron-right.svg';
 
 interface Props {
   navigation: any;

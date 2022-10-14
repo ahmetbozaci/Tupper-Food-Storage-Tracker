@@ -7,10 +7,10 @@ import {
 } from 'react-native';
 import React, {useCallback, useState} from 'react';
 
-import Home_Inactive from '../assets/svg/home-inactive.svg';
-import Add_Inactive from '../assets/svg/add-inactive.svg';
-import Add_Active from '../assets/svg/add-active.svg';
-import Storage_Inactive from '../assets/svg/storage-inactive.svg';
+import Home_Inactive from '../../assets/svg/home-inactive.svg';
+import Add_Inactive from '../../assets/svg/add-inactive.svg';
+import Add_Active from '../../assets/svg/add-active.svg';
+import Storage_Inactive from '../../assets/svg/storage-inactive.svg';
 import {heightPercentage, widthPercentage, fontSz} from '../config';
 import COLORS from '../color';
 import AddModal from '../Screens/Add';
