@@ -1,10 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {useDispatch, useSelector, TypedUseSelectorHook} from 'react-redux';
-import signUpSLice from './features/signUpSLice';
+import loginSlice from './loginSlice';
+import signupSlice from './signupSlice';
 
 const store = configureStore({
   reducer: {
-    signup: signUpSLice,
+    login: loginSlice,
+    signup: signupSlice,
   },
 });
 export default store;
@@ -12,5 +14,5 @@ export default store;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-export const useAppDispatch = () => useDispatch<AppDispatch>;
+export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
