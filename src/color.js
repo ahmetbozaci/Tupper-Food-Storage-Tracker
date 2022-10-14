@@ -6,6 +6,8 @@ const COLORS = {
   gray4: '#BDBDBD',
   gray5: '#E0E0E0',
   gray6: '#676767',
+  gray7: '#7C7C7C',
+  gray8: '#ABABAB',
   blurGray: '#F0F0F0',
   black: '#303030',
   black3: '#606060',
@@ -15,6 +17,7 @@ const COLORS = {
   blackGray: '#C4C4C4',
   green: '#2CAE60',
   green2: '#27AE60',
+  green3: '#07AF87',
   red: '#EB5757',
   shadow: '#8A959E',
 };

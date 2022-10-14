@@ -12,6 +12,7 @@ import validationSchema from './validationSchema';
 import CustomButton from '../../shared/Button';
 import {useAppDispatch} from '../../features/store';
 import {signupFetch} from '../../features/signupSlice';
+import COLORS from '../../color';
 
 const SignupForm = ({navigation}) => {
   const dispatch = useAppDispatch();
@@ -46,10 +47,13 @@ const SignupForm = ({navigation}) => {
       {({values, handleChange, errors, touched, handleSubmit}) => (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.screen}>
-            <Text style={styles.titleText}>Sign Up</Text>
+            <Text style={[styles.titleTextSignup, styles.titleText]}>
+              Sign Up
+            </Text>
             <TextInput
               style={styles.input}
               placeholder="Name"
+              placeholderTextColor={COLORS.gray8}
               onChangeText={handleChange('name')}
               value={values.name}
             />
@@ -60,6 +64,7 @@ const SignupForm = ({navigation}) => {
               style={styles.input}
               multiline
               placeholder="Email"
+              placeholderTextColor={COLORS.gray8}
               onChangeText={handleChange('email')}
               value={values.email}
             />
@@ -69,6 +74,7 @@ const SignupForm = ({navigation}) => {
             <TextInput
               style={styles.input}
               placeholder="Zip Code"
+              placeholderTextColor={COLORS.gray8}
               onChangeText={handleChange('zipCode')}
               value={values.zipCode}
             />
@@ -78,6 +84,7 @@ const SignupForm = ({navigation}) => {
             <TextInput
               style={styles.input}
               placeholder="Password"
+              placeholderTextColor={COLORS.gray8}
               onChangeText={handleChange('password')}
               value={values.password}
             />
@@ -86,7 +93,8 @@ const SignupForm = ({navigation}) => {
             )}
             <TextInput
               style={styles.input}
-              placeholder="Password Confirmation"
+              placeholderTextColor={COLORS.gray8}
+              placeholder="Confirm Password"
               onChangeText={handleChange('passwordConfirmation')}
             />
             {touched.passwordConfirmation && errors.passwordConfirmation && (
@@ -94,13 +102,15 @@ const SignupForm = ({navigation}) => {
                 {errors.passwordConfirmation}
               </Text>
             )}
-            <CustomButton
-              buttonText="Sign up"
-              onPress={() => {
-                handleSubmit();
-              }}
-              //! add disabled prop
-            />
+            <View
+              style={[styles.buttonContainer, styles.buttonContainerSignup]}>
+              <CustomButton
+                onPress={() => {
+                  handleSubmit();
+                }}
+                //! add disabled prop
+              />
+            </View>
           </View>
         </TouchableWithoutFeedback>
       )}

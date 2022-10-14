@@ -46,7 +46,9 @@ const LoginForm = ({navigation}) => {
       {({values, handleChange, errors, touched, handleSubmit}) => (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.screen}>
-            <Text style={styles.titleText}>Log In</Text>
+            <Text style={[styles.titleTextLogin, styles.titleText]}>
+              Log In
+            </Text>
             <TextInput
               style={styles.input}
               placeholder="Email"
@@ -67,13 +69,13 @@ const LoginForm = ({navigation}) => {
             {touched.password && errors.password && (
               <Text style={styles.errorText}>{errors.password}</Text>
             )}
-
-            <CustomButton
-              buttonText="Log In"
-              onPress={() => {
-                handleSubmit();
-              }}
-            />
+            <View style={[styles.buttonContainerLogin, styles.buttonContainer]}>
+              <CustomButton
+                onPress={() => {
+                  handleSubmit();
+                }}
+              />
+            </View>
           </View>
         </TouchableWithoutFeedback>
       )}
