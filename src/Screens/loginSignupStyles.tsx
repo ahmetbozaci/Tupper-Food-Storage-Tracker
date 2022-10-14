@@ -6,9 +6,13 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: fontSz(40),
     fontWeight: 'bold',
-    color: COLORS.black3,
-    textAlign: 'center',
-    paddingBottom: 30,
+    color: COLORS.green3,
+  },
+  titleTextSignup: {
+    marginVertical: heightPercentage(45),
+  },
+  titleTextLogin: {
+    marginVertical: heightPercentage(100),
   },
   errorText: {
     fontSize: 12,
@@ -16,17 +20,27 @@ const styles = StyleSheet.create({
   },
   screen: {
     flex: 1,
-    paddingHorizontal: widthPercentage(30),
+    marginHorizontal: widthPercentage(40),
     justifyContent: 'center',
   },
   input: {
-    borderWidth: 1,
-    borderColor: COLORS.gray4,
+    borderWidth: 2,
+    borderColor: COLORS.gray7,
     paddingVertical: heightPercentage(15),
     paddingHorizontal: widthPercentage(30),
-    marginVertical: heightPercentage(5),
+    marginVertical: heightPercentage(10),
     fontSize: fontSz(20),
-    borderRadius: 50,
+    borderRadius: 12,
+    color: COLORS.green,
+  },
+  buttonContainer: {
+    alignItems: 'flex-end',
+  },
+  buttonContainerLogin: {
+    marginVertical: heightPercentage(100),
+  },
+  buttonContainerSignup: {
+    marginVertical: heightPercentage(35),
   },
 });
 

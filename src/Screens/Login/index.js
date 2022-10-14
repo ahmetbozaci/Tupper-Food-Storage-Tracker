@@ -1,8 +1,5 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, {useState} from 'react';
+import React from 'react';
 import {
-  Button,
   TextInput,
   View,
   Text,
@@ -11,28 +8,31 @@ import {
 } from 'react-native';
 import {Formik} from 'formik';
 import styles from '../loginSignupStyles';
-import {initialValuesInterface} from './types';
 import validationSchema from './validationSchema';
 import CustomButton from '../../shared/Button';
-import createUser from '../../Redux/Signup/API';
-import {useAppDispatch} from '../../Redux/store';
-import {fetchUser} from '../../Redux/features/loginSlice';
 
-const LoginForm = () => {
+import {useAppDispatch} from '../../features/store';
+import {loginFetch} from '../../features/loginSlice';
+
+const LoginForm = ({navigation}) => {
   const dispatch = useAppDispatch();
-  const [userInformation, setUserInformation] = useState({
-    email: '',
-    password: '',
-  });
 
-  const initialValues: initialValuesInterface = {
+  //email //omodauda@yahoo.com
+  //password //testing
+
+  const initialValues = {
     email: '',
     password: '',
   };
+  const navigateToHome = data => {
+    if (data === 'success') {
+      navigation.navigate('Signup'); // Change it to home page
+    }
+  };
 
-  const login = () => {
-    dispatch(fetchUser(userInformation.email));
-    console.log('login');
+  const login = async values => {
+    const data = await dispatch(loginFetch(values));
+    navigateToHome(data.payload.status);
   };
 
   return (
@@ -40,21 +40,21 @@ const LoginForm = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
-        login();
-        console.log(values);
+        login(values);
         actions.resetForm();
-      }}
-    >
+      }}>
       {({values, handleChange, errors, touched, handleSubmit}) => (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.screen}>
-            <Text style={styles.titleText}>Log In</Text>
+            <Text style={[styles.titleTextLogin, styles.titleText]}>
+              Log In
+            </Text>
             <TextInput
               style={styles.input}
-              multiline
               placeholder="Email"
               onChangeText={handleChange('email')}
               value={values.email}
+              name="email"
             />
             {touched.email && errors.email && (
               <Text style={styles.errorText}>{errors.email}</Text>
@@ -64,20 +64,18 @@ const LoginForm = () => {
               placeholder="Password"
               onChangeText={handleChange('password')}
               value={values.password}
+              name="password"
             />
             {touched.password && errors.password && (
               <Text style={styles.errorText}>{errors.password}</Text>
             )}
-
-            <CustomButton
-              buttonText="Log In"
-              onPress={() => {
-                handleSubmit();
-              }}
-              // disabled={!isValid}
-              // buttonTextStyle={styles.buttonText}
-              // onPress={() => navigation.navigate('Signup')}
-            />
+            <View style={[styles.buttonContainerLogin, styles.buttonContainer]}>
+              <CustomButton
+                onPress={() => {
+                  handleSubmit();
+                }}
+              />
+            </View>
           </View>
         </TouchableWithoutFeedback>
       )}
