@@ -6,19 +6,32 @@ import {
   BottomTabBarProps,
 } from '@react-navigation/bottom-tabs';
 
-// import SignupScreen from '../Screens/Signup';
-// import LoginScreen from '../Screens/Login';
-// import MainScreen from '../Screens/Main';
+import SignupScreen from '../Screens/Signup';
+import LoginScreen from '../Screens/Login';
+import MainScreen from '../Screens/Main';
 
 // Bottom Tab Screens
 import HomeScreen from '../Screens/Home';
-import AddScreen from '../Screens/Add';
 import StorageScreen from '../Screens/Storage';
 import COLORS from '../color';
 import BottomTabBar from './TabBarComponent';
 
+import FoodsScreen from '../Screens/Foods';
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const HomeStack = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Stack.Screen name="HomeIndex" component={HomeScreen} />
+      <Stack.Screen name="Foods" component={FoodsScreen} />
+    </Stack.Navigator>
+  );
+};
 
 const Tabs = () => {
   return (
@@ -29,8 +42,7 @@ const Tabs = () => {
         tabBarActiveTintColor: COLORS.primary,
         tabBarInactiveTintColor: COLORS.gray,
       }}>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Add" component={AddScreen} />
+      <Tab.Screen name="Home" component={HomeStack} />
       <Tab.Screen name="Storage" component={StorageScreen} />
     </Tab.Navigator>
   );
@@ -43,9 +55,9 @@ const MainStack = () => {
         screenOptions={{
           headerShown: false,
         }}>
-        {/* <Stack.Screen name="Main" component={MainScreen} />
+        <Stack.Screen name="Main" component={MainScreen} />
         <Stack.Screen name="Signup" component={SignupScreen} />
-        <Stack.Screen name="Login" component={LoginScreen} /> */}
+        <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Tabs" component={Tabs} />
       </Stack.Navigator>
     </NavigationContainer>
