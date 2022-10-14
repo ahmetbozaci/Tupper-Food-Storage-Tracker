@@ -2,8 +2,6 @@ import {Text, SafeAreaView, View} from 'react-native';
 import React from 'react';
 import styles from './styles';
 import CustomButton from '../../shared/Button';
-import {Link, LinkingContext} from '@react-navigation/native';
-import SignupForm from '../Signup';
 
 interface Props {
   navigation: any;
