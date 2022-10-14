@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 
 import Home_Inactive from '../assets/svg/home-inactive.svg';
 import Add_Inactive from '../assets/svg/add-inactive.svg';
@@ -13,6 +13,7 @@ import Add_Active from '../assets/svg/add-active.svg';
 import Storage_Inactive from '../assets/svg/storage-inactive.svg';
 import {heightPercentage, widthPercentage, fontSz} from '../config';
 import COLORS from '../color';
+import AddModal from '../Screens/Add';
 
 const iconsObj = {
   Home: {
@@ -53,61 +54,105 @@ const iconsObj = {
   },
 };
 
-interface Props {
+interface TabBarComponentProps {
   state: any;
   descriptors: any;
   navigation: any;
 }
 
-const TabBarComponent: React.FC<Props> = ({state, descriptors, navigation}) => {
+interface TabButtonProps {
+  isFocused: boolean;
+  descriptors: any;
+  navigation: any;
+  route: any;
+}
+
+const TabBarComponent: React.FC<TabBarComponentProps> = ({
+  state,
+  descriptors,
+  navigation,
+}) => {
+  const [visible, setModalVisible] = useState(false);
+  const focusedOptions = descriptors[state.routes[state.index].key].options;
+
+  if (focusedOptions.tabBarVisible === false) {
+    return null;
+  }
+  const routes = state.routes;
+
   return (
-    <SafeAreaView style={styles.tabBar}>
-      {state.routes.map((route: any, index: string) => {
-        const {options} = descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-            ? options.title
-            : route.name;
+    <>
+      <SafeAreaView style={[styles.tabBar]}>
+        <TabButton
+          navigation={navigation}
+          route={routes[0]}
+          isFocused={state.index === 0}
+          descriptors={descriptors}
+        />
+        <TouchableOpacity
+          style={styles.addBtn}
+          onPress={() => setModalVisible(true)}>
+          <Add_Active width={33} />
+          <Text
+            style={[
+              styles.tabLabel,
+              {color: visible ? COLORS.primary : COLORS.gray},
+            ]}>
+            Add
+          </Text>
+        </TouchableOpacity>
+        <TabButton
+          navigation={navigation}
+          route={routes[1]}
+          isFocused={state.index === 1}
+          descriptors={descriptors}
+        />
+      </SafeAreaView>
+      <AddModal
+        visible={visible}
+        onRequestClose={() => setModalVisible(false)}
+      />
+    </>
+  );
+};
 
-        const isFocused = state.index === index;
+const TabButton: React.FC<TabButtonProps> = ({
+  isFocused,
+  descriptors,
+  navigation,
+  route,
+}) => {
+  const {options} = descriptors[route.key];
+  const {name, key} = route;
 
-        const icons = iconsObj[label];
+  const onPress = useCallback(() => {
+    const event = navigation.emit({
+      type: 'tabPress',
+      target: key,
+      canPreventDefault: true,
+    });
+    if (!isFocused && !event.defaultPrevented) {
+      navigation.navigate(route.name);
+    }
+  }, [isFocused, key, navigation, route.name]);
 
-        const onPress = () => {
-          const event = navigation.emit({
-            type: 'tabPress',
-            target: route.key,
-            canPreventDefault: true,
-          });
+  const icons = iconsObj[name];
 
-          if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate({name: route.name, merge: true});
-          }
-        };
-
-        return (
-          <TouchableOpacity
-            key={index}
-            accessibilityRole="button"
-            accessibilityState={isFocused ? {selected: true} : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarTestID}
-            onPress={onPress}
-            style={styles.tab}>
-            <View>{isFocused ? icons.isActive : icons.inActive}</View>
-            <Text
-              style={
-                (styles.tabLabel,
-                {color: isFocused ? COLORS.primary : COLORS.gray})
-              }>
-              {label}
-            </Text>
-          </TouchableOpacity>
-        );
-      })}
-    </SafeAreaView>
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityState={isFocused ? {selected: true} : {}}
+      accessibilityLabel={options.tabBarAccessibilityLabel}
+      style={styles.tab}>
+      <View>{isFocused ? icons.isActive : icons.inActive}</View>
+      <Text
+        style={
+          (styles.tabLabel, {color: isFocused ? COLORS.primary : COLORS.gray})
+        }>
+        {name}
+      </Text>
+    </TouchableOpacity>
   );
 };
 
@@ -119,6 +164,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     borderTopWidth: 2,
     borderColor: COLORS.background,
+    height: heightPercentage(82),
   },
   tab: {
     flex: 1,
@@ -128,6 +174,21 @@ const styles = StyleSheet.create({
   tabLabel: {
     fontWeight: '500',
     fontSize: fontSz(15),
+  },
+  addBtn: {
+    marginTop: 11,
+  },
+  modalContainer: {
+    backgroundColor: 'rgba(0,0,0,0.25)',
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: heightPercentage(82),
+  },
+  modalContent: {
+    backgroundColor: 'red',
+    borderTopRightRadius: 16,
+    borderTopLeftRadius: 16,
+    height: 200,
   },
 });
 
