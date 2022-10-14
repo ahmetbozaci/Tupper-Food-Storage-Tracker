@@ -27,7 +27,7 @@ const SignupForm = ({navigation}) => {
 
   const navigateToHome = data => {
     if (data === 'success') {
-      navigation.navigate('Login'); // Change it to home page
+      navigation.navigate('Tabs'); // Change it to home page
     }
   };
 
