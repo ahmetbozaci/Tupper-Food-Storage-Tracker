@@ -2,6 +2,8 @@ import {Text, SafeAreaView, View} from 'react-native';
 import React from 'react';
 import styles from './styles';
 import CustomButton from '../../shared/Button';
+import {Link, LinkingContext} from '@react-navigation/native';
+import SignupForm from '../Signup';
 
 interface Props {
   navigation: any;
@@ -12,19 +14,36 @@ const Main: React.FC<Props> = ({navigation}) => {
     <SafeAreaView style={styles.screen}>
       <View>
         <View style={styles.logo}>
-          <Text style={styles.logoText}>Logo</Text>
+          <Text style={styles.logoText}>Tupper</Text>
         </View>
         <View style={styles.buttonWrapper}>
           <CustomButton
-            buttonText="Sign up"
-            buttonStyle={styles.button}
+            buttonText="Sign Up"
+            buttonTextStyle={styles.buttonText}
+            buttonStyle={[styles.button, styles.signupButton]}
             onPress={() => navigation.navigate('Signup')}
           />
           <CustomButton
-            buttonText="Log in"
+            buttonText="Log In"
             buttonStyle={styles.button}
             onPress={() => navigation.navigate('Login')}
           />
+        </View>
+        <View>
+          <Text style={[styles.text, styles.forgotPassword]}>
+            Forgot password?
+          </Text>
+        </View>
+        <View>
+          <Text style={styles.text}>
+            Don't have an account?
+            <Text
+              onPress={() => navigation.navigate('Signup')}
+              style={styles.signup}>
+              {' '}
+              Signup
+            </Text>
+          </Text>
         </View>
       </View>
     </SafeAreaView>

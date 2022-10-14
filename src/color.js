@@ -18,7 +18,9 @@ const COLORS = {
   green: '#2CAE60',
   green2: '#27AE60',
   green3: '#07AF87',
+  green4: '#8EF19E',
   red: '#EB5757',
+  blue: '#146CF0',
   shadow: '#8A959E',
 };
 
