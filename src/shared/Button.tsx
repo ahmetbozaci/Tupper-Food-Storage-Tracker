@@ -13,7 +13,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({
-  buttonText,
+  buttonText = 'Submit',
   buttonStyle,
   buttonTextStyle,
   onPress,
@@ -29,13 +29,11 @@ export default Button;
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 50,
+    borderRadius: 25,
     paddingVertical: heightPercentage(20),
     marginVertical: heightPercentage(5),
-    backgroundColor: COLORS.black,
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: COLORS.green3,
+    width: '50%',
   },
   text: {
     fontSize: fontSz(24),

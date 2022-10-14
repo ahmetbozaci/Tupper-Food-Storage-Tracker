@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "arg": {"email": "omodauda@yahoo.com", "password": "testing"},
+    "requestId": "e-u6dLe49fvOP9kpObVbK",
+    "requestStatus": "fulfilled"
+  },
+  "payload": {
+    "data": {
+      "createdAt": "2022-10-11T23:23:09.003Z",
+      "email": "omodauda@yahoo.com",
+      "id": "5f3b70d5-9a01-4dbe-9c70-e502b978daa0",
+      "isAdmin": false,
+      "isVerified": false,
+      "name": "Lawal Dauda",
+      "password": "$2b$10$CsdQHLmxBVpIFxXZrLzxUOWH3rOHMOTvGhwjgIw9ORxFFK8SqV29W",
+      "updatedAt": "2022-10-12T07:06:43.730Z",
+      "zipCode": "100001"
+    },
+    "message": "user login successful",
+    "status": "success",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmM2I3MGQ1LTlhMDEtNGRiZS05YzcwLWU1MDJiOTc4ZGFhMCIsImlhdCI6MTY2NTY5MTI2MywiZXhwIjoxNjY2NTU1MjYzfQ.uML1ysQr-M5INPTnpevK7yrN6nPhNtf7_pcSw2kQoe0"
+  },
+  "type": "users/login/fulfilled"
+}

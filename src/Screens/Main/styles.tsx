@@ -7,25 +7,42 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: COLORS.green4,
   },
   logo: {
-    width: widthPercentage(200),
-    height: widthPercentage(200),
-    borderRadius: widthPercentage(100),
-    backgroundColor: COLORS.gray2,
     justifyContent: 'center',
     alignItems: 'center',
   },
   logoText: {
-    fontSize: fontSz(32),
-    fontWeight: '500',
-    color: COLORS.white,
+    fontSize: fontSz(70),
+    fontWeight: 'bold',
+    color: COLORS.green3,
   },
   buttonWrapper: {
-    marginTop: heightPercentage(150),
+    marginTop: heightPercentage(70),
   },
   button: {
-    marginBottom: heightPercentage(15),
+    width: widthPercentage(250),
+    marginBottom: heightPercentage(10),
+  },
+  text: {
+    color: COLORS.black,
+    textAlign: 'center',
+  },
+  signupButton: {
+    backgroundColor: COLORS.white,
+    borderColor: COLORS.green3,
+    borderWidth: 2.5,
+    borderRadius: 30,
+  },
+  buttonText: {
+    color: COLORS.green3,
+  },
+  forgotPassword: {
+    marginBottom: heightPercentage(200),
+  },
+  signup: {
+    color: COLORS.blue,
   },
 });
 

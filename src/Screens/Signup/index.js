@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, {useState} from 'react';
+import React from 'react';
 import {
-  Button,
   TextInput,
   View,
   Text,
@@ -10,25 +8,16 @@ import {
 } from 'react-native';
 import {Formik} from 'formik';
 import styles from '../loginSignupStyles';
-import {initialValuesInterface} from './types';
 import validationSchema from './validationSchema';
 import CustomButton from '../../shared/Button';
-import createUser from '../../Redux/Signup/API';
-import {useAppDispatch} from '../../Redux/store';
+import {useAppDispatch} from '../../features/store';
+import {signupFetch} from '../../features/signupSlice';
+import COLORS from '../../color';
 
-const SignUpForm = () => {
+const SignupForm = ({navigation}) => {
   const dispatch = useAppDispatch();
 
-  const [userInformation, setUserInformation] = useState({
-    name: '',
-    email: '',
-    zipCode: '',
-    password: '',
-    passwordConfirmation: '',
-  });
-  const {name, email, zipCode, password} = userInformation;
-
-  const initialValues: initialValuesInterface = {
+  const initialValues = {
     name: '',
     email: '',
     zipCode: '',
@@ -36,15 +25,15 @@ const SignUpForm = () => {
     passwordConfirmation: '',
   };
 
-  const signUp = async () => {
-    const newUser = {
-      name,
-      email,
-      zipCode,
-      password,
-    };
-    dispatch(createUser(newUser));
-    console.log('signUpFunction');
+  const navigateToHome = data => {
+    if (data === 'success') {
+      navigation.navigate('Login'); // Change it to home page
+    }
+  };
+
+  const signup = async values => {
+    const data = await dispatch(signupFetch(values));
+    navigateToHome(data.payload.status);
   };
 
   return (
@@ -52,17 +41,19 @@ const SignUpForm = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
-        signUp();
+        signup(values);
         actions.resetForm();
-        setUserInformation(values);
       }}>
       {({values, handleChange, errors, touched, handleSubmit}) => (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.screen}>
-            <Text style={styles.titleText}>Sign Up</Text>
+            <Text style={[styles.titleTextSignup, styles.titleText]}>
+              Sign Up
+            </Text>
             <TextInput
               style={styles.input}
               placeholder="Name"
+              placeholderTextColor={COLORS.gray8}
               onChangeText={handleChange('name')}
               value={values.name}
             />
@@ -73,6 +64,7 @@ const SignUpForm = () => {
               style={styles.input}
               multiline
               placeholder="Email"
+              placeholderTextColor={COLORS.gray8}
               onChangeText={handleChange('email')}
               value={values.email}
             />
@@ -81,8 +73,8 @@ const SignUpForm = () => {
             )}
             <TextInput
               style={styles.input}
-              multiline
               placeholder="Zip Code"
+              placeholderTextColor={COLORS.gray8}
               onChangeText={handleChange('zipCode')}
               value={values.zipCode}
             />
@@ -92,6 +84,7 @@ const SignUpForm = () => {
             <TextInput
               style={styles.input}
               placeholder="Password"
+              placeholderTextColor={COLORS.gray8}
               onChangeText={handleChange('password')}
               value={values.password}
             />
@@ -100,22 +93,24 @@ const SignUpForm = () => {
             )}
             <TextInput
               style={styles.input}
-              placeholder="Password Confirmation"
+              placeholderTextColor={COLORS.gray8}
+              placeholder="Confirm Password"
               onChangeText={handleChange('passwordConfirmation')}
-              value={values.passwordConfirmation}
             />
             {touched.passwordConfirmation && errors.passwordConfirmation && (
               <Text style={styles.errorText}>
                 {errors.passwordConfirmation}
               </Text>
             )}
-            <CustomButton
-              buttonText="Sign up"
-              onPress={() => {
-                handleSubmit();
-              }}
-              //! add disabled prop
-            />
+            <View
+              style={[styles.buttonContainer, styles.buttonContainerSignup]}>
+              <CustomButton
+                onPress={() => {
+                  handleSubmit();
+                }}
+                //! add disabled prop
+              />
+            </View>
           </View>
         </TouchableWithoutFeedback>
       )}
@@ -123,4 +118,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default SignupForm;
