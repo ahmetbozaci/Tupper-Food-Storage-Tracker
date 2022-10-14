@@ -14,7 +14,11 @@ import DATA from '../../assets/mock/data';
 import AddIcon from '../../assets/svg/add.svg';
 import ChevronRight from '../../assets/svg/chevron-right.svg';
 
-const Home: React.FC = () => {
+interface Props {
+  navigation: any;
+}
+
+const Home: React.FC<Props> = ({navigation}) => {
   return (
     <SafeAreaView style={styles.screen}>
       <AppHeader />
@@ -25,7 +29,10 @@ const Home: React.FC = () => {
         {DATA.storages.map(storage => {
           const {id, title, items} = storage;
           return (
-            <TouchableOpacity key={id} style={styles.storageView}>
+            <TouchableOpacity
+              key={id}
+              style={styles.storageView}
+              onPress={() => navigation.navigate('Foods', {screen: title})}>
               <View style={styles.spacedView}>
                 <View>
                   <View style={styles.row}>
