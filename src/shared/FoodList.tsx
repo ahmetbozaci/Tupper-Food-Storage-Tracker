@@ -173,11 +173,12 @@ const styles = StyleSheet.create({
     borderColor: COLORS.white,
     shadowColor: COLORS.gray,
     shadowOffset: {
-      width: 4,
-      height: 6,
+      width: 2,
+      height: 4,
     },
     shadowOpacity: 0.3,
     elevation: 1,
+    marginBottom: 6,
   },
   storageLocation: {
     paddingVertical: 6,
