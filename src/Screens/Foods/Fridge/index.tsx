@@ -1,20 +1,11 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import COLORS from '../../../color';
+
+import DATA from '../../../../assets/mock/data';
+import FoodList from '../../../shared/FoodList';
 
 const Fridge: React.FC = () => {
-  return (
-    <View style={styles.screen}>
-      <Text>Fridge</Text>
-    </View>
-  );
+  const data = DATA.storages.find(storage => storage.title === 'Fridge')?.items;
+  return <FoodList headerTitle="Fridge" data={data} />;
 };
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: COLORS.white,
-  },
-});
 
 export default Fridge;

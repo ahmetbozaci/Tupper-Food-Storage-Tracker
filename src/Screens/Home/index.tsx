@@ -5,6 +5,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  ImageBackground,
 } from 'react-native';
 import React from 'react';
 import COLORS from '../../color';
@@ -27,26 +28,31 @@ const Home: React.FC<Props> = ({navigation}) => {
         showsVerticalScrollIndicator={false}>
         <Text style={styles.headerText}>Welcome!</Text>
         {DATA.storages.map(storage => {
-          const {id, title, items} = storage;
+          const {id, title, items, logo} = storage;
           return (
             <TouchableOpacity
               key={id}
               style={styles.storageView}
               onPress={() => navigation.navigate('Foods', {screen: title})}>
-              <View style={styles.spacedView}>
-                <View>
-                  <View style={styles.row}>
-                    <Text style={styles.title}>{title}</Text>
-                    <TouchableOpacity>
-                      <AddIcon width={widthPercentage(22)} />
-                    </TouchableOpacity>
+              <ImageBackground
+                source={logo}
+                resizeMode="cover"
+                style={styles.backgroundImage}>
+                <View style={styles.spacedView}>
+                  <View>
+                    <View style={styles.row}>
+                      <Text style={styles.title}>{title}</Text>
+                      <TouchableOpacity>
+                        <AddIcon width={widthPercentage(22)} />
+                      </TouchableOpacity>
+                    </View>
+                    <Text style={styles.unit}>{items.length} items</Text>
                   </View>
-                  <Text style={styles.unit}>{items.length} items</Text>
+                  <TouchableOpacity>
+                    <ChevronRight width={widthPercentage(12)} />
+                  </TouchableOpacity>
                 </View>
-                <TouchableOpacity>
-                  <ChevronRight width={widthPercentage(12)} />
-                </TouchableOpacity>
-              </View>
+              </ImageBackground>
             </TouchableOpacity>
           );
         })}
@@ -78,7 +84,13 @@ const styles = StyleSheet.create({
     marginVertical: heightPercentage(10),
     borderRadius: 10,
     justifyContent: 'flex-end',
+    overflow: 'hidden',
+  },
+  backgroundImage: {
+    flex: 1,
+    justifyContent: 'flex-end',
     padding: widthPercentage(20),
+    opacity: 0.8,
   },
   spacedView: {
     flexDirection: 'row',

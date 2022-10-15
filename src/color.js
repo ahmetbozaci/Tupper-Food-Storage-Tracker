@@ -24,7 +24,7 @@ const COLORS = {
   shadow: '#8A959E',
   background: '#F5F5F5',
   primary: '#07AF87',
-  blue: '#14B9FF',
+  blue2: '#14B9FF',
 };
 
 export default COLORS;

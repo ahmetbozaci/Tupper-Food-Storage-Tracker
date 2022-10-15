@@ -12,7 +12,7 @@ import MainScreen from '../Screens/Main';
 
 // Bottom Tab Screens
 import HomeScreen from '../Screens/Home';
-import StorageScreen from '../Screens/Storage';
+import GuideScreen from '../Screens/Guide';
 import COLORS from '../color';
 import BottomTabBar from './TabBarComponent';
 
@@ -43,7 +43,7 @@ const Tabs = () => {
         tabBarInactiveTintColor: COLORS.gray,
       }}>
       <Tab.Screen name="Home" component={HomeStack} />
-      <Tab.Screen name="Storage" component={StorageScreen} />
+      <Tab.Screen name="Guide" component={GuideScreen} />
     </Tab.Navigator>
   );
 };
