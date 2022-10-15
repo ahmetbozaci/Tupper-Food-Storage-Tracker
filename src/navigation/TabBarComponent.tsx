@@ -38,7 +38,7 @@ const iconsObj = {
       <Add_Active height={heightPercentage(31)} width={widthPercentage(33)} />
     ),
   },
-  Storage: {
+  Guide: {
     inActive: (
       <Guide_Inactive
         height={heightPercentage(31)}
@@ -147,9 +147,10 @@ const TabButton: React.FC<TabButtonProps> = ({
       style={styles.tab}>
       <View>{isFocused ? icons.isActive : icons.inActive}</View>
       <Text
-        style={
-          (styles.tabLabel, {color: isFocused ? COLORS.primary : COLORS.gray})
-        }>
+        style={[
+          styles.tabLabel,
+          {color: isFocused ? COLORS.primary : COLORS.gray},
+        ]}>
         {name}
       </Text>
     </TouchableOpacity>
@@ -176,7 +177,7 @@ const styles = StyleSheet.create({
     fontSize: fontSz(15),
   },
   addBtn: {
-    marginTop: 11,
+    marginTop: 13,
   },
   modalContainer: {
     backgroundColor: 'rgba(0,0,0,0.25)',
