@@ -10,7 +10,7 @@ import React, {useCallback, useState} from 'react';
 import Home_Inactive from '../../assets/svg/home-inactive.svg';
 import Add_Inactive from '../../assets/svg/add-inactive.svg';
 import Add_Active from '../../assets/svg/add-active.svg';
-import Storage_Inactive from '../../assets/svg/storage-inactive.svg';
+import Guide_Inactive from '../../assets/svg/guide-inactive.svg';
 import {heightPercentage, widthPercentage, fontSz} from '../config';
 import COLORS from '../color';
 import AddModal from '../Screens/Add';
@@ -40,13 +40,13 @@ const iconsObj = {
   },
   Storage: {
     inActive: (
-      <Storage_Inactive
+      <Guide_Inactive
         height={heightPercentage(31)}
         width={widthPercentage(33)}
       />
     ),
     isActive: (
-      <Storage_Inactive
+      <Guide_Inactive
         height={heightPercentage(31)}
         width={widthPercentage(33)}
       />

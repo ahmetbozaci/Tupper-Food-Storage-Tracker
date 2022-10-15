@@ -2,7 +2,7 @@ import {Text, SafeAreaView, StyleSheet} from 'react-native';
 import React from 'react';
 import COLORS from '../../color';
 
-const Storage: React.FC = () => {
+const Guide: React.FC = () => {
   return (
     <SafeAreaView style={styles.screen}>
       <Text>index</Text>
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Storage;
+export default Guide;
