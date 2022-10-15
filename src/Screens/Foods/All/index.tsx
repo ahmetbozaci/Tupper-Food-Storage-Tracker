@@ -1,20 +1,12 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import COLORS from '../../../color';
+import DATA from '../../../../assets/mock/data';
+import FoodList from '../../../shared/FoodList';
+import Food from '../../../interfaces/Food';
 
 const All: React.FC = () => {
-  return (
-    <View style={styles.screen}>
-      <Text>All</Text>
-    </View>
-  );
+  const AllFoods: Food[] = [];
+  DATA.storages.map(storage => storage.items.map(item => AllFoods.push(item)));
+  return <FoodList headerTitle="All Food" data={AllFoods} />;
 };
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: COLORS.white,
-  },
-});
 
 export default All;
