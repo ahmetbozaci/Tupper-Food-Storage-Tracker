@@ -3,6 +3,7 @@ const DATA = {
     {
       id: '1',
       title: 'Fridge',
+      logo: require('../images/fridge.png'),
       items: [
         {
           id: '1',
@@ -21,6 +22,7 @@ const DATA = {
     {
       id: '2',
       title: 'Pantry',
+      logo: require('../images/pantry.png'),
       items: [
         {
           id: '1',
@@ -39,6 +41,7 @@ const DATA = {
     {
       id: '3',
       title: 'Freezer',
+      logo: require('../images/freezer.png'),
       items: [
         {
           id: '1',
