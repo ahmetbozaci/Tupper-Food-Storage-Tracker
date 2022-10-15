@@ -1,12 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import DATA from '../../../../assets/mock/data';
+import FoodList from '../../../shared/FoodList';
 
-export default function Pantry() {
-  return (
-    <View>
-      <Text>Pantry</Text>
-    </View>
-  )
-}
+const Pantry: React.FC = () => {
+  const data = DATA.storages.find(storage => storage.title === 'Pantry')?.items;
+  return <FoodList headerTitle="Pantry" data={data} />;
+};
 
-const styles = StyleSheet.create({})
+export default Pantry;
