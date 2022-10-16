@@ -6,7 +6,7 @@ import COLORS from '../color';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 interface ButtonProps {
-  buttonText: string;
+  buttonText?: string;
   buttonStyle?: object;
   buttonTextStyle?: object;
   onPress?: () => void;
