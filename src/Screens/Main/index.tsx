@@ -26,9 +26,17 @@ const Main: React.FC<Props> = ({navigation}) => {
             buttonStyle={styles.button}
             onPress={() => navigation.navigate('Login')}
           />
+          {/* Test screen */}
+          <CustomButton
+            buttonText="Test"
+            buttonStyle={styles.button}
+            onPress={() => navigation.navigate('VerifyCode')}
+          />
         </View>
         <View>
-          <Text style={[styles.text, styles.forgotPassword]}>
+          <Text
+            style={[styles.text, styles.forgotPassword]}
+            onPress={() => navigation.navigate('Signup')}>
             Forgot password?
           </Text>
         </View>

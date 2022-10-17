@@ -17,6 +17,7 @@ import COLORS from '../color';
 import BottomTabBar from './TabBarComponent';
 
 import FoodsScreen from '../Screens/Foods';
+import VerifyCode from '../Screens/ForgotPassword/VerifyCode';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -59,6 +60,7 @@ const MainStack = () => {
         <Stack.Screen name="Signup" component={SignupScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Tabs" component={Tabs} />
+        <Stack.Screen name="VerifyCode" component={VerifyCode} />
       </Stack.Navigator>
     </NavigationContainer>
   );

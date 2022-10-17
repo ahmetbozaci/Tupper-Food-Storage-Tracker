@@ -3,35 +3,27 @@ import COLORS from '../../../color';
 import {fontSz, widthPercentage, heightPercentage} from '../../../config';
 
 const styles = StyleSheet.create({
-  titleText: {
-    fontSize: fontSz(40),
-    fontWeight: 'bold',
+  root: {flex: 1, padding: 20},
+  title: {
+    textAlign: 'center',
+    fontSize: 24,
     color: COLORS.green3,
+    marginBottom: 70,
   },
-  titleTextSignup: {
-    marginVertical: heightPercentage(45),
-  },
-  titleTextLogin: {
-    marginVertical: heightPercentage(100),
-  },
-  errorText: {
-    fontSize: 12,
-    color: '#FF0D10',
-  },
-  screen: {
-    flex: 1,
-    marginHorizontal: widthPercentage(40),
-    justifyContent: 'center',
-  },
-  input: {
+  codeFieldRoot: {marginTop: 20},
+  cell: {
+    width: 60,
+    height: 72,
+    borderRadius: 12,
+    lineHeight: 38,
+    fontSize: 24,
     borderWidth: 2,
     borderColor: COLORS.gray7,
-    paddingVertical: heightPercentage(15),
-    paddingHorizontal: widthPercentage(30),
-    marginVertical: heightPercentage(10),
-    fontSize: fontSz(20),
-    borderRadius: 12,
-    color: COLORS.green,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+  focusCell: {
+    borderColor: '#000',
   },
   buttonContainer: {
     alignItems: 'flex-end',
