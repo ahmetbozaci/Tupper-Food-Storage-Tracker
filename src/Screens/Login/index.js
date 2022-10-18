@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   TextInput,
   View,
@@ -16,6 +16,7 @@ import {loginFetch} from '../../features/loginSlice';
 
 const LoginForm = ({navigation}) => {
   const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false);
 
   //email //omodauda@yahoo.com
   //password //testing
@@ -31,7 +32,9 @@ const LoginForm = ({navigation}) => {
   };
 
   const login = async values => {
+    setLoading(true);
     const data = await dispatch(loginFetch(values));
+    // console.log('login', data);
     navigateToHome(data.payload.status);
   };
 
@@ -65,6 +68,7 @@ const LoginForm = ({navigation}) => {
               onChangeText={handleChange('password')}
               value={values.password}
               name="password"
+              secureTextEntry={true}
             />
             {touched.password && errors.password && (
               <Text style={styles.errorText}>{errors.password}</Text>
@@ -74,6 +78,7 @@ const LoginForm = ({navigation}) => {
                 onPress={() => {
                   handleSubmit();
                 }}
+                loading={loading}
               />
             </View>
           </View>
