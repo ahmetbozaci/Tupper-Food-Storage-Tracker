@@ -11,10 +11,31 @@ import styles from './styles';
 import validationSchema from './validationSchema';
 import CustomButton from '../../../shared/Button';
 import COLORS from '../../../color';
+import {useAppDispatch} from '../../../features/store';
+import {forgotPasswordFetch} from '../../../features/forgotPasswordSlice';
 
-const EnterEmail = () => {
+interface Email {
+  email: string;
+}
+interface Props {
+  navigation: any;
+}
+const EnterEmail: React.FC<Props> = ({navigation}) => {
   const initialValues = {
     email: '',
+  };
+  const dispatch = useAppDispatch();
+
+  const navigateToVerifyCodeScreen = (data: string) => {
+    if (data === 'success') {
+      navigation.navigate('Tabs'); // Change it to home page
+    }
+  };
+
+  const enterEmail = async (values: Email) => {
+    console.log('values', values);
+    const data = await dispatch(forgotPasswordFetch(values));
+    navigateToVerifyCodeScreen(data.payload.status);
   };
 
   return (
@@ -22,6 +43,7 @@ const EnterEmail = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
+        enterEmail(values);
         actions.resetForm();
       }}>
       {({values, handleChange, errors, touched, handleSubmit}) => (
