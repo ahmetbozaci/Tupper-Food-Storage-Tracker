@@ -14,13 +14,18 @@ const initialState: state = {
   loading: false,
 };
 
+interface userInformation {
+  email: string;
+  otp: string;
+  password: string;
+}
 const baseURL: string =
-  'https://tupper-backend.herokuapp.com/api/user/forget-password';
+  'https://tupper-backend.herokuapp.com/api/user/reset-password  ';
 
-export const forgotPasswordFetch = createAsyncThunk(
-  'users/forgotPassword',
-  async (userInformation: {email: string}, thunkAPI) => {
-    const {email} = userInformation;
+export const resetPasswordFetch = createAsyncThunk(
+  'users/resetPassword',
+  async (userInformation: userInformation, thunkAPI) => {
+    const {email, otp, password} = userInformation;
     const response = await fetch(baseURL, {
       method: 'POST',
       headers: {
@@ -29,10 +34,12 @@ export const forgotPasswordFetch = createAsyncThunk(
       },
       body: JSON.stringify({
         email,
+        otp,
+        password,
       }),
     });
     const data = await response.json();
-    console.log('Enter Email Data:', data);
+    console.log('Reset Password Data:', data);
     if (data.status === 'success') {
       return data;
     } else {
@@ -41,17 +48,17 @@ export const forgotPasswordFetch = createAsyncThunk(
   },
 );
 
-const forgotPasswordSlice = createSlice({
+const resetPasswordSlice = createSlice({
   name: 'login',
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(forgotPasswordFetch.pending, state => {
+    builder.addCase(resetPasswordFetch.pending, state => {
       state.loading = true;
       state.error = '';
     });
     builder.addCase(
-      forgotPasswordFetch.fulfilled,
+      resetPasswordFetch.fulfilled,
       (state, {payload}: PayloadAction<state>) => {
         const {status, message} = payload;
         if (status === 'success') {
@@ -65,11 +72,11 @@ const forgotPasswordSlice = createSlice({
         }
       },
     );
-    builder.addCase(forgotPasswordFetch.rejected, state => {
+    builder.addCase(resetPasswordFetch.rejected, state => {
       state.loading = false;
       state.error = 'Error sending email data';
     });
   },
 });
 
-export default forgotPasswordSlice.reducer;
+export default resetPasswordSlice.reducer;

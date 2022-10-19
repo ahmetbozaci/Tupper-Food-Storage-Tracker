@@ -26,16 +26,15 @@ const EnterEmail: React.FC<Props> = ({navigation}) => {
   };
   const dispatch = useAppDispatch();
 
-  const navigateToVerifyCodeScreen = (data: string) => {
+  const navigateToVerifyCodeScreen = (data: string, email: string) => {
     if (data === 'success') {
-      navigation.navigate('Tabs'); // Change it to home page
+      navigation.navigate('VerifyCode', {email: email});
     }
   };
 
   const enterEmail = async (values: Email) => {
-    console.log('values', values);
     const data = await dispatch(forgotPasswordFetch(values));
-    navigateToVerifyCodeScreen(data.payload.status);
+    navigateToVerifyCodeScreen(data.payload.status, values.email);
   };
 
   return (

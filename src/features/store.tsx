@@ -2,6 +2,7 @@ import {configureStore} from '@reduxjs/toolkit';
 import {useDispatch, useSelector, TypedUseSelectorHook} from 'react-redux';
 import forgotPasswordSlice from './forgotPasswordSlice';
 import loginSlice from './loginSlice';
+import resetPasswordSlice from './resetPasswordSlice';
 import signupSlice from './signupSlice';
 
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
     login: loginSlice,
     signup: signupSlice,
     forgotPassword: forgotPasswordSlice,
+    resetPassword: resetPasswordSlice,
   },
 });
 export default store;

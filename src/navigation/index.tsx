@@ -19,6 +19,7 @@ import BottomTabBar from './TabBarComponent';
 import FoodsScreen from '../Screens/Foods';
 import VerifyCode from '../Screens/ForgotPassword/VerifyCode';
 import EnterEmail from '../Screens/ForgotPassword/EnterEmail';
+import ResetPassword from '../Screens/ForgotPassword/ResetPassword';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -63,6 +64,7 @@ const MainStack = () => {
         <Stack.Screen name="Tabs" component={Tabs} />
         <Stack.Screen name="VerifyCode" component={VerifyCode} />
         <Stack.Screen name="EnterEmail" component={EnterEmail} />
+        <Stack.Screen name="ResetPassword" component={ResetPassword} />
       </Stack.Navigator>
     </NavigationContainer>
   );

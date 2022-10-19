@@ -11,18 +11,54 @@ import styles from './styles';
 import validationSchema from './validationSchema';
 import CustomButton from '../../../shared/Button';
 import COLORS from '../../../color';
+import {useAppDispatch} from '../../../features/store';
+import {resetPasswordFetch} from '../../../features/resetPasswordSlice';
 
-const ResetPassword = () => {
+interface UserInformation {
+  password: string;
+  email: string;
+  otp: string;
+}
+
+interface Props {
+  navigation: any;
+  route: any;
+}
+
+const ResetPassword: React.FC<Props> = ({route, navigation}) => {
+  const {email, otp} = route.params;
   const initialValues = {
     password: '',
     passwordConfirmation: '',
   };
+  const dispatch = useAppDispatch();
+  const navigateToVerifyCodeScreen = (data: string) => {
+    if (data === 'success') {
+      navigation.navigate('Login');
+    }
+  };
 
+  const resetPassword = async (values: UserInformation) => {
+    const {password} = values;
+    const data = await dispatch(
+      resetPasswordFetch({
+        password,
+        email,
+        otp,
+      }),
+    );
+    navigateToVerifyCodeScreen(data.payload.status);
+  };
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
+        resetPassword({
+          password: values.password,
+          email: route.email,
+          otp: route.code,
+        });
         actions.resetForm();
       }}>
       {({values, handleChange, errors, touched, handleSubmit}) => (

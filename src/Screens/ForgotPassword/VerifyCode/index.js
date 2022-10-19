@@ -11,22 +11,19 @@ import styles from './styles';
 
 const CELL_COUNT = 4;
 
-interface Props {
-  navigation: any;
-}
-
-const VerifyCode: React.FC<Props> = ({navigation}) => {
+const VerifyCode = ({route, navigation}) => {
+  const {email} = route.params;
   const [value, setValue] = useState('');
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
   });
-  console.log(value);
   const handleSubmit = () => {
-    if (value === '1234') {
-      navigation.navigate('Login'); // Navigate to reset password screen
-    }
+    navigation.navigate('ResetPassword', {
+      otp: value,
+      email,
+    }); // Navigate to reset password screen
   };
   return (
     <SafeAreaView style={styles.root}>

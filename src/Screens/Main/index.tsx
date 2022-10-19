@@ -30,7 +30,7 @@ const Main: React.FC<Props> = ({navigation}) => {
           <CustomButton
             buttonText="Test"
             buttonStyle={styles.button}
-            onPress={() => navigation.navigate('EnterEmail')}
+            onPress={() => navigation.navigate('VerifyCode')}
           />
         </View>
         <View>

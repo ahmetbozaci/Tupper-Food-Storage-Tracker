@@ -27,6 +27,7 @@ export const signupFetch = createAsyncThunk(
         }),
       });
       const data = await response.json();
+      console.log('Signup Data:', data);
 
       if (data.status === 'success') {
         //! Add local storage
