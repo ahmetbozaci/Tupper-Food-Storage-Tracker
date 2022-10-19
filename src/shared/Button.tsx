@@ -15,7 +15,7 @@ interface ButtonProps {
   buttonStyle?: object;
   buttonTextStyle?: object;
   onPress?: () => void;
-  loading: boolean;
+  loading?: boolean;
 }
 
 interface SpinnerProps {

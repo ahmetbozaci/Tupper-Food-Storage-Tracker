@@ -45,6 +45,7 @@ const LoginForm = ({navigation}) => {
     } else {
       navigateToHome(data.payload.status);
     }
+    setLoading(false);
   };
 
   return (
