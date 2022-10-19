@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   TextInput,
   View,
@@ -10,12 +10,14 @@ import {Formik} from 'formik';
 import styles from '../loginSignupStyles';
 import validationSchema from './validationSchema';
 import CustomButton from '../../shared/Button';
+import {showMessage} from 'react-native-flash-message';
 
 import {useAppDispatch} from '../../features/store';
 import {loginFetch} from '../../features/loginSlice';
 
 const LoginForm = ({navigation}) => {
   const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false);
 
   //email //omodauda@yahoo.com
   //password //testing
@@ -31,8 +33,18 @@ const LoginForm = ({navigation}) => {
   };
 
   const login = async values => {
+    setLoading(true);
     const data = await dispatch(loginFetch(values));
-    navigateToHome(data.payload.status);
+    if (data.payload.status === 'fail') {
+      setLoading(false);
+      showMessage({
+        message: 'Error',
+        description: data.payload.message,
+        type: 'danger',
+      });
+    } else {
+      navigateToHome(data.payload.status);
+    }
   };
 
   return (
@@ -65,6 +77,7 @@ const LoginForm = ({navigation}) => {
               onChangeText={handleChange('password')}
               value={values.password}
               name="password"
+              secureTextEntry={true}
             />
             {touched.password && errors.password && (
               <Text style={styles.errorText}>{errors.password}</Text>
@@ -74,6 +87,7 @@ const LoginForm = ({navigation}) => {
                 onPress={() => {
                   handleSubmit();
                 }}
+                loading={loading}
               />
             </View>
           </View>

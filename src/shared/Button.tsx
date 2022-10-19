@@ -1,5 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ActivityIndicator,
+} from 'react-native';
 import React from 'react';
 import {heightPercentage, fontSz} from '../config';
 import COLORS from '../color';
@@ -10,17 +15,41 @@ interface ButtonProps {
   buttonStyle?: object;
   buttonTextStyle?: object;
   onPress?: () => void;
+  loading: boolean;
 }
+
+interface SpinnerProps {
+  size?: any;
+  style?: Object;
+  color?: string;
+}
+
+const Spinner: React.FC<SpinnerProps> = ({size, style, color}) => {
+  const spinnerColor = color || '#FFFFFF';
+  return (
+    <View style={[styles.spinnerStyle, style]}>
+      <ActivityIndicator size={size || 'large'} color={spinnerColor} />
+    </View>
+  );
+};
 
 const Button: React.FC<ButtonProps> = ({
   buttonText = 'Submit',
   buttonStyle,
   buttonTextStyle,
   onPress,
+  loading,
 }) => {
+  const renderSpinnerOrText = () => {
+    const color = Colors.white;
+    if (loading) {
+      return <Spinner color={color} size={20} />;
+    }
+    return <Text style={[styles.text, buttonTextStyle]}>{buttonText}</Text>;
+  };
   return (
     <TouchableOpacity onPress={onPress} style={[styles.button, buttonStyle]}>
-      <Text style={[styles.text, buttonTextStyle]}>{buttonText}</Text>
+      {renderSpinnerOrText()}
     </TouchableOpacity>
   );
 };
@@ -40,5 +69,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '400',
     color: COLORS.white,
+  },
+  spinnerStyle: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
