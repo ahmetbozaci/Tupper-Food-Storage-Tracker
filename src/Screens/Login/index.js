@@ -10,6 +10,7 @@ import {Formik} from 'formik';
 import styles from '../loginSignupStyles';
 import validationSchema from './validationSchema';
 import CustomButton from '../../shared/Button';
+import {showMessage} from 'react-native-flash-message';
 
 import {useAppDispatch} from '../../features/store';
 import {loginFetch} from '../../features/loginSlice';
@@ -34,8 +35,16 @@ const LoginForm = ({navigation}) => {
   const login = async values => {
     setLoading(true);
     const data = await dispatch(loginFetch(values));
-    // console.log('login', data);
-    navigateToHome(data.payload.status);
+    if (data.payload.status === 'fail') {
+      setLoading(false);
+      showMessage({
+        message: 'Error',
+        description: data.payload.message,
+        type: 'danger',
+      });
+    } else {
+      navigateToHome(data.payload.status);
+    }
   };
 
   return (
