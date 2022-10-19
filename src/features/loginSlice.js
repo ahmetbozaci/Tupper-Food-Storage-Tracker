@@ -27,7 +27,7 @@ export const loginFetch = createAsyncThunk(
         }),
       });
       const data = await response.json();
-      console.log('data', data);
+      console.log('Login Data:', data);
       if (data.status === 'success') {
         //! Add local storage
         return data;
