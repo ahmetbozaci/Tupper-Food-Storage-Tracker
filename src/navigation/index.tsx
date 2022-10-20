@@ -21,6 +21,8 @@ import VerifyCode from '../Screens/ForgotPassword/VerifyCode';
 import EnterEmail from '../Screens/ForgotPassword/EnterEmail';
 import ResetPassword from '../Screens/ForgotPassword/ResetPassword';
 
+import {useAppSelector, RootState} from '../features/store';
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -51,20 +53,39 @@ const Tabs = () => {
   );
 };
 
+const AuthStack = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Stack.Screen name="Main" component={MainScreen} />
+      <Stack.Screen name="Signup" component={SignupScreen} />
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="VerifyCode" component={VerifyCode} />
+      <Stack.Screen name="EnterEmail" component={EnterEmail} />
+      <Stack.Screen name="ResetPassword" component={ResetPassword} />
+    </Stack.Navigator>
+  );
+};
+
 const MainStack = () => {
+  const {isAuthenticated, token} = useAppSelector(
+    (state: RootState) => state.auth,
+  );
+  console.log('token', token);
+  console.log('isAuthenticated', isAuthenticated);
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
         }}>
-        <Stack.Screen name="Main" component={MainScreen} />
-        <Stack.Screen name="Signup" component={SignupScreen} />
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Tabs" component={Tabs} />
-        <Stack.Screen name="VerifyCode" component={VerifyCode} />
-        <Stack.Screen name="EnterEmail" component={EnterEmail} />
-        <Stack.Screen name="ResetPassword" component={ResetPassword} />
+        {!isAuthenticated ? (
+          <Stack.Screen name="Auth" component={AuthStack} />
+        ) : (
+          <Stack.Screen name="Tabs" component={Tabs} />
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
