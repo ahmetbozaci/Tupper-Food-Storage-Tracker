@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   TextInput,
   View,
@@ -16,7 +16,7 @@ import {heightPercentage} from '../../config';
 import AuthHeader from '../../shared/AuthHeader';
 import {userLogin} from '../../api/auth';
 import {useAppDispatch, useAppSelector, RootState} from '../../features/store';
-import {login as loginReducer} from '../../features/authSlice';
+import {login as loginReducer} from '../../features/loginSlice';
 // import { selectAuthState } from '../../features/authSlice';
 
 interface Props {
@@ -73,7 +73,7 @@ const LoginForm: React.FC<Props> = ({navigation}) => {
                     placeholder="Email"
                     onChangeText={handleChange('email')}
                     value={values.email}
-                    name="email"
+                    // name="email"
                   />
                   {touched.email && errors.email && (
                     <Text style={styles.errorText}>{errors.email}</Text>
@@ -83,7 +83,7 @@ const LoginForm: React.FC<Props> = ({navigation}) => {
                     placeholder="Password"
                     onChangeText={handleChange('password')}
                     value={values.password}
-                    name="password"
+                    // name="password"
                     secureTextEntry={true}
                   />
                   {touched.password && errors.password && (

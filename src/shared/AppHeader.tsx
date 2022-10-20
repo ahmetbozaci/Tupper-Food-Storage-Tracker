@@ -1,13 +1,19 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, Pressable, View} from 'react-native';
 import React from 'react';
 import {heightPercentage, fontSz, widthPercentage} from '../config';
 import COLORS from '../color';
 
-const AppHeader: React.FC = () => {
+interface Props {
+  onLogoutPress: () => void;
+}
+
+const AppHeader: React.FC<Props> = ({onLogoutPress}) => {
   return (
     <View style={styles.header}>
       <Text style={styles.logoText}>Tuppr</Text>
-      <Text style={styles.logout}>Logout</Text>
+      <Pressable onPress={onLogoutPress}>
+        <Text style={styles.logout}>Logout</Text>
+      </Pressable>
     </View>
   );
 };

@@ -1,14 +1,35 @@
 import {StyleSheet, SafeAreaView} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import COLORS from '../../color';
 import AppHeader from '../../shared/AppHeader';
 import TopTab from '../../navigation/TopTab';
+import LogoutModal from '../../shared/LogoutModal';
+import {useAppDispatch} from '../../features/store';
+import {logout} from '../../features/loginSlice';
 
 const Foods: React.FC = () => {
+  const [logoutModalVisible, setLogoutModalVisible] = useState<boolean>(false);
+
+  const toggleLogoutModal = () => {
+    setLogoutModalVisible(!logoutModalVisible);
+  };
+
+  const dispatch = useAppDispatch();
+  const handleLogout = () => {
+    toggleLogoutModal();
+    setTimeout(() => {
+      dispatch(logout());
+    }, 300);
+  };
   return (
     <SafeAreaView style={styles.screen}>
-      <AppHeader />
+      <AppHeader onLogoutPress={toggleLogoutModal} />
       <TopTab />
+      <LogoutModal
+        visible={logoutModalVisible}
+        close={toggleLogoutModal}
+        logout={handleLogout}
+      />
     </SafeAreaView>
   );
 };

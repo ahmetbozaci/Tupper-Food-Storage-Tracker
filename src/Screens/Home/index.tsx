@@ -7,22 +7,39 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import COLORS from '../../color';
 import AppHeader from '../../shared/AppHeader';
 import {fontSz, heightPercentage, widthPercentage} from '../../config';
 import DATA from '../../../assets/mock/data';
 import AddIcon from '../../../assets/svg/add.svg';
 import ChevronRight from '../../../assets/svg/chevron-right.svg';
+import LogoutModal from '../../shared/LogoutModal';
+import {logout} from '../../features/loginSlice';
+import {useAppDispatch} from '../../features/store';
 
 interface Props {
   navigation: any;
 }
 
 const Home: React.FC<Props> = ({navigation}) => {
+  const [logoutModalVisible, setLogoutModalVisible] = useState<boolean>(false);
+
+  const toggleLogoutModal = () => {
+    setLogoutModalVisible(!logoutModalVisible);
+  };
+
+  const dispatch = useAppDispatch();
+  const handleLogout = () => {
+    toggleLogoutModal();
+    setTimeout(() => {
+      dispatch(logout());
+    }, 300);
+  };
+
   return (
     <SafeAreaView style={styles.screen}>
-      <AppHeader />
+      <AppHeader onLogoutPress={toggleLogoutModal} />
       <ScrollView
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}>
@@ -56,6 +73,11 @@ const Home: React.FC<Props> = ({navigation}) => {
             </TouchableOpacity>
           );
         })}
+        <LogoutModal
+          visible={logoutModalVisible}
+          close={toggleLogoutModal}
+          logout={handleLogout}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -111,6 +133,9 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: fontSz(12),
     color: COLORS.white,
+  },
+  modalContent: {
+    height: 200,
   },
 });
 
