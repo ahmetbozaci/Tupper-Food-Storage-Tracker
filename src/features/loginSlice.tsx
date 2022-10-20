@@ -22,6 +22,12 @@ export const authSlice = createSlice({
       state.isAuthenticated = true;
       state.isOnboarded = true;
     },
+    logout: state => {
+      state.token = '';
+      state.user = null;
+      state.isAuthenticated = false;
+      state.tokenExpiry = null;
+    },
   },
   extraReducers(builder) {
     builder.addCase(userLogin.pending, state => {
@@ -36,6 +42,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const {login} = authSlice.actions;
+export const {login, logout} = authSlice.actions;
 
 export default authSlice.reducer;
