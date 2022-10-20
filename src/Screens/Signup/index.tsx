@@ -11,13 +11,19 @@ import {Formik} from 'formik';
 import styles from '../loginSignupStyles';
 import validationSchema from './validationSchema';
 import CustomButton from '../../shared/Button';
-import {useAppDispatch} from '../../features/store';
-import {signupFetch} from '../../features/signupSlice';
+import {RootState, useAppDispatch, useAppSelector} from '../../features/store';
 import COLORS from '../../color';
 import AuthHeader from '../../shared/AuthHeader';
 import {heightPercentage} from '../../config';
+import {userSignUp} from '../../api/auth';
+import {showMessage} from 'react-native-flash-message';
 
-const SignupForm = ({navigation}) => {
+interface Props {
+  navigation: any;
+}
+
+const SignupForm: React.FC<Props> = ({navigation}) => {
+  const loading = useAppSelector((state: RootState) => state.signup.loading);
   const dispatch = useAppDispatch();
 
   const initialValues = {
@@ -28,15 +34,17 @@ const SignupForm = ({navigation}) => {
     passwordConfirmation: '',
   };
 
-  const navigateToHome = data => {
-    if (data === 'success') {
-      navigation.navigate('Tabs'); // Change it to home page
+  const signup = async (values: any) => {
+    const data: any = await dispatch(userSignUp(values));
+    if (data?.payload.status === 'fail') {
+      showMessage({
+        message: 'Error',
+        description: data.payload.message,
+        type: 'danger',
+      });
+    } else if (data?.payload.status === 'success') {
+      navigation.navigate('Login');
     }
-  };
-
-  const signup = async values => {
-    const data = await dispatch(signupFetch(values));
-    navigateToHome(data.payload.status);
   };
 
   return (
@@ -63,6 +71,7 @@ const SignupForm = ({navigation}) => {
                     placeholderTextColor={COLORS.gray8}
                     onChangeText={handleChange('name')}
                     value={values.name}
+                    keyboardType="name-phone-pad"
                   />
                   {touched.name && errors.name && (
                     <Text style={styles.errorText}>{errors.name}</Text>
@@ -73,6 +82,8 @@ const SignupForm = ({navigation}) => {
                     placeholderTextColor={COLORS.gray8}
                     onChangeText={handleChange('email')}
                     value={values.email}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
                   />
                   {touched.email && errors.email && (
                     <Text style={styles.errorText}>{errors.email}</Text>
@@ -83,6 +94,7 @@ const SignupForm = ({navigation}) => {
                     placeholderTextColor={COLORS.gray8}
                     onChangeText={handleChange('zipCode')}
                     value={values.zipCode}
+                    keyboardType="number-pad"
                   />
                   {touched.zipCode && errors.zipCode && (
                     <Text style={styles.errorText}>{errors.zipCode}</Text>
@@ -93,6 +105,8 @@ const SignupForm = ({navigation}) => {
                     placeholderTextColor={COLORS.gray8}
                     onChangeText={handleChange('password')}
                     value={values.password}
+                    secureTextEntry={true}
+                    autoCapitalize="none"
                   />
                   {touched.password && errors.password && (
                     <Text style={styles.errorText}>{errors.password}</Text>
@@ -102,6 +116,8 @@ const SignupForm = ({navigation}) => {
                     placeholderTextColor={COLORS.gray8}
                     placeholder="Confirm Password"
                     onChangeText={handleChange('passwordConfirmation')}
+                    secureTextEntry={true}
+                    autoCapitalize="none"
                   />
                   {touched.passwordConfirmation &&
                     errors.passwordConfirmation && (
@@ -110,6 +126,7 @@ const SignupForm = ({navigation}) => {
                       </Text>
                     )}
                   <CustomButton
+                    loading={loading}
                     onPress={() => {
                       handleSubmit();
                     }}
