@@ -3,21 +3,29 @@ import COLORS from '../../../color';
 import {fontSz, widthPercentage, heightPercentage} from '../../../config';
 
 const styles = StyleSheet.create({
-  root: {flex: 1, padding: 20},
+  screen: {
+    flex: 1,
+    backgroundColor: COLORS.white,
+    paddingHorizontal: widthPercentage(24),
+  },
+  content: {
+    paddingHorizontal: widthPercentage(40),
+  },
   title: {
-    textAlign: 'center',
+    fontWeight: '700',
     fontSize: 24,
     color: COLORS.green3,
-    marginBottom: 70,
+    marginTop: heightPercentage(42),
+    marginBottom: heightPercentage(102),
   },
   codeFieldRoot: {marginTop: 20},
   cell: {
-    width: 60,
-    height: 72,
+    width: widthPercentage(60),
+    height: heightPercentage(72),
     borderRadius: 12,
-    lineHeight: 38,
-    fontSize: 24,
-    borderWidth: 2,
+    lineHeight: 60,
+    fontSize: fontSz(24),
+    borderWidth: 3,
     borderColor: COLORS.gray7,
     textAlign: 'center',
     textAlignVertical: 'center',
@@ -25,14 +33,15 @@ const styles = StyleSheet.create({
   focusCell: {
     borderColor: '#000',
   },
-  buttonContainer: {
-    alignItems: 'flex-end',
+  button: {
+    alignSelf: 'flex-end',
+    paddingVertical: heightPercentage(15),
+    paddingHorizontal: widthPercentage(46),
+    marginTop: heightPercentage(243),
   },
-  buttonContainerLogin: {
-    marginVertical: heightPercentage(100),
-  },
-  buttonContainerSignup: {
-    marginVertical: heightPercentage(35),
+  btnText: {
+    fontWeight: '500',
+    fontSize: fontSz(16),
   },
 });
 
