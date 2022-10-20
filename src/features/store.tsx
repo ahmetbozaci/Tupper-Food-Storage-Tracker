@@ -4,7 +4,7 @@ import {useDispatch, useSelector, TypedUseSelectorHook} from 'react-redux';
 // import loginSlice from './loginSlice';
 // import resetPasswordSlice from './resetPasswordSlice';
 // import signupSlice from './signupSlice';
-import authSlice from './authSlice';
+import authSlice from './loginSlice';
 import {
   persistReducer,
   persistStore,

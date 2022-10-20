@@ -1,6 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {baseURL} from '../config';
 import {requestTimeout} from '../utils/network';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const userLogin = createAsyncThunk(
   'user/login',
@@ -21,6 +22,8 @@ export const userLogin = createAsyncThunk(
     );
     const data = await response.json();
     if (data.status === 'success') {
+      // Add data.token to storage
+      AsyncStorage.setItem('token', data.token);
       return thunkAPI.fulfillWithValue(data);
     } else {
       return thunkAPI.rejectWithValue(data);
