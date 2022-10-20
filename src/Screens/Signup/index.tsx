@@ -6,8 +6,6 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   SafeAreaView,
-  KeyboardAvoidingView,
-  Platform,
 } from 'react-native';
 import {Formik} from 'formik';
 import styles from '../loginSignupStyles';
@@ -134,7 +132,6 @@ const SignupForm: React.FC<Props> = ({navigation}) => {
                     onPress={() => {
                       handleSubmit();
                     }}
-                    // loading={loading}
                     buttonStyle={[
                       styles.button,
                       {marginTop: heightPercentage(70)},

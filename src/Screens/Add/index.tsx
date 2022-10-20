@@ -62,7 +62,11 @@ const Add: React.FC<Props> = ({visible, onRequestClose}) => {
               <Text style={styles.modalheaderTitle}>
                 What would you like to add?
               </Text>
-              <TextInput style={styles.itemInput} placeholder="Type Item" />
+              <TextInput
+                style={[styles.itemInput, styles.inputText]}
+                placeholder="Type Item"
+                placeholderTextColor={COLORS.gray8}
+              />
               <View style={styles.spacedRow}>
                 <View>
                   <Text style={styles.label}>Storage Location</Text>
@@ -71,7 +75,7 @@ const Add: React.FC<Props> = ({visible, onRequestClose}) => {
                       setLocationModalVisible(!locationModalVisible)
                     }>
                     <View style={styles.select}>
-                      <Text>{storageLocation}</Text>
+                      <Text style={styles.selectText}>{storageLocation}</Text>
                       <ArrowDown />
                     </View>
                   </TouchableWithoutFeedback>
@@ -89,7 +93,7 @@ const Add: React.FC<Props> = ({visible, onRequestClose}) => {
                               // eslint-disable-next-line react-native/no-inline-styles
                               {borderBottomWidth: !isLast ? 0.5 : 0},
                             ]}>
-                            <Text>{title}</Text>
+                            <Text style={styles.selectText}>{title}</Text>
                           </TouchableOpacity>
                         );
                       })}
@@ -114,7 +118,7 @@ const Add: React.FC<Props> = ({visible, onRequestClose}) => {
               <View style={styles.dateView}>
                 <Text style={styles.label}>Expiry Date</Text>
                 <View style={styles.select}>
-                  <Text>12/12/22</Text>
+                  <Text style={styles.selectText}>12/12/22</Text>
                   <TouchableOpacity>
                     <Calender />
                   </TouchableOpacity>
@@ -160,12 +164,14 @@ const styles = StyleSheet.create({
     borderColor: COLORS.gray7,
     borderRadius: 12,
     backgroundColor: COLORS.white,
-    fontWeight: '500',
-    fontSize: fontSz(16),
-    color: COLORS.gray7,
     paddingVertical: heightPercentage(10),
     paddingHorizontal: widthPercentage(15),
     marginBottom: heightPercentage(30),
+  },
+  inputText: {
+    fontWeight: '500',
+    fontSize: fontSz(16),
+    color: COLORS.gray7,
   },
   spacedRow: {
     flexDirection: 'row',
@@ -224,6 +230,11 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     borderColor: COLORS.gray7,
     paddingHorizontal: widthPercentage(10),
+  },
+  selectText: {
+    fontWeight: '500',
+    fontSize: fontSz(14),
+    color: COLORS.black,
   },
 });
 

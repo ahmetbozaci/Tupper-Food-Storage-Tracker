@@ -18,6 +18,7 @@ import {userLogin} from '../../api/auth';
 import {useAppDispatch, useAppSelector, RootState} from '../../features/store';
 import {login as loginReducer} from '../../features/loginSlice';
 import {LoginData} from '../../interfaces/Auth';
+import COLORS from '../../color';
 // import { selectAuthState } from '../../features/authSlice';
 
 interface Props {
@@ -76,6 +77,7 @@ const LoginForm: React.FC<Props> = ({navigation}) => {
                     value={values.email}
                     // name="email"
                     autoCapitalize="none"
+                    placeholderTextColor={COLORS.gray8}
                   />
                   {touched.email && errors.email && (
                     <Text style={styles.errorText}>{errors.email}</Text>
@@ -88,6 +90,7 @@ const LoginForm: React.FC<Props> = ({navigation}) => {
                     // name="password"
                     secureTextEntry={true}
                     autoCapitalize="none"
+                    placeholderTextColor={COLORS.gray8}
                   />
                   {touched.password && errors.password && (
                     <Text style={styles.errorText}>{errors.password}</Text>
