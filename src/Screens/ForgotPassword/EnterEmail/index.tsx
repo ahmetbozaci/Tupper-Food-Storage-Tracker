@@ -5,6 +5,7 @@ import {
   Text,
   TouchableWithoutFeedback,
   Keyboard,
+  SafeAreaView,
 } from 'react-native';
 import {Formik} from 'formik';
 import styles from './styles';
@@ -13,6 +14,7 @@ import CustomButton from '../../../shared/Button';
 import COLORS from '../../../color';
 import {useAppDispatch} from '../../../features/store';
 import {forgotPasswordFetch} from '../../../features/forgotPasswordSlice';
+import AuthHeader from '../../../shared/AuthHeader';
 
 interface Email {
   email: string;
@@ -38,42 +40,47 @@ const EnterEmail: React.FC<Props> = ({navigation}) => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={(values, actions) => {
-        enterEmail(values);
-        actions.resetForm();
-      }}>
-      {({values, handleChange, errors, touched, handleSubmit}) => (
+    <SafeAreaView style={styles.screen}>
+      <AuthHeader navigation={navigation} />
+      <View style={styles.content}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.screen}>
+          <View>
             <Text style={[styles.titleTextSignup, styles.titleText]}>
-              A verification will be sent to your email.
+              A verification code will be sent to your email.
             </Text>
-            <TextInput
-              style={styles.input}
-              multiline
-              placeholder="Email"
-              placeholderTextColor={COLORS.gray8}
-              onChangeText={handleChange('email')}
-              value={values.email}
-            />
-            {touched.email && errors.email && (
-              <Text style={styles.errorText}>{errors.email}</Text>
-            )}
-            <View
-              style={[styles.buttonContainer, styles.buttonContainerSignup]}>
-              <CustomButton
-                onPress={() => {
-                  handleSubmit();
-                }}
-              />
-            </View>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={(values, actions) => {
+                enterEmail(values);
+                actions.resetForm();
+              }}>
+              {({values, handleChange, errors, touched, handleSubmit}) => (
+                <View>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Email"
+                    placeholderTextColor={COLORS.gray8}
+                    onChangeText={handleChange('email')}
+                    value={values.email}
+                  />
+                  {touched.email && errors.email && (
+                    <Text style={styles.errorText}>{errors.email}</Text>
+                  )}
+                  <CustomButton
+                    onPress={() => {
+                      handleSubmit();
+                    }}
+                    buttonStyle={styles.button}
+                    buttonTextStyle={styles.btnText}
+                  />
+                </View>
+              )}
+            </Formik>
           </View>
         </TouchableWithoutFeedback>
-      )}
-    </Formik>
+      </View>
+    </SafeAreaView>
   );
 };
 
