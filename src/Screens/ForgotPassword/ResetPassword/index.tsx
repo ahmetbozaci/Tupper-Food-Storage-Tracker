@@ -12,9 +12,14 @@ import styles from './styles';
 import validationSchema from './validationSchema';
 import CustomButton from '../../../shared/Button';
 import COLORS from '../../../color';
-import {useAppDispatch} from '../../../features/store';
+import {
+  RootState,
+  useAppDispatch,
+  useAppSelector,
+} from '../../../features/store';
 import {resetPasswordFetch} from '../../../features/resetPasswordSlice';
 import AuthHeader from '../../../shared/AuthHeader';
+import {showMessage} from 'react-native-flash-message';
 
 interface UserInformation {
   password: string;
@@ -28,6 +33,9 @@ interface Props {
 }
 
 const ResetPassword: React.FC<Props> = ({route, navigation}) => {
+  const loading = useAppSelector(
+    (state: RootState) => state.resetPassword.loading,
+  );
   const {email, otp} = route.params;
   const initialValues = {
     password: '',
@@ -42,14 +50,22 @@ const ResetPassword: React.FC<Props> = ({route, navigation}) => {
 
   const resetPassword = async (values: UserInformation) => {
     const {password} = values;
-    const data = await dispatch(
+    const data: any = await dispatch(
       resetPasswordFetch({
         password,
         email,
         otp,
       }),
     );
-    navigateToVerifyCodeScreen(data.payload.status);
+    if (data?.payload.status === 'fail') {
+      showMessage({
+        message: 'Error',
+        description: data?.payload.message,
+        type: 'danger',
+      });
+    } else {
+      navigateToVerifyCodeScreen(data?.payload.status);
+    }
   };
   return (
     <SafeAreaView style={styles.screen}>
@@ -79,6 +95,8 @@ const ResetPassword: React.FC<Props> = ({route, navigation}) => {
                     placeholderTextColor={COLORS.gray8}
                     onChangeText={handleChange('password')}
                     value={values.password}
+                    autoCapitalize="none"
+                    secureTextEntry={true}
                   />
                   {touched.password && errors.password && (
                     <Text style={styles.errorText}>{errors.password}</Text>
@@ -88,6 +106,8 @@ const ResetPassword: React.FC<Props> = ({route, navigation}) => {
                     placeholderTextColor={COLORS.gray8}
                     placeholder="Confirm Password"
                     onChangeText={handleChange('passwordConfirmation')}
+                    autoCapitalize="none"
+                    secureTextEntry={true}
                   />
                   {touched.passwordConfirmation &&
                     errors.passwordConfirmation && (
@@ -96,6 +116,7 @@ const ResetPassword: React.FC<Props> = ({route, navigation}) => {
                       </Text>
                     )}
                   <CustomButton
+                    loading={loading}
                     onPress={() => {
                       handleSubmit();
                     }}

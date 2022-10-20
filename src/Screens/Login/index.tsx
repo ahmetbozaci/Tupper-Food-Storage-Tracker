@@ -17,6 +17,7 @@ import AuthHeader from '../../shared/AuthHeader';
 import {userLogin} from '../../api/auth';
 import {useAppDispatch, useAppSelector, RootState} from '../../features/store';
 import {login as loginReducer} from '../../features/loginSlice';
+import {LoginData} from '../../interfaces/Auth';
 // import { selectAuthState } from '../../features/authSlice';
 
 interface Props {
@@ -35,7 +36,7 @@ const LoginForm: React.FC<Props> = ({navigation}) => {
   };
 
   const dispatch = useAppDispatch();
-  const login = async (values: any) => {
+  const login = async (values: LoginData) => {
     const data: any = await dispatch(userLogin(values));
     if (data?.payload.status === 'fail') {
       showMessage({

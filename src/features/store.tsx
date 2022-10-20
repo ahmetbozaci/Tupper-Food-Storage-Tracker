@@ -1,8 +1,7 @@
 import {configureStore, combineReducers} from '@reduxjs/toolkit';
 import {useDispatch, useSelector, TypedUseSelectorHook} from 'react-redux';
-// import forgotPasswordSlice from './forgotPasswordSlice';
-// import loginSlice from './loginSlice';
-// import resetPasswordSlice from './resetPasswordSlice';
+import forgotPasswordSlice from './forgotPasswordSlice';
+import resetPasswordSlice from './resetPasswordSlice';
 import signupSlice from './signupSlice';
 import authSlice from './loginSlice';
 import {
@@ -25,6 +24,8 @@ const persistConfig = {
 const reducers = combineReducers({
   auth: authSlice,
   signup: signupSlice,
+  forgotPassword: forgotPasswordSlice,
+  resetPassword: resetPasswordSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

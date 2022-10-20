@@ -12,9 +12,10 @@ import styles from './styles';
 import validationSchema from './validationSchema';
 import CustomButton from '../../../shared/Button';
 import COLORS from '../../../color';
-import {useAppDispatch} from '../../../features/store';
+import {RootState, useAppDispatch} from '../../../features/store';
 import {forgotPasswordFetch} from '../../../features/forgotPasswordSlice';
 import AuthHeader from '../../../shared/AuthHeader';
+import {useAppSelector} from '../../../features/store';
 
 interface Email {
   email: string;
@@ -23,6 +24,9 @@ interface Props {
   navigation: any;
 }
 const EnterEmail: React.FC<Props> = ({navigation}) => {
+  const loading = useAppSelector(
+    (state: RootState) => state.forgotPassword.loading,
+  );
   const initialValues = {
     email: '',
   };
@@ -63,11 +67,14 @@ const EnterEmail: React.FC<Props> = ({navigation}) => {
                     placeholderTextColor={COLORS.gray8}
                     onChangeText={handleChange('email')}
                     value={values.email}
+                    autoCapitalize="none"
+                    keyboardType="email-address"
                   />
                   {touched.email && errors.email && (
                     <Text style={styles.errorText}>{errors.email}</Text>
                   )}
                   <CustomButton
+                    loading={loading}
                     onPress={() => {
                       handleSubmit();
                     }}

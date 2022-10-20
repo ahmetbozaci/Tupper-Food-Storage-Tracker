@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     color: COLORS.green3,
   },
   buttonWrapper: {
-    marginTop: heightPercentage(70),
+    marginTop: heightPercentage(138),
   },
   button: {
     width: widthPercentage(230),

@@ -6,6 +6,8 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   SafeAreaView,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import {Formik} from 'formik';
 import styles from '../loginSignupStyles';
@@ -17,6 +19,7 @@ import AuthHeader from '../../shared/AuthHeader';
 import {heightPercentage} from '../../config';
 import {userSignUp} from '../../api/auth';
 import {showMessage} from 'react-native-flash-message';
+import {SignupData} from '../../interfaces/Auth';
 
 interface Props {
   navigation: any;
@@ -34,7 +37,7 @@ const SignupForm: React.FC<Props> = ({navigation}) => {
     passwordConfirmation: '',
   };
 
-  const signup = async (values: any) => {
+  const signup = async (values: SignupData) => {
     const data: any = await dispatch(userSignUp(values));
     if (data?.payload.status === 'fail') {
       showMessage({
@@ -47,6 +50,7 @@ const SignupForm: React.FC<Props> = ({navigation}) => {
     }
   };
 
+  // keyboard avoiding view
   return (
     <SafeAreaView style={styles.screen}>
       <AuthHeader navigation={navigation} />
