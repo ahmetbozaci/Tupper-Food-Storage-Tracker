@@ -30,3 +30,33 @@ export const userLogin = createAsyncThunk(
     }
   },
 );
+
+export const userSignUp = createAsyncThunk(
+  'user/signup',
+  async (userInformation, thunkAPI) => {
+    const {name, email, zipCode, password} = userInformation;
+    const response = await requestTimeout(
+      fetch(`${baseURL}/user/signup`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          zipCode,
+          password,
+        }),
+      }),
+    );
+    const data = await response.json();
+    console.log('Signup Data:', data);
+
+    if (data.status === 'success') {
+      return thunkAPI.fulfillWithValue(data);
+    } else {
+      return thunkAPI.rejectWithValue(data);
+    }
+  },
+);
