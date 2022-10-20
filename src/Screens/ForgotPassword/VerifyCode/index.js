@@ -16,16 +16,9 @@ import AuthHeader from '../../../shared/AuthHeader';
 import CustomButton from '../../../shared/Button';
 import styles from './styles';
 
-interface Props {
-  navigation: any;
-  route: {
-    params: any;
-  };
-}
-
 const CELL_COUNT = 4;
 
-const VerifyCode: React.FC<Props> = ({route, navigation}) => {
+const VerifyCode = ({route, navigation}) => {
   const {email} = route.params;
   const [value, setValue] = useState('');
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
@@ -64,10 +57,6 @@ const VerifyCode: React.FC<Props> = ({route, navigation}) => {
                 </Text>
               )}
             />
-            {/* <View
-              style={[styles.buttonContainer, styles.buttonContainerSignup]}>
-              <CustomButton onPress={handleSubmit} />
-            </View> */}
             <CustomButton
               onPress={handleSubmit}
               buttonStyle={styles.button}
