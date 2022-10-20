@@ -74,6 +74,7 @@ const LoginForm: React.FC<Props> = ({navigation}) => {
                     onChangeText={handleChange('email')}
                     value={values.email}
                     // name="email"
+                    autoCapitalize="none"
                   />
                   {touched.email && errors.email && (
                     <Text style={styles.errorText}>{errors.email}</Text>
@@ -85,6 +86,7 @@ const LoginForm: React.FC<Props> = ({navigation}) => {
                     value={values.password}
                     // name="password"
                     secureTextEntry={true}
+                    autoCapitalize="none"
                   />
                   {touched.password && errors.password && (
                     <Text style={styles.errorText}>{errors.password}</Text>
