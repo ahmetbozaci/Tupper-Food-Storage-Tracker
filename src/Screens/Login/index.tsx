@@ -12,14 +12,19 @@ import styles from '../loginSignupStyles';
 import validationSchema from './validationSchema';
 import CustomButton from '../../shared/Button';
 import {showMessage} from 'react-native-flash-message';
-import {useAppDispatch} from '../../features/store';
-import {loginFetch} from '../../features/loginSlice';
 import {heightPercentage} from '../../config';
 import AuthHeader from '../../shared/AuthHeader';
+import {userLogin} from '../../api/auth';
+import {useAppDispatch, useAppSelector, RootState} from '../../features/store';
+import {login as loginReducer} from '../../features/authSlice';
+// import { selectAuthState } from '../../features/authSlice';
 
-const LoginForm = ({navigation}) => {
-  const dispatch = useAppDispatch();
-  const [loading, setLoading] = useState(false);
+interface Props {
+  navigation: any;
+}
+
+const LoginForm: React.FC<Props> = ({navigation}) => {
+  const loading = useAppSelector((state: RootState) => state.auth.loading);
 
   //email //omodauda@yahoo.com
   //password //testing
@@ -28,26 +33,21 @@ const LoginForm = ({navigation}) => {
     email: '',
     password: '',
   };
-  const navigateToHome = data => {
-    if (data === 'success') {
-      navigation.navigate('Tabs');
-    }
-  };
 
-  const login = async values => {
-    setLoading(true);
-    const data = await dispatch(loginFetch(values));
-    if (data.payload.status === 'fail') {
-      setLoading(false);
+  const dispatch = useAppDispatch();
+  const login = async (values: any) => {
+    const data: any = await dispatch(userLogin(values));
+    if (data?.payload.status === 'fail') {
       showMessage({
         message: 'Error',
         description: data.payload.message,
         type: 'danger',
       });
-    } else {
-      navigateToHome(data.payload.status);
+    } else if (data?.payload.status === 'success') {
+      dispatch(
+        loginReducer({token: data.payload.token, user: data.payload.data}),
+      );
     }
-    setLoading(false);
   };
 
   return (
