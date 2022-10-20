@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     fontSize: fontSz(15),
   },
   addBtn: {
-    marginTop: 13,
+    marginTop: heightPercentage(13),
   },
   modalContainer: {
     backgroundColor: 'rgba(0,0,0,0.25)',
