@@ -5,15 +5,17 @@ import {
   Text,
   TouchableWithoutFeedback,
   Keyboard,
+  SafeAreaView,
 } from 'react-native';
 import {Formik} from 'formik';
 import styles from '../loginSignupStyles';
 import validationSchema from './validationSchema';
 import CustomButton from '../../shared/Button';
 import {showMessage} from 'react-native-flash-message';
-
 import {useAppDispatch} from '../../features/store';
 import {loginFetch} from '../../features/loginSlice';
+import {heightPercentage} from '../../config';
+import AuthHeader from '../../shared/AuthHeader';
 
 const LoginForm = ({navigation}) => {
   const dispatch = useAppDispatch();
@@ -49,52 +51,62 @@ const LoginForm = ({navigation}) => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={(values, actions) => {
-        login(values);
-        actions.resetForm();
-      }}>
-      {({values, handleChange, errors, touched, handleSubmit}) => (
+    <SafeAreaView style={styles.screen}>
+      <AuthHeader navigation={navigation} />
+      <View style={styles.content}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.screen}>
+          <View>
             <Text style={[styles.titleTextLogin, styles.titleText]}>
               Log In
             </Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Email"
-              onChangeText={handleChange('email')}
-              value={values.email}
-              name="email"
-            />
-            {touched.email && errors.email && (
-              <Text style={styles.errorText}>{errors.email}</Text>
-            )}
-            <TextInput
-              style={styles.input}
-              placeholder="Password"
-              onChangeText={handleChange('password')}
-              value={values.password}
-              name="password"
-              secureTextEntry={true}
-            />
-            {touched.password && errors.password && (
-              <Text style={styles.errorText}>{errors.password}</Text>
-            )}
-            <View style={[styles.buttonContainerLogin, styles.buttonContainer]}>
-              <CustomButton
-                onPress={() => {
-                  handleSubmit();
-                }}
-                loading={loading}
-              />
-            </View>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={(values, actions) => {
+                login(values);
+                actions.resetForm();
+              }}>
+              {({values, handleChange, errors, touched, handleSubmit}) => (
+                <View>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Email"
+                    onChangeText={handleChange('email')}
+                    value={values.email}
+                    name="email"
+                  />
+                  {touched.email && errors.email && (
+                    <Text style={styles.errorText}>{errors.email}</Text>
+                  )}
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Password"
+                    onChangeText={handleChange('password')}
+                    value={values.password}
+                    name="password"
+                    secureTextEntry={true}
+                  />
+                  {touched.password && errors.password && (
+                    <Text style={styles.errorText}>{errors.password}</Text>
+                  )}
+                  <CustomButton
+                    onPress={() => {
+                      handleSubmit();
+                    }}
+                    loading={loading}
+                    buttonStyle={[
+                      styles.button,
+                      {marginTop: heightPercentage(175)},
+                    ]}
+                    buttonTextStyle={styles.btnText}
+                  />
+                </View>
+              )}
+            </Formik>
           </View>
         </TouchableWithoutFeedback>
-      )}
-    </Formik>
+      </View>
+    </SafeAreaView>
   );
 };
 
