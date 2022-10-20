@@ -3,7 +3,7 @@ import {useDispatch, useSelector, TypedUseSelectorHook} from 'react-redux';
 // import forgotPasswordSlice from './forgotPasswordSlice';
 // import loginSlice from './loginSlice';
 // import resetPasswordSlice from './resetPasswordSlice';
-// import signupSlice from './signupSlice';
+import signupSlice from './signupSlice';
 import authSlice from './loginSlice';
 import {
   persistReducer,
@@ -24,6 +24,7 @@ const persistConfig = {
 
 const reducers = combineReducers({
   auth: authSlice,
+  signup: signupSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
