@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-
+import {baseURL} from '../config';
+import {requestTimeout} from '../utils/network';
 interface state {
   status: string;
   message: string;
@@ -19,27 +20,28 @@ interface userInformation {
   otp: string;
   password: string;
 }
-const baseURL: string =
-  'https://tupper-backend.herokuapp.com/api/user/reset-password  ';
 
 export const resetPasswordFetch = createAsyncThunk(
   'users/resetPassword',
   async (userInformation: userInformation, thunkAPI) => {
+    console.log('i was called');
     const {email, otp, password} = userInformation;
-    const response = await fetch(baseURL, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        otp,
-        password,
+    const response = await requestTimeout(
+      fetch(`${baseURL}/user/reset-password`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          otp,
+          password,
+        }),
       }),
-    });
+    );
+    // console.log('response', response);
     const data = await response.json();
-    console.log('Reset Password Data:', data);
     if (data.status === 'success') {
       return data;
     } else {

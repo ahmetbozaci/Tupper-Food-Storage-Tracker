@@ -3,6 +3,13 @@ import COLORS from '../color';
 import {fontSz, widthPercentage, heightPercentage} from '../config';
 
 const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    backgroundColor: COLORS.white,
+  },
+  content: {
+    marginHorizontal: widthPercentage(40),
+  },
   titleText: {
     fontSize: fontSz(40),
     fontWeight: 'bold',
@@ -12,16 +19,11 @@ const styles = StyleSheet.create({
     marginVertical: heightPercentage(45),
   },
   titleTextLogin: {
-    marginVertical: heightPercentage(100),
+    marginVertical: heightPercentage(60),
   },
   errorText: {
     fontSize: 12,
     color: '#FF0D10',
-  },
-  screen: {
-    flex: 1,
-    marginHorizontal: widthPercentage(40),
-    justifyContent: 'center',
   },
   input: {
     borderWidth: 2,
@@ -29,18 +31,19 @@ const styles = StyleSheet.create({
     paddingVertical: heightPercentage(15),
     paddingHorizontal: widthPercentage(30),
     marginVertical: heightPercentage(10),
-    fontSize: fontSz(20),
+    fontSize: fontSz(16),
     borderRadius: 12,
     color: COLORS.green,
+    fontWeight: '500',
   },
-  buttonContainer: {
-    alignItems: 'flex-end',
+  button: {
+    alignSelf: 'flex-end',
+    paddingVertical: heightPercentage(15),
+    paddingHorizontal: widthPercentage(46),
   },
-  buttonContainerLogin: {
-    marginVertical: heightPercentage(100),
-  },
-  buttonContainerSignup: {
-    marginVertical: heightPercentage(35),
+  btnText: {
+    fontWeight: '500',
+    fontSize: fontSz(16),
   },
 });
 

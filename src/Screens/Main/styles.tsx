@@ -19,11 +19,13 @@ const styles = StyleSheet.create({
     color: COLORS.green3,
   },
   buttonWrapper: {
-    marginTop: heightPercentage(70),
+    marginTop: heightPercentage(138),
   },
   button: {
-    width: widthPercentage(250),
+    width: widthPercentage(230),
     marginBottom: heightPercentage(10),
+    paddingVertical: heightPercentage(15),
+    borderRadius: 25,
   },
   text: {
     color: COLORS.black,
@@ -33,10 +35,11 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     borderColor: COLORS.green3,
     borderWidth: 2.5,
-    borderRadius: 30,
+    // borderRadius: 25,
   },
   buttonText: {
-    color: COLORS.green3,
+    fontWeight: '500',
+    fontSize: fontSz(16),
   },
   forgotPassword: {
     marginBottom: heightPercentage(200),

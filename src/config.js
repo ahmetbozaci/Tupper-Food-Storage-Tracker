@@ -18,3 +18,5 @@ export const widthPercentage = val => {
   const num = val / 3.88;
   return widthPercentageToDP(num);
 };
+
+export const baseURL = 'https://tupper-backend.herokuapp.com/api/';
