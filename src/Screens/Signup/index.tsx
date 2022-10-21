@@ -3,9 +3,10 @@ import {
   TextInput,
   View,
   Text,
-  TouchableWithoutFeedback,
-  Keyboard,
   SafeAreaView,
+  KeyboardAvoidingView,
+  ScrollView,
+  Platform,
 } from 'react-native';
 import {Formik} from 'formik';
 import styles from '../loginSignupStyles';
@@ -48,102 +49,102 @@ const SignupForm: React.FC<Props> = ({navigation}) => {
     }
   };
 
-  // keyboard avoiding view
   return (
     <SafeAreaView style={styles.screen}>
       <AuthHeader navigation={navigation} />
-      <View style={styles.content}>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View>
-            <Text style={[styles.titleTextSignup, styles.titleText]}>
-              Sign Up
-            </Text>
-            <Formik
-              initialValues={initialValues}
-              validationSchema={validationSchema}
-              onSubmit={(values, actions) => {
-                signup(values);
-                actions.resetForm();
-              }}>
-              {({values, handleChange, errors, touched, handleSubmit}) => (
-                <View>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Name"
-                    placeholderTextColor={COLORS.gray8}
-                    onChangeText={handleChange('name')}
-                    value={values.name}
-                    keyboardType="name-phone-pad"
-                  />
-                  {touched.name && errors.name && (
-                    <Text style={styles.errorText}>{errors.name}</Text>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <ScrollView
+          contentContainerStyle={styles.content}
+          showsVerticalScrollIndicator={false}>
+          <Text style={[styles.titleTextSignup, styles.titleText]}>
+            Sign Up
+          </Text>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={(values, actions) => {
+              signup(values);
+              actions.resetForm();
+            }}>
+            {({values, handleChange, errors, touched, handleSubmit}) => (
+              <View>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Name"
+                  placeholderTextColor={COLORS.gray8}
+                  onChangeText={handleChange('name')}
+                  value={values.name}
+                  keyboardType="name-phone-pad"
+                />
+                {touched.name && errors.name && (
+                  <Text style={styles.errorText}>{errors.name}</Text>
+                )}
+                <TextInput
+                  style={styles.input}
+                  placeholder="Email"
+                  placeholderTextColor={COLORS.gray8}
+                  onChangeText={handleChange('email')}
+                  value={values.email}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                />
+                {touched.email && errors.email && (
+                  <Text style={styles.errorText}>{errors.email}</Text>
+                )}
+                <TextInput
+                  style={styles.input}
+                  placeholder="Zip Code"
+                  placeholderTextColor={COLORS.gray8}
+                  onChangeText={handleChange('zipCode')}
+                  value={values.zipCode}
+                  keyboardType="number-pad"
+                />
+                {touched.zipCode && errors.zipCode && (
+                  <Text style={styles.errorText}>{errors.zipCode}</Text>
+                )}
+                <TextInput
+                  style={styles.input}
+                  placeholder="Password"
+                  placeholderTextColor={COLORS.gray8}
+                  onChangeText={handleChange('password')}
+                  value={values.password}
+                  secureTextEntry={true}
+                  autoCapitalize="none"
+                />
+                {touched.password && errors.password && (
+                  <Text style={styles.errorText}>{errors.password}</Text>
+                )}
+                <TextInput
+                  style={styles.input}
+                  placeholderTextColor={COLORS.gray8}
+                  placeholder="Confirm Password"
+                  onChangeText={handleChange('passwordConfirmation')}
+                  secureTextEntry={true}
+                  autoCapitalize="none"
+                />
+                {touched.passwordConfirmation &&
+                  errors.passwordConfirmation && (
+                    <Text style={styles.errorText}>
+                      {errors.passwordConfirmation}
+                    </Text>
                   )}
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Email"
-                    placeholderTextColor={COLORS.gray8}
-                    onChangeText={handleChange('email')}
-                    value={values.email}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                  />
-                  {touched.email && errors.email && (
-                    <Text style={styles.errorText}>{errors.email}</Text>
-                  )}
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Zip Code"
-                    placeholderTextColor={COLORS.gray8}
-                    onChangeText={handleChange('zipCode')}
-                    value={values.zipCode}
-                    keyboardType="number-pad"
-                  />
-                  {touched.zipCode && errors.zipCode && (
-                    <Text style={styles.errorText}>{errors.zipCode}</Text>
-                  )}
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Password"
-                    placeholderTextColor={COLORS.gray8}
-                    onChangeText={handleChange('password')}
-                    value={values.password}
-                    secureTextEntry={true}
-                    autoCapitalize="none"
-                  />
-                  {touched.password && errors.password && (
-                    <Text style={styles.errorText}>{errors.password}</Text>
-                  )}
-                  <TextInput
-                    style={styles.input}
-                    placeholderTextColor={COLORS.gray8}
-                    placeholder="Confirm Password"
-                    onChangeText={handleChange('passwordConfirmation')}
-                    secureTextEntry={true}
-                    autoCapitalize="none"
-                  />
-                  {touched.passwordConfirmation &&
-                    errors.passwordConfirmation && (
-                      <Text style={styles.errorText}>
-                        {errors.passwordConfirmation}
-                      </Text>
-                    )}
-                  <CustomButton
-                    loading={loading}
-                    onPress={() => {
-                      handleSubmit();
-                    }}
-                    buttonStyle={[
-                      styles.button,
-                      {marginTop: heightPercentage(70)},
-                    ]}
-                    buttonTextStyle={styles.btnText}
-                  />
-                </View>
-              )}
-            </Formik>
-          </View>
-        </TouchableWithoutFeedback>
-      </View>
+                <CustomButton
+                  loading={loading}
+                  onPress={() => {
+                    handleSubmit();
+                  }}
+                  buttonStyle={[
+                    styles.button,
+                    {marginTop: heightPercentage(70)},
+                  ]}
+                  buttonTextStyle={styles.btnText}
+                />
+              </View>
+            )}
+          </Formik>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
