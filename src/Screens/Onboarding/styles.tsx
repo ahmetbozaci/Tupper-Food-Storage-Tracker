@@ -1,0 +1,36 @@
+import {StyleSheet} from 'react-native';
+import COLORS from '../../color';
+const styles = StyleSheet.create({
+  subtitle: {
+    color: COLORS.black,
+    fontSize: 13,
+    marginTop: 10,
+    maxWidth: '50%',
+    // textAlign: 'center',
+  },
+  title: {
+    color: COLORS.green3,
+    fontSize: 36,
+    fontWeight: 'bold',
+    marginTop: 20,
+    textAlign: 'center',
+  },
+
+  indicator: {
+    height: 10,
+    width: 10,
+    backgroundColor: 'grey',
+    marginHorizontal: 3,
+    borderRadius: 50,
+  },
+  btn: {
+    flex: 1,
+    height: 50,
+    borderRadius: 5,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+export default styles;

@@ -22,6 +22,7 @@ import EnterEmail from '../Screens/ForgotPassword/EnterEmail';
 import ResetPassword from '../Screens/ForgotPassword/ResetPassword';
 
 import {useAppSelector, RootState} from '../features/store';
+import OnboardingScreen from '../Screens/Onboarding';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -59,6 +60,7 @@ const AuthStack = () => {
       screenOptions={{
         headerShown: false,
       }}>
+      <Stack.Screen name="Onboarding" component={OnboardingScreen} />
       <Stack.Screen name="Main" component={MainScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
