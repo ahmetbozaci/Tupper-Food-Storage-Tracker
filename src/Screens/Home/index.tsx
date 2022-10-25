@@ -6,24 +6,47 @@ import {
   View,
   TouchableOpacity,
   ImageBackground,
+  TouchableWithoutFeedback,
+  ActivityIndicator,
 } from 'react-native';
 import React, {useState} from 'react';
 import COLORS from '../../color';
 import AppHeader from '../../shared/AppHeader';
 import {fontSz, heightPercentage, widthPercentage} from '../../config';
-import DATA from '../../../assets/mock/data';
 import AddIcon from '../../../assets/svg/add.svg';
 import ChevronRight from '../../../assets/svg/chevron-right.svg';
 import LogoutModal from '../../shared/LogoutModal';
 import {logout} from '../../features/loginSlice';
+import {fetchStorages, fetchFoodsByStorage} from '../../api/food';
+import {useQuery} from '@tanstack/react-query';
 import {useAppDispatch} from '../../features/store';
 
 interface Props {
   navigation: any;
 }
 
+// interface CardProp {
+//   item: any;
+// }
+
 const Home: React.FC<Props> = ({navigation}) => {
   const [logoutModalVisible, setLogoutModalVisible] = useState<boolean>(false);
+  const {data, isLoading} = useQuery(['storages'], () => fetchStorages(), {
+    enabled: true,
+    retry: true,
+  });
+  useQuery(['Fridge'], () => fetchFoodsByStorage('Fridge'), {
+    enabled: true,
+    retry: true,
+  });
+  useQuery(['Pantry'], () => fetchFoodsByStorage('Pantry'), {
+    enabled: true,
+    retry: true,
+  });
+  useQuery(['Freezer'], () => fetchFoodsByStorage('Freezer'), {
+    enabled: true,
+    retry: true,
+  });
 
   const toggleLogoutModal = () => {
     setLogoutModalVisible(!logoutModalVisible);
@@ -37,6 +60,37 @@ const Home: React.FC<Props> = ({navigation}) => {
     }, 300);
   };
 
+  // const Card: React.FC<CardProp> = ({item}) => {
+  //   const {id, title, items, logo} = item;
+  //   return (
+  //     <TouchableWithoutFeedback
+  //       key={id}
+  //       onPress={() => navigation.navigate('Foods', {screen: title})}>
+  //       <View style={styles.storageView}>
+  //         <ImageBackground
+  //           source={logo}
+  //           resizeMode="cover"
+  //           style={styles.backgroundImage}>
+  //           <View style={styles.spacedView}>
+  //             <View>
+  //               <View style={styles.row}>
+  //                 <Text style={styles.title}>{title}</Text>
+  //                 <TouchableOpacity>
+  //                   <AddIcon width={widthPercentage(22)} />
+  //                 </TouchableOpacity>
+  //               </View>
+  //               <Text style={styles.unit}>{items.length} items</Text>
+  //             </View>
+  //             <TouchableOpacity>
+  //               <ChevronRight width={widthPercentage(12)} />
+  //             </TouchableOpacity>
+  //           </View>
+  //         </ImageBackground>
+  //       </View>
+  //     </TouchableWithoutFeedback>
+  //   );
+  // };
+
   return (
     <SafeAreaView style={styles.screen}>
       <AppHeader onLogoutPress={toggleLogoutModal} />
@@ -44,35 +98,51 @@ const Home: React.FC<Props> = ({navigation}) => {
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}>
         <Text style={styles.headerText}>Welcome!</Text>
-        {DATA.storages.map(storage => {
-          const {id, title, items, logo} = storage;
-          return (
-            <TouchableOpacity
-              key={id}
-              style={styles.storageView}
-              onPress={() => navigation.navigate('Foods', {screen: title})}>
-              <ImageBackground
-                source={logo}
-                resizeMode="cover"
-                style={styles.backgroundImage}>
-                <View style={styles.spacedView}>
-                  <View>
-                    <View style={styles.row}>
-                      <Text style={styles.title}>{title}</Text>
-                      <TouchableOpacity>
-                        <AddIcon width={widthPercentage(22)} />
-                      </TouchableOpacity>
-                    </View>
-                    <Text style={styles.unit}>{items.length} items</Text>
+        {/* <Card item={fridge} />
+        <Card item={pantry} />
+        <Card item={freezer} /> */}
+        {isLoading ? (
+          <ActivityIndicator />
+        ) : (
+          <>
+            {data.map((storage: any) => {
+              const {id, title, items, logo} = storage;
+              return (
+                <TouchableWithoutFeedback
+                  key={id}
+                  onPress={() =>
+                    navigation.navigate('Foods', {
+                      screen: title,
+                    })
+                  }>
+                  <View style={styles.storageView}>
+                    <ImageBackground
+                      source={{uri: logo}}
+                      resizeMode="cover"
+                      style={styles.backgroundImage}>
+                      <View style={styles.spacedView}>
+                        <View>
+                          <View style={styles.row}>
+                            <Text style={styles.title}>{title}</Text>
+                            <TouchableOpacity>
+                              <AddIcon width={widthPercentage(22)} />
+                            </TouchableOpacity>
+                          </View>
+                          <Text style={styles.unit}>
+                            {items} {items < 2 ? 'item' : 'items'}
+                          </Text>
+                        </View>
+                        <TouchableOpacity>
+                          <ChevronRight width={widthPercentage(12)} />
+                        </TouchableOpacity>
+                      </View>
+                    </ImageBackground>
                   </View>
-                  <TouchableOpacity>
-                    <ChevronRight width={widthPercentage(12)} />
-                  </TouchableOpacity>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
-          );
-        })}
+                </TouchableWithoutFeedback>
+              );
+            })}
+          </>
+        )}
         <LogoutModal
           visible={logoutModalVisible}
           close={toggleLogoutModal}
