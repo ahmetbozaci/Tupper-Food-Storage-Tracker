@@ -1,13 +1,16 @@
 import React from 'react';
-
-import DATA from '../../../../assets/mock/data';
 import FoodList from '../../../shared/FoodList';
+import {useQuery} from '@tanstack/react-query';
+import {fetchFoodsByStorage} from '../../../api/food';
 
 const Freezer: React.FC = () => {
-  const data = DATA.storages.find(
-    storage => storage.title === 'Freezer',
-  )?.items;
-  return <FoodList headerTitle="Freezer" data={data} />;
+  const title = 'Freezer';
+  const {data} = useQuery(['Freezer'], () => fetchFoodsByStorage(title), {
+    enabled: true,
+    retry: false,
+  });
+
+  return <FoodList headerTitle={title} data={data} />;
 };
 
 export default Freezer;

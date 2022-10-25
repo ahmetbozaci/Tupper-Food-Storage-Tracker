@@ -1,12 +1,14 @@
 import React from 'react';
-import DATA from '../../../../assets/mock/data';
 import FoodList from '../../../shared/FoodList';
-import Food from '../../../interfaces/Food';
+import {useQuery} from '@tanstack/react-query';
+import {fetchAllFoods} from '../../../api/food';
 
 const All: React.FC = () => {
-  const AllFoods: Food[] = [];
-  DATA.storages.map(storage => storage.items.map(item => AllFoods.push(item)));
-  return <FoodList headerTitle="All Food" data={AllFoods} />;
+  const {data} = useQuery(['allfoods'], () => fetchAllFoods(), {
+    enabled: true,
+    retry: false,
+  });
+  return <FoodList headerTitle="All Food" data={data} />;
 };
 
 export default All;

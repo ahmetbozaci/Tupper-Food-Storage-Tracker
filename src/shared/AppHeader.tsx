@@ -10,7 +10,7 @@ interface Props {
 const AppHeader: React.FC<Props> = ({onLogoutPress}) => {
   return (
     <View style={styles.header}>
-      <Text style={styles.logoText}>Tuppr</Text>
+      <Text style={styles.logoText}>Tupper</Text>
       <Pressable onPress={onLogoutPress}>
         <Text style={styles.logout}>Logout</Text>
       </Pressable>
