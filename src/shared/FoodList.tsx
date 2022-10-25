@@ -2,19 +2,21 @@ import {
   StyleSheet,
   Text,
   View,
-  SectionList,
+  // SectionList,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  FlatList,
 } from 'react-native';
 import React, {useState} from 'react';
 import {fontSz, heightPercentage, widthPercentage} from '../config';
 import COLORS from '../color';
-import moment from 'moment';
+// import moment from 'moment';
 import AddIcon from '../../assets/svg/add.svg';
 import Sort from '../../assets/svg/sort.svg';
 import Arrow from '../../assets/svg/arrow-down.svg';
 import FoodCard from './FoodCard';
-import Food from '../interfaces/Food';
+// import Food from '../interfaces/Food';
+// import {RootState, useAppSelector} from '../features/store';
 
 interface Props {
   headerTitle: string;
@@ -26,45 +28,70 @@ const sortData = ['alphabetically', 'expiry date'];
 const FoodList: React.FC<Props> = ({data, headerTitle}) => {
   const [sortBy, setSortBy] = useState<string>(sortData[0]);
   const [sortDropVisible, setSortDropVisible] = useState<boolean>(false);
+  // const [sortedData, setSortedData] = useState<any>();
+
+  // const {storageData} = useAppSelector((state: RootState) => state.storage);
+  // const Data = storageData.find(store => store.title === headerTitle)?.items;
+
+  // useEffect(() => {
+  //   if (sortBy === 'alphabetically') {
+  //     const sorting = Data?.sort((a: any, b: any) =>
+  //       a.name > b.name ? 1 : -1,
+  //     );
+  //     setSortedData(sorting);
+  //   } else {
+  //     const sorting = Data?.sort((a: any, b: any) =>
+  //       a.expiry_date > b.expiry_date ? 1 : -1,
+  //     );
+  //     setSortedData(sorting);
+  //   }
+  // }, [sortBy, Data]);
   /*
     expires soon: 3days,
     expires in a week: 7days,
     expires in a month: 30days
     not soon: >30days
   */
+  // const expired: Food[] = [];
+  // const expireSoon: Food[] = [];
+  // // const expiresInAWeek = [];
+  // // const expiresInAMonth = [];
+  // const notSoon: Food[] = [];
 
-  const expireSoon: Food[] = [];
-  // const expiresInAWeek = [];
-  // const expiresInAMonth = [];
-  const notSoon: Food[] = [];
+  // const now = moment();
 
-  const now = moment();
+  // sortedData?.map((item: any) => {
+  //   const {expiry_date} = item;
+  //   const value = moment(expiry_date).diff(now, 'days');
+  //   if (value < 0) {
+  //     expired.push(item);
+  //   } else if (value < 7) {
+  //     expireSoon.push(item);
+  //   } else {
+  //     notSoon.push(item);
+  //   }
+  // });
 
-  data?.map((item: any) => {
-    const {expiry_date} = item;
-    const value = moment(expiry_date).diff(now, 'days');
-    if (value < 7) {
-      expireSoon.push(item);
-    } else {
-      notSoon.push(item);
-    }
-  });
+  // const sectionedData = [
+  //   {
+  //     title: 'Expired',
+  //     data: expired,
+  //   },
+  //   {
+  //     title: 'Expires Soon',
+  //     data: expireSoon,
+  //   },
+  //   {
+  //     title: 'Not soon',
+  //     data: notSoon,
+  //   },
+  // ];
 
-  const sortedData = [
-    {
-      title: 'Expires Soon',
-      data: expireSoon,
-    },
-    {
-      title: 'Not soon',
-      data: notSoon,
-    },
-  ];
-
-  const handleSortSelect = (value: string) => {
-    setSortBy(value);
-    setSortDropVisible(false);
-  };
+  // const handleSortSelect = (value: string) => {
+  //   console.log('i was called');
+  //   setSortBy(value);
+  //   setSortDropVisible(false);
+  // };
   return (
     <View style={styles.screen}>
       <View style={styles.header}>
@@ -91,7 +118,10 @@ const FoodList: React.FC<Props> = ({data, headerTitle}) => {
             return (
               <TouchableOpacity
                 key={index}
-                onPress={() => handleSortSelect(value)}
+                onPress={() => {
+                  setSortBy(value);
+                  // setSortDropVisible(false);
+                }}
                 style={[
                   styles.storageLocation,
                   // eslint-disable-next-line react-native/no-inline-styles
@@ -103,17 +133,29 @@ const FoodList: React.FC<Props> = ({data, headerTitle}) => {
           })}
         </View>
       )}
-      <SectionList
-        style={styles.sectionList}
+      {/* <SectionList
+        contentContainerStyle={styles.sectionList}
         stickySectionHeadersEnabled={false}
         showsVerticalScrollIndicator={false}
-        sections={sortedData}
+        sections={sectionedData}
         keyExtractor={(item, index) => index + '123'}
         renderSectionHeader={({section: {title, data: sectionData}}) => (
           <View style={styles.sectionHeader}>
-            <Text>{sectionData.length !== 0 ? title : ''}</Text>
+            <Text style={styles.sectionHeaderText}>
+              {sectionData.length !== 0 ? title : ''}
+            </Text>
           </View>
         )}
+        renderItem={({item}) => {
+          return <FoodCard item={item} />;
+        }}
+      /> */}
+      <FlatList
+        contentContainerStyle={styles.sectionList}
+        showsVerticalScrollIndicator={false}
+        style={{backgroundColor: 'white'}}
+        data={data}
+        keyExtractor={(item, index) => index + '123'}
         renderItem={({item}) => {
           return <FoodCard item={item} />;
         }}
@@ -191,6 +233,9 @@ const styles = StyleSheet.create({
   },
   sectionHeader: {
     marginTop: heightPercentage(11),
+  },
+  sectionHeaderText: {
+    color: COLORS.black,
   },
 });
 
