@@ -122,6 +122,7 @@ const Add: React.FC<Props> = ({visible, onRequestClose}) => {
           expiryDate: moment().format('YYYY-MM-DD').toLocaleString(),
         };
       });
+      onRequestClose();
     },
     // Always refetch after error or success:
     onSettled: () => {
