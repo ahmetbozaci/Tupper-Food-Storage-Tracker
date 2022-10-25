@@ -17,7 +17,11 @@ import AddIcon from '../../../assets/svg/add.svg';
 import ChevronRight from '../../../assets/svg/chevron-right.svg';
 import LogoutModal from '../../shared/LogoutModal';
 import {logout} from '../../features/loginSlice';
-import {fetchStorages, fetchFoodsByStorage} from '../../api/food';
+import {
+  fetchStorages,
+  fetchFoodsByStorage,
+  fetchAllFoods,
+} from '../../api/food';
 import {useQuery} from '@tanstack/react-query';
 import {useAppDispatch} from '../../features/store';
 
@@ -32,6 +36,10 @@ interface Props {
 const Home: React.FC<Props> = ({navigation}) => {
   const [logoutModalVisible, setLogoutModalVisible] = useState<boolean>(false);
   const {data, isLoading} = useQuery(['storages'], () => fetchStorages(), {
+    enabled: true,
+    retry: true,
+  });
+  useQuery(['allfoods'], () => fetchAllFoods(), {
     enabled: true,
     retry: true,
   });
