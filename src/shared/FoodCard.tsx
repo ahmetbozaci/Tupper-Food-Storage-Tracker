@@ -13,10 +13,10 @@ interface Props {
 }
 
 const FoodCard: React.FC<Props> = ({item}) => {
-  const {name, created_date, expiry_date, quantity} = item;
+  const {name, createdDate, expiryDate, quantity} = item;
   const now = moment();
   const isYesterday =
-    moment(now).diff(created_date, 'days') === 1 ? true : false;
+    moment(now).diff(createdDate, 'days') === 1 ? true : false;
   return (
     <View style={styles.itemCard}>
       <View style={styles.details}>
@@ -24,11 +24,11 @@ const FoodCard: React.FC<Props> = ({item}) => {
         <Text style={styles.itemLabel}>
           Added:{' '}
           <Text style={styles.value}>
-            {isYesterday ? 'Yesterday' : created_date}
+            {isYesterday ? 'Yesterday' : createdDate}
           </Text>
         </Text>
         <Text style={styles.itemLabel}>
-          Expires: <Text style={styles.value}>{expiry_date}</Text>
+          Expires: <Text style={styles.value}>{expiryDate}</Text>
         </Text>
       </View>
       <View style={styles.action}>
