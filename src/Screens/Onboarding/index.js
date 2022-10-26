@@ -2,14 +2,13 @@
 import React from 'react';
 import {SafeAreaView, FlatList, View, Text, Dimensions} from 'react-native';
 import styles from './styles';
-const {width, height} = Dimensions.get('window');
-const COLORS = {primary: '#282534', white: '#fff'};
 import DATA from './DATA';
 import Footer from './footer';
+const {width, height} = Dimensions.get('window');
 
 const Slide = ({item}) => {
   return (
-    <View style={{alignItems: 'center'}}>
+    <View style={{flex: 1, width, alignItems: 'center'}}>
       <Text style={styles.title}>{item?.title}</Text>
       <Text style={styles.subtitle}>{item?.subtitle}</Text>
     </View>
@@ -35,7 +34,7 @@ const OnboardingScreen = ({navigation}) => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
+    <SafeAreaView>
       <FlatList
         ref={ref}
         onMomentumScrollEnd={updateCurrentSlideIndex}
