@@ -39,6 +39,10 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: fontSz(16),
   },
+  backArrowContainer: {
+    marginTop: heightPercentage(50),
+    marginLeft: widthPercentage(30),
+  },
 });
 
 export default styles;

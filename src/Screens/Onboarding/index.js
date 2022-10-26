@@ -1,23 +1,9 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {SafeAreaView, FlatList, View, Text, Dimensions} from 'react-native';
-import styles from './styles';
+import {SafeAreaView, FlatList, Dimensions} from 'react-native';
 import DATA from './DATA';
 import Footer from './footer';
-import Back from './back';
+import Slide from './slide';
 const {width, height} = Dimensions.get('window');
-
-const Slide = ({item}) => {
-  return (
-    <View>
-      {item.id !== '1' && <Back />}
-      <View style={{width, flex: 1, alignItems: 'center'}}>
-        <Text style={styles.title}>{item?.title}</Text>
-        <Text style={styles.subtitle}>{item?.subtitle}</Text>
-      </View>
-    </View>
-  );
-};
 
 const OnboardingScreen = ({navigation}) => {
   const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
@@ -37,6 +23,14 @@ const OnboardingScreen = ({navigation}) => {
     }
   };
 
+  const goToBackSlide = () => {
+    const backSlideIndex = currentSlideIndex - 1;
+    if (backSlideIndex !== DATA.length) {
+      const offset = backSlideIndex * width;
+      ref?.current.scrollToOffset({offset});
+      setCurrentSlideIndex(currentSlideIndex - 1);
+    }
+  };
   return (
     <SafeAreaView>
       <FlatList
@@ -47,7 +41,9 @@ const OnboardingScreen = ({navigation}) => {
         horizontal
         data={DATA}
         pagingEnabled
-        renderItem={({item}) => <Slide item={item} />}
+        renderItem={({item}) => (
+          <Slide item={item} goToBackSlide={goToBackSlide} />
+        )}
       />
       <Footer
         goToNextSlide={goToNextSlide}
