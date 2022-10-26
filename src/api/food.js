@@ -132,3 +132,43 @@ export const addFood = async ({
   const resData = await response.json();
   return resData.data;
 };
+
+export const updateFood = async ({
+  id,
+  storageId,
+  name,
+  quantity,
+  expiryDate,
+}) => {
+  console.log('id', id);
+  console.log('updates', {
+    storageId,
+    name,
+    quantity,
+    expiryDate,
+  });
+  const token = await fetchStorage('token');
+  const response = await requestTimeout(
+    fetch(`${baseURL}/food/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        storageId,
+        name,
+        quantity,
+        expiryDate,
+      }),
+    }),
+  );
+  if (!response.ok) {
+    const resData = await response.json();
+    console.log('error.update.food', resData);
+    throw new Error(resData);
+  }
+  const resData = await response.json();
+  console.log('response.update.food', resData);
+  return resData.data;
+};
