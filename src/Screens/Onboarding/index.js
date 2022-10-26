@@ -1,15 +1,16 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import {SafeAreaView, FlatList, Dimensions} from 'react-native';
 import DATA from './DATA';
 import Footer from './footer';
 import Slide from './slide';
-const {width, height} = Dimensions.get('window');
 
 const OnboardingScreen = ({navigation}) => {
-  const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
-  const ref = React.useRef();
-  const updateCurrentSlideIndex = e => {
-    const contentOffsetX = e.nativeEvent.contentOffset.x;
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const ref = useRef();
+  const {width, height} = Dimensions.get('window');
+
+  const updateCurrentSlideIndex = event => {
+    const contentOffsetX = event.nativeEvent.contentOffset.x;
     const currentIndex = Math.round(contentOffsetX / width);
     setCurrentSlideIndex(currentIndex);
   };
@@ -36,7 +37,7 @@ const OnboardingScreen = ({navigation}) => {
       <FlatList
         ref={ref}
         onMomentumScrollEnd={updateCurrentSlideIndex}
-        contentContainerStyle={{height: height * 0.75}}
+        contentContainerStyle={{height: height * 0.8}}
         showsHorizontalScrollIndicator={false}
         horizontal
         data={DATA}
