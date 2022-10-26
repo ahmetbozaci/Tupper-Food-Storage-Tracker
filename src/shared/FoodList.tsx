@@ -7,7 +7,7 @@ import {
   TouchableWithoutFeedback,
   FlatList,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {fontSz, heightPercentage, widthPercentage} from '../config';
 import COLORS from '../color';
 // import moment from 'moment';
@@ -19,6 +19,8 @@ import FoodCard from './FoodCard';
 // import {RootState, useAppSelector} from '../features/store';
 import {useQuery} from '@tanstack/react-query';
 import {sortStorageFoods, sortAllFoods} from '../api/food';
+import AddModal from '../Screens/Add';
+import {AddButtonContext} from '../contexts/AddButtonContext';
 
 interface Props {
   headerTitle: string;
@@ -28,6 +30,7 @@ interface Props {
 const sortData = ['alphabetically', 'expiry date'];
 
 const FoodList: React.FC<Props> = ({headerTitle}) => {
+  const {modalVisible, closeModal} = useContext(AddButtonContext);
   const [sortBy, setSortBy] = useState<string>(sortData[0]);
   const [sortDropVisible, setSortDropVisible] = useState<boolean>(false);
 
@@ -193,6 +196,11 @@ const FoodList: React.FC<Props> = ({headerTitle}) => {
         renderItem={({item}) => {
           return <FoodCard item={item} />;
         }}
+      />
+      <AddModal
+        visible={modalVisible}
+        onRequestClose={closeModal}
+        storageTitle={headerTitle}
       />
     </View>
   );
