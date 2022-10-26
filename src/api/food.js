@@ -40,6 +40,26 @@ export const fetchAllFoods = async () => {
   return resData.data;
 };
 
+export const sortAllFoods = async ({sortBy}) => {
+  const token = await fetchStorage('token');
+  const response = await requestTimeout(
+    fetch(`${baseURL}/food?sort=${sortBy}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+  );
+  if (!response.ok) {
+    const resData = await response.json();
+    console.log('error.sort.response', resData);
+    throw new Error(resData.message);
+  }
+  const resData = await response.json();
+  return resData.data;
+};
+
 export const fetchFoodsByStorage = async title => {
   const token = await fetchStorage('token');
   const response = await requestTimeout(
@@ -54,6 +74,27 @@ export const fetchFoodsByStorage = async title => {
   if (!response.ok) {
     const resData = await response.json();
     console.log('error.response', resData);
+    throw new Error(resData.message);
+  }
+  const resData = await response.json();
+  return resData.data;
+};
+
+export const sortStorageFoods = async ({title, sortBy}) => {
+  const token = await fetchStorage('token');
+  const response = await requestTimeout(
+    fetch(`${baseURL}/food/storages/${title}?sort=${sortBy}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+  );
+  if (!response.ok) {
+    const resData = await response.json();
+    console.log('error.sort.response', resData);
+    console.log('title', title);
     throw new Error(resData.message);
   }
   const resData = await response.json();
