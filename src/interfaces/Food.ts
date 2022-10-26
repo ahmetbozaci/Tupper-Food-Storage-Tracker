@@ -4,6 +4,7 @@ interface Food {
   createdDate: string;
   expiryDate: string;
   quantity: number;
+  storageId: string;
 }
 
 export default Food;
