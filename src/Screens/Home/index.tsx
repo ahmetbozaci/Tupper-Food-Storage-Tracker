@@ -9,7 +9,7 @@ import {
   TouchableWithoutFeedback,
   ActivityIndicator,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import COLORS from '../../color';
 import AppHeader from '../../shared/AppHeader';
 import {fontSz, heightPercentage, widthPercentage} from '../../config';
@@ -24,6 +24,8 @@ import {
 } from '../../api/food';
 import {useQuery} from '@tanstack/react-query';
 import {useAppDispatch} from '../../features/store';
+import AddModal from '../../Screens/Add';
+import {AddButtonContext} from '../../contexts/AddButtonContext';
 
 interface Props {
   navigation: any;
@@ -34,6 +36,7 @@ interface Props {
 // }
 
 const Home: React.FC<Props> = ({navigation}) => {
+  const {modalVisible, closeModal} = useContext(AddButtonContext);
   const [logoutModalVisible, setLogoutModalVisible] = useState<boolean>(false);
   const {data, isLoading} = useQuery(['storages'], () => fetchStorages(), {
     enabled: true,
@@ -151,6 +154,7 @@ const Home: React.FC<Props> = ({navigation}) => {
             })}
           </>
         )}
+        <AddModal visible={modalVisible} onRequestClose={closeModal} />
         <LogoutModal
           visible={logoutModalVisible}
           close={toggleLogoutModal}
