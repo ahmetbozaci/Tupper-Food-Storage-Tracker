@@ -7,7 +7,7 @@ import {
   TouchableWithoutFeedback,
   FlatList,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {fontSz, heightPercentage, widthPercentage} from '../config';
 import COLORS from '../color';
 // import moment from 'moment';
@@ -17,17 +17,51 @@ import Arrow from '../../assets/svg/arrow-down.svg';
 import FoodCard from './FoodCard';
 // import Food from '../interfaces/Food';
 // import {RootState, useAppSelector} from '../features/store';
+import {useQuery} from '@tanstack/react-query';
+import {sortStorageFoods, sortAllFoods} from '../api/food';
 
 interface Props {
   headerTitle: string;
-  data: any;
+  data?: any;
 }
 
 const sortData = ['alphabetically', 'expiry date'];
 
-const FoodList: React.FC<Props> = ({data, headerTitle}) => {
+const FoodList: React.FC<Props> = ({headerTitle}) => {
   const [sortBy, setSortBy] = useState<string>(sortData[0]);
   const [sortDropVisible, setSortDropVisible] = useState<boolean>(false);
+
+  const queryKey = headerTitle === 'All Food' ? null : headerTitle;
+  const title = headerTitle === 'All Food' ? null : headerTitle;
+  const sortValue = sortBy === 'expiry date' ? 'expiry_date' : sortBy;
+
+  const {data: storageSort, refetch: storageSortRefetch} = useQuery(
+    [queryKey],
+    () => sortStorageFoods({title, sortBy: sortValue}),
+    {
+      enabled: true,
+      retry: false,
+    },
+  );
+
+  useEffect(() => {
+    storageSortRefetch();
+  }, [sortBy, storageSortRefetch]);
+
+  const {data: allFoodSort, refetch: allFoodSortRefetch} = useQuery(
+    ['allfoods'],
+    () => sortAllFoods({sortBy: sortValue}),
+    {
+      enabled: true,
+      retry: false,
+    },
+  );
+
+  useEffect(() => {
+    allFoodSortRefetch();
+  }, [allFoodSortRefetch, sortBy]);
+
+  const DATA = headerTitle === 'All Food' ? allFoodSort : storageSort;
   // const [sortedData, setSortedData] = useState<any>();
 
   // const {storageData} = useAppSelector((state: RootState) => state.storage);
@@ -120,7 +154,7 @@ const FoodList: React.FC<Props> = ({data, headerTitle}) => {
                 key={index}
                 onPress={() => {
                   setSortBy(value);
-                  // setSortDropVisible(false);
+                  setSortDropVisible(false);
                 }}
                 style={[
                   styles.storageLocation,
@@ -153,8 +187,8 @@ const FoodList: React.FC<Props> = ({data, headerTitle}) => {
       <FlatList
         contentContainerStyle={styles.sectionList}
         showsVerticalScrollIndicator={false}
-        style={{backgroundColor: 'white'}}
-        data={data}
+        // style={{backgroundColor: 'white'}}
+        data={DATA}
         keyExtractor={(item, index) => index + '123'}
         renderItem={({item}) => {
           return <FoodCard item={item} />;
