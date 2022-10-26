@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useCallback, useState} from 'react';
+import React, {useCallback} from 'react';
 
 import Home_Inactive from '../../assets/svg/home-inactive.svg';
 import Add_Inactive from '../../assets/svg/add-inactive.svg';
@@ -13,7 +13,8 @@ import Add_Active from '../../assets/svg/add-active.svg';
 import Guide_Inactive from '../../assets/svg/guide-inactive.svg';
 import {heightPercentage, widthPercentage, fontSz} from '../config';
 import COLORS from '../color';
-import AddModal from '../Screens/Add';
+// import AddModal from '../Screens/Add';
+import AddButton from '../shared/AddButton';
 
 const iconsObj = {
   Home: {
@@ -72,7 +73,7 @@ const TabBarComponent: React.FC<TabBarComponentProps> = ({
   descriptors,
   navigation,
 }) => {
-  const [visible, setModalVisible] = useState(false);
+  // const [visible, setModalVisible] = useState(false);
   const focusedOptions = descriptors[state.routes[state.index].key].options;
 
   if (focusedOptions.tabBarVisible === false) {
@@ -89,7 +90,7 @@ const TabBarComponent: React.FC<TabBarComponentProps> = ({
           isFocused={state.index === 0}
           descriptors={descriptors}
         />
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.addBtn}
           onPress={() => setModalVisible(true)}>
           <Add_Active width={33} />
@@ -100,7 +101,8 @@ const TabBarComponent: React.FC<TabBarComponentProps> = ({
             ]}>
             Add
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
+        <AddButton btnStyle={styles.addBtn} />
         <TabButton
           navigation={navigation}
           route={routes[1]}
@@ -108,10 +110,10 @@ const TabBarComponent: React.FC<TabBarComponentProps> = ({
           descriptors={descriptors}
         />
       </SafeAreaView>
-      <AddModal
+      {/* <AddModal
         visible={visible}
         onRequestClose={() => setModalVisible(false)}
-      />
+      /> */}
     </>
   );
 };
