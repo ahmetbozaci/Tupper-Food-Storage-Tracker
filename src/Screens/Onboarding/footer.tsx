@@ -4,7 +4,17 @@ import CustomButton from '../../shared/Button';
 import DATA from './DATA';
 import styles from './styles';
 import COLORS from '../../color';
-const Footer = ({goToNextSlide, currentSlideIndex, navigation}) => {
+
+interface Props {
+  goToNextSlide: () => void;
+  currentSlideIndex: number;
+  navigation: any;
+}
+const Footer: React.FC<Props> = ({
+  goToNextSlide,
+  currentSlideIndex,
+  navigation,
+}) => {
   return (
     <View>
       <View style={styles.indicatorContainer}>

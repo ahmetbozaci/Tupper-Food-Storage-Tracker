@@ -5,7 +5,12 @@ import styles from './styles';
 import Back from './backArrow';
 const {width} = Dimensions.get('window');
 
-const Slide = ({item, goToBackSlide}) => {
+interface Props {
+  item: {id: string; title: string; subtitle: string};
+  goToBackSlide: () => void;
+}
+
+const Slide: React.FC<Props> = ({item, goToBackSlide}) => {
   return (
     <View>
       {item.id !== '1' && <Back goToBackSlide={goToBackSlide} />}

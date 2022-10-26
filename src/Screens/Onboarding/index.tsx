@@ -4,12 +4,17 @@ import DATA from './DATA';
 import Footer from './footer';
 import Slide from './slide';
 
-const OnboardingScreen = ({navigation}) => {
+interface Props {
+  navigation: any;
+}
+const OnboardingScreen: React.FC<Props> = ({navigation}) => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const ref = useRef();
+  const ref = useRef<any>();
   const {width, height} = Dimensions.get('window');
 
-  const updateCurrentSlideIndex = event => {
+  const updateCurrentSlideIndex = (event: {
+    nativeEvent: {contentOffset: {x: any}};
+  }) => {
     const contentOffsetX = event.nativeEvent.contentOffset.x;
     const currentIndex = Math.round(contentOffsetX / width);
     setCurrentSlideIndex(currentIndex);
