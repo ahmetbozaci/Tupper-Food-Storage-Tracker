@@ -19,5 +19,5 @@ export const widthPercentage = val => {
   return widthPercentageToDP(num);
 };
 
-export const baseURL = 'https://tupper-backend.herokuapp.com/api/';
+export const baseURL = 'https://tupper-backend.herokuapp.com/api';
 // export const baseURL = 'http://localhost:4000/api';
