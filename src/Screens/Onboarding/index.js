@@ -4,13 +4,17 @@ import {SafeAreaView, FlatList, View, Text, Dimensions} from 'react-native';
 import styles from './styles';
 import DATA from './DATA';
 import Footer from './footer';
+import Back from './back';
 const {width, height} = Dimensions.get('window');
 
 const Slide = ({item}) => {
   return (
-    <View style={{flex: 1, width, alignItems: 'center'}}>
-      <Text style={styles.title}>{item?.title}</Text>
-      <Text style={styles.subtitle}>{item?.subtitle}</Text>
+    <View>
+      {item.id !== '1' && <Back />}
+      <View style={{width, flex: 1, alignItems: 'center'}}>
+        <Text style={styles.title}>{item?.title}</Text>
+        <Text style={styles.subtitle}>{item?.subtitle}</Text>
+      </View>
     </View>
   );
 };

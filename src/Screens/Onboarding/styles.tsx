@@ -1,32 +1,43 @@
 import {StyleSheet} from 'react-native';
 import COLORS from '../../color';
+import {fontSz, widthPercentage, heightPercentage} from '../../config';
+
 const styles = StyleSheet.create({
   subtitle: {
     color: COLORS.black,
-    fontSize: 13,
+    fontSize: fontSz(20),
     textAlign: 'center',
-    maxWidth: '70%',
+    lineHeight: 24,
+    marginHorizontal: widthPercentage(50),
   },
   title: {
     color: COLORS.green3,
-    fontSize: 36,
+    fontWeight: 'bold',
+    fontSize: fontSz(50),
     textAlign: 'center',
+    marginTop: 40,
+    marginHorizontal: widthPercentage(60),
+    marginVertical: heightPercentage(100),
   },
-
   indicator: {
-    height: 10,
-    width: 10,
+    height: 8,
+    width: 8,
     backgroundColor: 'grey',
-    marginHorizontal: 3,
+    marginHorizontal: 4,
     borderRadius: 50,
   },
-  btn: {
-    flex: 1,
-    height: 50,
-    borderRadius: 5,
-    backgroundColor: '#fff',
+  indicatorContainer: {
+    flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
+    marginBottom: heightPercentage(40),
+  },
+  button: {
+    alignSelf: 'flex-end',
+    marginRight: heightPercentage(25),
+  },
+  btnText: {
+    fontWeight: '500',
+    fontSize: fontSz(16),
   },
 });
 

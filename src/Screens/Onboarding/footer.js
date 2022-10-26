@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View} from 'react-native';
 import CustomButton from '../../shared/Button';
@@ -8,14 +7,7 @@ import COLORS from '../../color';
 const Footer = ({goToNextSlide, currentSlideIndex, navigation}) => {
   return (
     <View>
-      {/* Indicator container */}
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          marginTop: 20,
-        }}>
-        {/* Render indicator */}
+      <View style={styles.indicatorContainer}>
         {DATA.map((_, index) => (
           <View
             key={index}
@@ -29,19 +21,20 @@ const Footer = ({goToNextSlide, currentSlideIndex, navigation}) => {
         ))}
       </View>
 
-      {/* Buttons */}
-      <View style={{marginBottom: 20}}>
+      <View>
         {currentSlideIndex === DATA.length - 1 ? (
           <CustomButton
             onPress={() => navigation.replace('Main')}
             buttonText="Done!"
-            buttonStyle={{alignSelf: 'flex-end'}}
+            buttonStyle={styles.button}
+            buttonTextStyle={styles.btnText}
           />
         ) : (
           <CustomButton
             onPress={goToNextSlide}
             buttonText="Next"
-            buttonStyle={{alignSelf: 'flex-end'}}
+            buttonStyle={styles.button}
+            buttonTextStyle={styles.btnText}
           />
         )}
       </View>
