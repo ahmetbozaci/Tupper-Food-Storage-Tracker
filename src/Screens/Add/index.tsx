@@ -24,9 +24,10 @@ import {showMessage} from 'react-native-flash-message';
 interface Props {
   visible: boolean;
   onRequestClose: () => void;
+  storageTitle?: string;
 }
 
-const Add: React.FC<Props> = ({visible, onRequestClose}) => {
+const Add: React.FC<Props> = ({visible, onRequestClose, storageTitle}) => {
   const [calendarVisible, setIsCalendarVisible] = useState(false);
 
   const {data: storageData} = useQuery(['storages'], () => fetchStorages(), {
@@ -34,10 +35,14 @@ const Add: React.FC<Props> = ({visible, onRequestClose}) => {
     retry: true,
   });
 
+  const defaultStorage = storageData?.find(
+    (storage: any) => storage.title === storageTitle,
+  );
+
   const [foodItem, setFoodItem] = useState({
     name: '',
     quantity: 1,
-    storage: 'Fridge',
+    storage: defaultStorage ? defaultStorage.title : 'Fridge',
     expiryDate: moment().format('YYYY-MM-DD').toLocaleString(),
   });
 
@@ -118,7 +123,7 @@ const Add: React.FC<Props> = ({visible, onRequestClose}) => {
         return {
           name: '',
           quantity: 1,
-          storage: 'Fridge',
+          storage: defaultStorage,
           expiryDate: moment().format('YYYY-MM-DD').toLocaleString(),
         };
       });
