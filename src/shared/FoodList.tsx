@@ -30,7 +30,7 @@ interface Props {
 const sortData = ['alphabetically', 'expiry date'];
 
 const FoodList: React.FC<Props> = ({headerTitle}) => {
-  const {modalVisible, closeModal} = useContext(AddButtonContext);
+  const {modalVisible, closeModal, onPress} = useContext(AddButtonContext);
   const [sortBy, setSortBy] = useState<string>(sortData[0]);
   const [sortDropVisible, setSortDropVisible] = useState<boolean>(false);
 
@@ -133,7 +133,9 @@ const FoodList: React.FC<Props> = ({headerTitle}) => {
     <View style={styles.screen}>
       <View style={styles.header}>
         <Text style={styles.headerText}>{headerTitle}</Text>
-        <AddIcon />
+        <TouchableWithoutFeedback onPress={onPress}>
+          <AddIcon />
+        </TouchableWithoutFeedback>
       </View>
       <View style={styles.sortView}>
         <Text style={[styles.label, {marginRight: widthPercentage(4)}]}>
