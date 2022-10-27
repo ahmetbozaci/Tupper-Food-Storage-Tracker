@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   button: {
     alignSelf: 'flex-end',
     marginRight: heightPercentage(25),
+    width: '35%',
   },
   btnText: {
     fontWeight: '500',

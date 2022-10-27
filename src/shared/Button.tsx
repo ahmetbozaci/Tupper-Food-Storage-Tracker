@@ -55,7 +55,8 @@ const Button: React.FC<ButtonProps> = ({
     <TouchableOpacity
       onPress={onPress}
       style={[styles.button, buttonStyle, buttonDisabledStyle]}
-      disabled={disabled}>
+      disabled={disabled}
+    >
       {renderSpinnerOrText()}
     </TouchableOpacity>
   );
@@ -67,9 +68,8 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 25,
     paddingVertical: heightPercentage(20),
-    // marginVertical: heightPercentage(5),
     backgroundColor: COLORS.green3,
-    width: '40%',
+    width: '50%',
   },
   text: {
     fontSize: fontSz(24),
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  diabledStyle: {
+  buttonDisabledStyle: {
     backgroundColor: COLORS.gray,
     opacity: 0.8,
   },
