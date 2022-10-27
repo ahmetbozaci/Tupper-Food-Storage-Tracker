@@ -4,7 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
+  // TouchableOpacity,
   ImageBackground,
   TouchableWithoutFeedback,
   ActivityIndicator,
@@ -13,7 +13,7 @@ import React, {useState} from 'react';
 import COLORS from '../../color';
 import AppHeader from '../../shared/AppHeader';
 import {fontSz, heightPercentage, widthPercentage} from '../../config';
-import AddIcon from '../../../assets/svg/add.svg';
+// import AddIcon from '../../../assets/svg/add.svg';
 import ChevronRight from '../../../assets/svg/chevron-right.svg';
 import LogoutModal from '../../shared/LogoutModal';
 import {logout} from '../../features/loginSlice';
@@ -132,17 +132,17 @@ const Home: React.FC<Props> = ({navigation}) => {
                         <View>
                           <View style={styles.row}>
                             <Text style={styles.title}>{title}</Text>
-                            <TouchableOpacity>
+                            {/* <TouchableOpacity>
                               <AddIcon width={widthPercentage(22)} />
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                           </View>
                           <Text style={styles.unit}>
                             {items} {items < 2 ? 'item' : 'items'}
                           </Text>
                         </View>
-                        <TouchableOpacity>
+                        <View>
                           <ChevronRight width={widthPercentage(12)} />
-                        </TouchableOpacity>
+                        </View>
                       </View>
                     </ImageBackground>
                   </View>

@@ -11,7 +11,7 @@ import React, {useEffect, useState} from 'react';
 import {fontSz, heightPercentage, widthPercentage} from '../config';
 import COLORS from '../color';
 // import moment from 'moment';
-import AddIcon from '../../assets/svg/add.svg';
+// import AddIcon from '../../assets/svg/add.svg';
 import Sort from '../../assets/svg/sort.svg';
 import Arrow from '../../assets/svg/arrow-down.svg';
 import FoodCard from './FoodCard';
@@ -130,7 +130,7 @@ const FoodList: React.FC<Props> = ({headerTitle}) => {
     <View style={styles.screen}>
       <View style={styles.header}>
         <Text style={styles.headerText}>{headerTitle}</Text>
-        <AddIcon />
+        {/* <AddIcon /> */}
       </View>
       <View style={styles.sortView}>
         <Text style={[styles.label, {marginRight: widthPercentage(4)}]}>
