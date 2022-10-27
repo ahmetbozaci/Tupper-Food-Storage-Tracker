@@ -4,6 +4,7 @@ import styles from './styles';
 import ArrowRight from '../../../assets/svg/arrow-right.svg';
 import ArrowDown from '../../../assets/svg/arrow-down2.svg';
 import guideData from './Data';
+import {applyBackgroundColor} from './logic';
 const TemperatureStorage = () => {
   const [state, setState] = useState({
     1: false,
@@ -13,30 +14,15 @@ const TemperatureStorage = () => {
     5: false,
   });
   const changeState = id => {
-    setState({...state, [id]: !state[id]});
+    setState({[id]: !state[id]});
   };
-  const applyBackgroundColor = item => {
-    if (item.id === 1) {
-      return styles.backgroundColor1;
-    }
-    if (item.id === 2) {
-      return styles.backgroundColor2;
-    }
-    if (item.id === 3) {
-      return styles.backgroundColor3;
-    }
-    if (item.id === 4) {
-      return styles.backgroundColor4;
-    }
-    if (item.id === 5) {
-      return styles.backgroundColor5;
-    }
-  };
+
   return (
     <View>
       {guideData.map(item => {
         return (
-          <View style={[applyBackgroundColor(item)]}>
+          <View
+            style={[applyBackgroundColor(item, styles), styles.guideContainer]}>
             <View style={styles.headerContainer}>
               <Text style={styles.title}>{item.title}</Text>
               <TouchableOpacity
