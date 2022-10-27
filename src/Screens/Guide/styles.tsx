@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   },
   guideTitle: {
     fontSize: fontSz(40),
-    fontWeight: 'bold',
+    fontWeight: '900',
     color: COLORS.black,
     marginBottom: heightPercentage(15),
   },
@@ -29,15 +29,18 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: '500',
     fontSize: fontSz(20),
+    color: COLORS.black,
   },
   textContainer: {},
   subtitle: {
-    fontWeight: '900',
+    fontWeight: '800',
     fontSize: fontSz(25),
+    color: COLORS.black,
     marginVertical: heightPercentage(15),
   },
   text: {
     fontSize: fontSz(20),
+    color: COLORS.black,
     paddingHorizontal: heightPercentage(12),
   },
   backgroundColor1: {
