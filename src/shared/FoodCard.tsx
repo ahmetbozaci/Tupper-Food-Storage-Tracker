@@ -45,9 +45,9 @@ const FoodCard: React.FC<Props> = ({item}) => {
     retry: true,
   });
 
-  const storageTitle = storageData?.find(
+  const storageLocation = storageData?.find(
     (storage: any) => storage.id === storageId,
-  ).title;
+  );
 
   const [foodItem, setFoodItem] = useState({
     name: '',
@@ -100,7 +100,7 @@ const FoodCard: React.FC<Props> = ({item}) => {
       return {
         name: item.name,
         quantity: item.quantity,
-        storage: storageTitle,
+        storage: storageLocation?.title,
         expiryDate: item.expiryDate,
       };
     });
