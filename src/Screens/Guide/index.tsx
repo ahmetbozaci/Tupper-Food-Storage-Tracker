@@ -1,20 +1,15 @@
-import {Text, SafeAreaView, StyleSheet} from 'react-native';
+import {Text, SafeAreaView} from 'react-native';
 import React from 'react';
-import COLORS from '../../color';
+import styles from './styles';
+import TemperatureStorage from './temperatureStorage';
 
 const Guide: React.FC = () => {
   return (
     <SafeAreaView style={styles.screen}>
-      <Text>index</Text>
+      <Text>Storage Guide</Text>
+      <TemperatureStorage />
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: COLORS.background,
-  },
-});
 
 export default Guide;
