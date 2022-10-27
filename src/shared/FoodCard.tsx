@@ -11,7 +11,7 @@ import React, {useState} from 'react';
 import moment from 'moment';
 import {fontSz, heightPercentage, widthPercentage} from '../config';
 import COLORS from '../color';
-import Progress from '../../assets/svg/progress.svg';
+// import Progress from '../../assets/svg/progress.svg';
 import Edit from '../../assets/svg/edit.svg';
 import Delete from '../../assets/svg/delete.svg';
 import Food from '../interfaces/Food';
@@ -24,6 +24,7 @@ import ArrowDown from '../../assets/svg/arrow-down.svg';
 import Minus from '../../assets/svg/circle-minus.svg';
 import Plus from '../../assets/svg/circle-plus.svg';
 import {showMessage} from 'react-native-flash-message';
+import TrashModal from '../shared/TrashModal';
 
 interface Props {
   item: Food;
@@ -37,6 +38,7 @@ const FoodCard: React.FC<Props> = ({item}) => {
 
   const [calendarVisible, setIsCalendarVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
+  const [trashModalVisible, setTrashModalVisible] = useState<boolean>(false);
 
   const {data: storageData} = useQuery(['storages'], () => fetchStorages(), {
     enabled: true,
@@ -181,6 +183,14 @@ const FoodCard: React.FC<Props> = ({item}) => {
     });
   };
 
+  const openTrashModal = () => {
+    setTrashModalVisible(true);
+  };
+
+  const closeTrashModal = () => {
+    setTrashModalVisible(false);
+  };
+
   return (
     <>
       <View style={styles.itemCard}>
@@ -204,14 +214,15 @@ const FoodCard: React.FC<Props> = ({item}) => {
             <TouchableOpacity onPress={() => openEditModal(id)}>
               <Edit />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => openTrashModal()}>
               <Delete />
             </TouchableOpacity>
           </View>
-          <Progress />
+          {/* <Progress /> */}
         </View>
       </View>
 
+      {/* Edit food item modal */}
       <View>
         <Modal transparent visible={editModalVisible} animationType="slide">
           <TouchableWithoutFeedback
@@ -337,6 +348,13 @@ const FoodCard: React.FC<Props> = ({item}) => {
           </TouchableWithoutFeedback>
         </Modal>
       </View>
+
+      {/* Trash Modal */}
+      <TrashModal
+        visible={trashModalVisible}
+        close={closeTrashModal}
+        item={item}
+      />
     </>
   );
 };
@@ -520,6 +538,24 @@ const styles = StyleSheet.create({
   flexEnd: {
     alignItems: 'flex-end',
   },
+  // trashModalContainer: {
+  //   backgroundColor: 'rgba(0,0,0,0.25)',
+  //   flex: 1,
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   marginBottom: heightPercentage(82),
+  //   paddingTop: heightPercentage(70),
+  // },
+  // trashModalContent: {
+  //   backgroundColor: COLORS.white,
+  //   borderRadius: 16,
+  //   // borderTopRightRadius: 16,
+  //   // borderTopLeftRadius: 16,
+  //   paddingTop: heightPercentage(22),
+  //   paddingBottom: heightPercentage(40),
+  //   paddingHorizontal: widthPercentage(27),
+  //   width: '94%',
+  // },
 });
 
 export default FoodCard;
