@@ -54,29 +54,30 @@ const Tabs = () => {
   );
 };
 
-const AuthStack = () => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}>
-      <Stack.Screen name="Onboarding" component={OnboardingScreen} />
-      <Stack.Screen name="Main" component={MainScreen} />
-      <Stack.Screen name="Signup" component={SignupScreen} />
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="VerifyCode" component={VerifyCode} />
-      <Stack.Screen name="EnterEmail" component={EnterEmail} />
-      <Stack.Screen name="ResetPassword" component={ResetPassword} />
-    </Stack.Navigator>
-  );
-};
-
 const MainStack = () => {
-  const {isAuthenticated, token} = useAppSelector(
+  const {isAuthenticated, isOnboarded} = useAppSelector(
     (state: RootState) => state.auth,
   );
-  console.log('token', token);
-  console.log('isAuthenticated', isAuthenticated);
+  // console.log('token', token);
+  // console.log('isAuthenticated', isAuthenticated);
+  // console.log('isOnboarded', isOnboarded);
+  const AuthStack = () => {
+    return (
+      <Stack.Navigator
+        initialRouteName={isOnboarded ? 'Main' : 'Onboarding'}
+        screenOptions={{
+          headerShown: false,
+        }}>
+        <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+        <Stack.Screen name="Main" component={MainScreen} />
+        <Stack.Screen name="Signup" component={SignupScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="VerifyCode" component={VerifyCode} />
+        <Stack.Screen name="EnterEmail" component={EnterEmail} />
+        <Stack.Screen name="ResetPassword" component={ResetPassword} />
+      </Stack.Navigator>
+    );
+  };
   return (
     <NavigationContainer>
       <Stack.Navigator
