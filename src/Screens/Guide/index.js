@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './styles';
 import TemperatureStorage from './guides';
 import AppHeader from '../../shared/AppHeader';
-const Guide: React.FC = () => {
+const Guide = () => {
   return (
     <SafeAreaView style={styles.screen}>
       <AppHeader />
