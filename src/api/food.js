@@ -53,7 +53,7 @@ export const sortAllFoods = async ({sortBy}) => {
   );
   if (!response.ok) {
     const resData = await response.json();
-    console.log('error.sort.response', resData);
+    // console.log('error.sort.response', resData);
     throw new Error(resData.message);
   }
   const resData = await response.json();
@@ -73,7 +73,7 @@ export const fetchFoodsByStorage = async title => {
   );
   if (!response.ok) {
     const resData = await response.json();
-    console.log('error.response', resData);
+    // console.log('error.response', resData);
     throw new Error(resData.message);
   }
   const resData = await response.json();
@@ -93,8 +93,8 @@ export const sortStorageFoods = async ({title, sortBy}) => {
   );
   if (!response.ok) {
     const resData = await response.json();
-    console.log('error.sort.response', resData);
-    console.log('title', title);
+    // console.log('error.sort.response', resData);
+    // console.log('title', title);
     throw new Error(resData.message);
   }
   const resData = await response.json();
@@ -140,13 +140,13 @@ export const updateFood = async ({
   quantity,
   expiryDate,
 }) => {
-  console.log('id', id);
-  console.log('updates', {
-    storageId,
-    name,
-    quantity,
-    expiryDate,
-  });
+  // console.log('id', id);
+  // console.log('updates', {
+  //   storageId,
+  //   name,
+  //   quantity,
+  //   expiryDate,
+  // });
   const token = await fetchStorage('token');
   const response = await requestTimeout(
     fetch(`${baseURL}/food/${id}`, {
@@ -165,10 +165,27 @@ export const updateFood = async ({
   );
   if (!response.ok) {
     const resData = await response.json();
-    console.log('error.update.food', resData);
     throw new Error(resData);
   }
   const resData = await response.json();
-  console.log('response.update.food', resData);
+  return resData.data;
+};
+
+export const deleteFood = async id => {
+  const token = await fetchStorage('token');
+  const response = await requestTimeout(
+    fetch(`${baseURL}/food/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+  );
+  if (!response.ok) {
+    const resData = await response.json();
+    throw new Error(resData);
+  }
+  const resData = await response.json();
   return resData.data;
 };

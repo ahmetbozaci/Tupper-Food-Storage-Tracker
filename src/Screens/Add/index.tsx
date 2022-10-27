@@ -90,7 +90,6 @@ const Add: React.FC<Props> = ({visible, onRequestClose}) => {
       // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
       await queryClient.cancelQueries([`${foodItem.storage}`]);
       await queryClient.cancelQueries(['allfoods']);
-      await queryClient.cancelQueries(['storages']);
 
       // Snapshot the previous value
       const previousFoods = queryClient.getQueryData([`${foodItem.storage}`]);
@@ -128,12 +127,11 @@ const Add: React.FC<Props> = ({visible, onRequestClose}) => {
     onSettled: () => {
       queryClient.invalidateQueries([`${foodItem.storage}`]);
       queryClient.invalidateQueries(['allfoods']);
-      queryClient.invalidateQueries(['storages']);
     },
   });
 
   const handleSubmit = () => {
-    const storageId = storageData.find(
+    const storageId = storageData?.find(
       (storage: any) => storage.title === foodItem.storage,
     ).id;
     mutate({

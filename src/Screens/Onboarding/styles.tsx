@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     fontSize: fontSz(50),
     width: '90%',
     marginVertical: heightPercentage(20),
-    fontFamily: 'POPPINS-BOLD',
+    // fontFamily: 'POPPINS-BOLD',
   },
   indicator: {
     height: 8,

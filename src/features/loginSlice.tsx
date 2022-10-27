@@ -15,6 +15,9 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    onboard: state => {
+      state.isOnboarded = true;
+    },
     login: (state, action) => {
       const {token, user} = action.payload;
       state.token = token;
@@ -42,6 +45,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const {login, logout} = authSlice.actions;
+export const {login, logout, onboard} = authSlice.actions;
 
 export default authSlice.reducer;
