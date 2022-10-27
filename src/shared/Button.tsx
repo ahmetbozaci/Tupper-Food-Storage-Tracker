@@ -42,8 +42,8 @@ const Button: React.FC<ButtonProps> = ({
   loading,
   disabled,
 }) => {
-  const {diabledStyle} = styles;
-  const buttonDisabledStyle = disabled || loading ? diabledStyle : '';
+  const {disabledStyle} = styles;
+  const buttonDisabledStyle: any = disabled || loading ? disabledStyle : '';
   const renderSpinnerOrText = () => {
     const color = Colors.white;
     if (loading) {
@@ -67,7 +67,6 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 25,
     paddingVertical: heightPercentage(20),
-    // marginVertical: heightPercentage(5),
     backgroundColor: COLORS.green3,
     width: '50%',
   },
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  diabledStyle: {
+  disabledStyle: {
     backgroundColor: COLORS.gray,
     opacity: 0.8,
   },
