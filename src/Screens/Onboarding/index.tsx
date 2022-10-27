@@ -42,7 +42,7 @@ const OnboardingScreen: React.FC<Props> = ({navigation}) => {
       <FlatList
         ref={ref}
         onMomentumScrollEnd={updateCurrentSlideIndex}
-        contentContainerStyle={{height: height * 0.8}}
+        contentContainerStyle={{height: height * 0.75}}
         showsHorizontalScrollIndicator={false}
         horizontal
         data={DATA}
