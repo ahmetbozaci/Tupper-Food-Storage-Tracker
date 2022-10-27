@@ -1,4 +1,4 @@
-import {Text, TouchableOpacity, View} from 'react-native';
+import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import styles from './styles';
 import ArrowRight from '../../../assets/svg/arrow-right.svg';
@@ -18,10 +18,11 @@ const TemperatureStorage = () => {
   };
 
   return (
-    <View>
+    <ScrollView>
       {guideData.map(item => {
         return (
           <View
+            key={item.id}
             style={[applyBackgroundColor(item, styles), styles.guideContainer]}>
             <View style={styles.headerContainer}>
               <Text style={styles.title}>{item.title}</Text>
@@ -42,7 +43,7 @@ const TemperatureStorage = () => {
           </View>
         );
       })}
-    </View>
+    </ScrollView>
   );
 };
 

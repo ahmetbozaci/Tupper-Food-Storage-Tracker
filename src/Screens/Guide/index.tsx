@@ -1,7 +1,7 @@
 import {Text, SafeAreaView} from 'react-native';
 import React from 'react';
 import styles from './styles';
-import TemperatureStorage from './temperatureStorage';
+import TemperatureStorage from './guides';
 import AppHeader from '../../shared/AppHeader';
 const Guide: React.FC = () => {
   return (

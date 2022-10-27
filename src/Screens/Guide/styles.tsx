@@ -21,9 +21,10 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   arrow: {
-    textAlign: 'right',
+    paddingLeft: 20,
   },
   title: {
     fontWeight: '500',
@@ -37,8 +38,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: fontSz(20),
+    paddingHorizontal: heightPercentage(12),
   },
-
   backgroundColor1: {
     backgroundColor: '#A4F6E8',
   },
