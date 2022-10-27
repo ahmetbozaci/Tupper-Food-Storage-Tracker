@@ -5,9 +5,15 @@ import ArrowRight from '../../../assets/svg/arrow-right.svg';
 import ArrowDown from '../../../assets/svg/arrow-down2.svg';
 import guideData from './Data';
 const TemperatureStorage = () => {
-  const [state, setState] = useState(false);
-  const changeState = event => {
-    setState(!state);
+  const [state, setState] = useState({
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+  });
+  const changeState = id => {
+    setState({...state, [id]: !state[id]});
   };
   const applyBackgroundColor = item => {
     if (item.id === 1) {
@@ -35,12 +41,11 @@ const TemperatureStorage = () => {
               <Text style={styles.title}>{item.title}</Text>
               <TouchableOpacity
                 style={styles.arrow}
-                onPress={changeState}
-                id={1}>
-                {state ? <ArrowDown /> : <ArrowRight />}
+                onPress={() => changeState(item.id)}>
+                {state[item.id] ? <ArrowDown /> : <ArrowRight />}
               </TouchableOpacity>
             </View>
-            {state ? (
+            {state[item.id] ? (
               <View style={styles.textContainer}>
                 <Text style={styles.subtitle}>{item.subtitle}</Text>
                 <Text style={styles.text}>{item.text}</Text>
