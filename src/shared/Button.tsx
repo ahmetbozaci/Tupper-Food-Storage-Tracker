@@ -42,8 +42,8 @@ const Button: React.FC<ButtonProps> = ({
   loading,
   disabled,
 }) => {
-  const {diabledStyle} = styles;
-  const buttonDisabledStyle = disabled || loading ? diabledStyle : '';
+  const {disabledStyle} = styles;
+  const buttonDisabledStyle: any = disabled || loading ? disabledStyle : '';
   const renderSpinnerOrText = () => {
     const color = Colors.white;
     if (loading) {
@@ -55,8 +55,7 @@ const Button: React.FC<ButtonProps> = ({
     <TouchableOpacity
       onPress={onPress}
       style={[styles.button, buttonStyle, buttonDisabledStyle]}
-      disabled={disabled}
-    >
+      disabled={disabled}>
       {renderSpinnerOrText()}
     </TouchableOpacity>
   );
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  buttonDisabledStyle: {
+  disabledStyle: {
     backgroundColor: COLORS.gray,
     opacity: 0.8,
   },
