@@ -30,7 +30,7 @@ interface Props {
 }
 
 const FoodCard: React.FC<Props> = ({item}) => {
-  const {name, createdDate, expiryDate, quantity, id} = item;
+  const {name, createdDate, expiryDate, quantity, id, storageId} = item;
   const now = moment();
   const isYesterday =
     moment(now).diff(createdDate, 'days') === 1 ? true : false;
@@ -42,6 +42,10 @@ const FoodCard: React.FC<Props> = ({item}) => {
     enabled: true,
     retry: true,
   });
+
+  const storageTitle = storageData?.find(
+    (storage: any) => storage.id === storageId,
+  ).title;
 
   const [foodItem, setFoodItem] = useState({
     name: '',
@@ -94,7 +98,7 @@ const FoodCard: React.FC<Props> = ({item}) => {
       return {
         name: item.name,
         quantity: item.quantity,
-        storage: 'Fridge',
+        storage: storageTitle,
         expiryDate: item.expiryDate,
       };
     });
@@ -165,12 +169,12 @@ const FoodCard: React.FC<Props> = ({item}) => {
   });
 
   const handleSubmit = () => {
-    const storageId = storageData.find(
+    const _storageId = storageData.find(
       (storage: any) => storage.title === foodItem.storage,
     ).id;
     mutate({
       id,
-      storageId,
+      storageId: _storageId,
       name: foodItem.name,
       quantity: foodItem.quantity,
       expiryDate: moment(foodItem.expiryDate).format('YYYY-MM-DD'),
@@ -272,11 +276,11 @@ const FoodCard: React.FC<Props> = ({item}) => {
                       {locationModalVisible && (
                         <View style={styles.locationDrop}>
                           {storageData?.map((storage: any) => {
-                            const {id: storageId, title} = storage;
+                            const {id: _storageId, title} = storage;
                             const isLast = storageId === '3' ? true : false;
                             return (
                               <TouchableOpacity
-                                key={storageId}
+                                key={_storageId}
                                 onPress={() => handleLocationSelect(title)}
                                 style={[
                                   styles.storageLocation,
