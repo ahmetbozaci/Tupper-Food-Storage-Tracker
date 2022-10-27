@@ -135,17 +135,17 @@ const Home: React.FC<Props> = ({navigation}) => {
                         <View>
                           <View style={styles.row}>
                             <Text style={styles.title}>{title}</Text>
-                            <TouchableOpacity>
+                            {/* <TouchableOpacity>
                               <AddIcon width={widthPercentage(22)} />
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                           </View>
                           <Text style={styles.unit}>
                             {items} {items < 2 ? 'item' : 'items'}
                           </Text>
                         </View>
-                        <TouchableOpacity>
+                        <View>
                           <ChevronRight width={widthPercentage(12)} />
-                        </TouchableOpacity>
+                        </View>
                       </View>
                     </ImageBackground>
                   </View>
