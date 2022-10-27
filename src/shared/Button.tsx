@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     paddingVertical: heightPercentage(20),
     // marginVertical: heightPercentage(5),
     backgroundColor: COLORS.green3,
-    width: '50%',
+    width: '40%',
   },
   text: {
     fontSize: fontSz(24),

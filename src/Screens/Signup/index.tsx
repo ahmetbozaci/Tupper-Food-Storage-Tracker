@@ -136,7 +136,7 @@ const SignupForm: React.FC<Props> = ({navigation}) => {
                   }}
                   buttonStyle={[
                     styles.button,
-                    {marginTop: heightPercentage(70)},
+                    {marginTop: heightPercentage(10)},
                   ]}
                   buttonTextStyle={styles.btnText}
                 />
