@@ -18,7 +18,7 @@ const TemperatureStorage = () => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       {guideData.map(item => {
         return (
           <View
