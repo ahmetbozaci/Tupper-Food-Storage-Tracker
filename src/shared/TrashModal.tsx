@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React, {useState} from 'react';
-import {useQueryClient, useMutation} from '@tanstack/react-query';
-import {updateFood, deleteFood} from '../api/food';
+import {useQueryClient, useMutation, useQuery} from '@tanstack/react-query';
+import {updateFood, deleteFood, fetchStorages} from '../api/food';
 import {fontSz, heightPercentage, widthPercentage} from '../config';
 import COLORS from '../color';
 import Minus from '../../assets/svg/circle-minus.svg';
@@ -28,6 +28,15 @@ interface Props {
 
 const TrashModal: React.FC<Props> = ({visible, close, item}) => {
   const {quantity, id, storageId, name, expiryDate} = item;
+
+  const {data: storageData} = useQuery(['storages'], () => fetchStorages(), {
+    enabled: true,
+    retry: true,
+  });
+
+  const storage = storageData?.find((store: any) => store.id === storageId);
+  const title = storage?.title;
+  // console.log(storage.title);
 
   const [trashQty, setTrashQty] = useState<number>(1);
   const [donateViewVisible, setDonateViewVisible] = useState<boolean>(false);
@@ -56,9 +65,7 @@ const TrashModal: React.FC<Props> = ({visible, close, item}) => {
       onMutate: async () => {
         // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
         await queryClient.cancelQueries(['allfoods']);
-        await queryClient.cancelQueries(['Fridge']);
-        await queryClient.cancelQueries(['Freezer']);
-        await queryClient.cancelQueries(['Pantry']);
+        await queryClient.cancelQueries([`${title}`]);
       },
       // If the mutation fails, use the context we returned above
       onError: () => {
@@ -79,9 +86,7 @@ const TrashModal: React.FC<Props> = ({visible, close, item}) => {
       // Always refetch after error or success:
       onSettled: () => {
         queryClient.invalidateQueries(['allfoods']);
-        queryClient.invalidateQueries(['Fridge']);
-        queryClient.invalidateQueries(['Pantry']);
-        queryClient.invalidateQueries(['Freezer']);
+        queryClient.invalidateQueries([`${title}`]);
       },
     },
   );
@@ -90,9 +95,7 @@ const TrashModal: React.FC<Props> = ({visible, close, item}) => {
     onMutate: async () => {
       // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
       await queryClient.cancelQueries(['allfoods']);
-      await queryClient.cancelQueries(['Fridge']);
-      await queryClient.cancelQueries(['Freezer']);
-      await queryClient.cancelQueries(['Pantry']);
+      await queryClient.cancelQueries([`${title}`]);
     },
     // If the mutation fails, use the context we returned above
     onError: () => {
@@ -112,9 +115,7 @@ const TrashModal: React.FC<Props> = ({visible, close, item}) => {
     // Always refetch after error or success:
     onSettled: () => {
       queryClient.invalidateQueries(['allfoods']);
-      queryClient.invalidateQueries(['Fridge']);
-      queryClient.invalidateQueries(['Pantry']);
-      queryClient.invalidateQueries(['Freezer']);
+      queryClient.invalidateQueries([`${title}`]);
     },
   });
 
@@ -124,9 +125,7 @@ const TrashModal: React.FC<Props> = ({visible, close, item}) => {
       onMutate: async () => {
         // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
         await queryClient.cancelQueries(['allfoods']);
-        await queryClient.cancelQueries(['Fridge']);
-        await queryClient.cancelQueries(['Freezer']);
-        await queryClient.cancelQueries(['Pantry']);
+        await queryClient.cancelQueries([`${title}`]);
       },
       // If the mutation fails, use the context we returned above
       onError: () => {
@@ -148,9 +147,7 @@ const TrashModal: React.FC<Props> = ({visible, close, item}) => {
       // Always refetch after error or success:
       onSettled: () => {
         queryClient.invalidateQueries(['allfoods']);
-        queryClient.invalidateQueries(['Fridge']);
-        queryClient.invalidateQueries(['Pantry']);
-        queryClient.invalidateQueries(['Freezer']);
+        queryClient.invalidateQueries([`${title}`]);
       },
     },
   );
@@ -159,9 +156,7 @@ const TrashModal: React.FC<Props> = ({visible, close, item}) => {
     onMutate: async () => {
       // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
       await queryClient.cancelQueries(['allfoods']);
-      await queryClient.cancelQueries(['Fridge']);
-      await queryClient.cancelQueries(['Freezer']);
-      await queryClient.cancelQueries(['Pantry']);
+      await queryClient.cancelQueries([`${title}`]);
     },
     // If the mutation fails, use the context we returned above
     onError: () => {
@@ -181,9 +176,7 @@ const TrashModal: React.FC<Props> = ({visible, close, item}) => {
     // Always refetch after error or success:
     onSettled: () => {
       queryClient.invalidateQueries(['allfoods']);
-      queryClient.invalidateQueries(['Fridge']);
-      queryClient.invalidateQueries(['Pantry']);
-      queryClient.invalidateQueries(['Freezer']);
+      queryClient.invalidateQueries([`${title}`]);
     },
   });
 
