@@ -1,4 +1,4 @@
-import {Text, SafeAreaView} from 'react-native';
+import {Text, SafeAreaView, View} from 'react-native';
 import React, {useState} from 'react';
 import styles from './styles';
 import TemperatureStorage from './guides';
@@ -24,13 +24,15 @@ const Guide = () => {
   return (
     <SafeAreaView style={styles.screen}>
       <AppHeader onLogoutPress={toggleLogoutModal} />
-      <LogoutModal
-        visible={logoutModalVisible}
-        close={toggleLogoutModal}
-        logout={handleLogout}
-      />
-      <Text style={styles.guideTitle}>Storage Guide</Text>
-      <TemperatureStorage />
+      <View style={styles.content}>
+        <LogoutModal
+          visible={logoutModalVisible}
+          close={toggleLogoutModal}
+          logout={handleLogout}
+        />
+        <Text style={styles.guideTitle}>Storage Guide</Text>
+        <TemperatureStorage />
+      </View>
     </SafeAreaView>
   );
 };

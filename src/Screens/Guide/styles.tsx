@@ -5,13 +5,17 @@ import {fontSz, heightPercentage, widthPercentage} from '../../config';
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: COLORS.background,
-    marginHorizontal: widthPercentage(25),
+    backgroundColor: COLORS.white,
+  },
+  content: {
+    paddingHorizontal: widthPercentage(25),
+    flex: 1,
   },
   guideTitle: {
     fontSize: fontSz(40),
     fontWeight: '900',
     color: COLORS.black,
+    marginTop: heightPercentage(48),
     marginBottom: heightPercentage(15),
   },
   guideContainer: {
