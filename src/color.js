@@ -25,6 +25,11 @@ const COLORS = {
   background: '#F5F5F5',
   primary: '#07AF87',
   blue2: '#14B9FF',
+  blue3: 'A4F6E8',
+  purple: 'CBA3FF',
+  green5: '91E183',
+  red2: 'FF8267',
+  yellow: 'FFC656',
 };
 
 export default COLORS;

@@ -23,6 +23,7 @@
     "moment": "^2.29.4",
     "react": "18.1.0",
     "react-native": "^0.70.3",
+    "react-native-animatable": "^1.3.3",
     "react-native-asset": "^2.0.1",
     "react-native-calendars": "^1.1290.0",
     "react-native-cli": "^2.0.1",
