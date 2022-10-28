@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React, {useState} from 'react';
-import {useQueryClient, useMutation} from '@tanstack/react-query';
-import {updateFood, deleteFood} from '../api/food';
+import {useQueryClient, useMutation, useQuery} from '@tanstack/react-query';
+import {updateFood, deleteFood, fetchStorages} from '../api/food';
 import {fontSz, heightPercentage, widthPercentage} from '../config';
 import COLORS from '../color';
 import Minus from '../../assets/svg/circle-minus.svg';
@@ -18,6 +18,7 @@ import Trash from '../../assets/svg/trash.svg';
 import Donate from '../../assets/svg/donate.svg';
 import {showMessage} from 'react-native-flash-message';
 import * as Animatable from 'react-native-animatable';
+import CustomButton from '../shared/Button';
 
 interface Props {
   close: () => void;
@@ -27,6 +28,15 @@ interface Props {
 
 const TrashModal: React.FC<Props> = ({visible, close, item}) => {
   const {quantity, id, storageId, name, expiryDate} = item;
+
+  const {data: storageData} = useQuery(['storages'], () => fetchStorages(), {
+    enabled: true,
+    retry: true,
+  });
+
+  const storage = storageData?.find((store: any) => store.id === storageId);
+  const title = storage?.title;
+  // console.log(storage.title);
 
   const [trashQty, setTrashQty] = useState<number>(1);
   const [donateViewVisible, setDonateViewVisible] = useState<boolean>(false);
@@ -53,31 +63,12 @@ const TrashModal: React.FC<Props> = ({visible, close, item}) => {
     updateFood,
     {
       onMutate: async () => {
-        // console.log('updatedFood', updatedFood);
         // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
         await queryClient.cancelQueries(['allfoods']);
-        await queryClient.cancelQueries(['Fridge']);
-        await queryClient.cancelQueries(['Freezer']);
-        await queryClient.cancelQueries(['Pantry']);
-
-        // Snapshot the previous value
-        // const previousFood = queryClient.getQueryData([
-        //   'allfoods',
-        //   updatedFood.id,
-        // ]);
-
-        // Optimistically update to the new value
-        // queryClient.setQueryData(['allfoods', updatedFood.id], updatedFood);
-
-        // Return a context with the previous and new todo
-        // return {previousFood, updatedFood};
+        await queryClient.cancelQueries([`${title}`]);
       },
       // If the mutation fails, use the context we returned above
       onError: () => {
-        // queryClient.setQueryData(
-        //   ['allfoods', context?.updatedFood.id],
-        //   context?.previousFood,
-        // );
         showMessage({
           message: 'Error',
           description: 'Edit food item failed',
@@ -90,48 +81,54 @@ const TrashModal: React.FC<Props> = ({visible, close, item}) => {
           description: 'Food item updated',
           type: 'success',
         });
-        setDonateViewVisible(false);
         close();
       },
       // Always refetch after error or success:
       onSettled: () => {
         queryClient.invalidateQueries(['allfoods']);
-        queryClient.invalidateQueries(['Fridge']);
-        queryClient.invalidateQueries(['Pantry']);
-        queryClient.invalidateQueries(['Freezer']);
+        queryClient.invalidateQueries([`${title}`]);
       },
     },
   );
+
+  const {mutate: donateUpdateMutation} = useMutation(updateFood, {
+    onMutate: async () => {
+      // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
+      await queryClient.cancelQueries(['allfoods']);
+      await queryClient.cancelQueries([`${title}`]);
+    },
+    // If the mutation fails, use the context we returned above
+    onError: () => {
+      showMessage({
+        message: 'Error',
+        description: 'Edit food item failed',
+        type: 'danger',
+      });
+    },
+    onSuccess: () => {
+      showMessage({
+        message: 'Success',
+        description: 'Food item updated',
+        type: 'success',
+      });
+    },
+    // Always refetch after error or success:
+    onSettled: () => {
+      queryClient.invalidateQueries(['allfoods']);
+      queryClient.invalidateQueries([`${title}`]);
+    },
+  });
 
   const {mutate: deleteMutation, isLoading: deleteLoading} = useMutation(
     deleteFood,
     {
       onMutate: async () => {
-        // console.log('updatedFood', updatedFood);
         // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
         await queryClient.cancelQueries(['allfoods']);
-        await queryClient.cancelQueries(['Fridge']);
-        await queryClient.cancelQueries(['Freezer']);
-        await queryClient.cancelQueries(['Pantry']);
-
-        // Snapshot the previous value
-        // const previousFood = queryClient.getQueryData([
-        //   'allfoods',
-        //   updatedFood.id,
-        // ]);
-
-        // Optimistically update to the new value
-        // queryClient.setQueryData(['allfoods', updatedFood.id], updatedFood);
-
-        // Return a context with the previous and new todo
-        // return {previousFood, updatedFood};
+        await queryClient.cancelQueries([`${title}`]);
       },
       // If the mutation fails, use the context we returned above
       onError: () => {
-        // queryClient.setQueryData(
-        //   ['allfoods', context?.updatedFood.id],
-        //   context?.previousFood,
-        // );
         showMessage({
           message: 'Error',
           description: 'delete food item failed',
@@ -150,12 +147,38 @@ const TrashModal: React.FC<Props> = ({visible, close, item}) => {
       // Always refetch after error or success:
       onSettled: () => {
         queryClient.invalidateQueries(['allfoods']);
-        queryClient.invalidateQueries(['Fridge']);
-        queryClient.invalidateQueries(['Pantry']);
-        queryClient.invalidateQueries(['Freezer']);
+        queryClient.invalidateQueries([`${title}`]);
       },
     },
   );
+
+  const {mutate: donateDeleteMutation} = useMutation(deleteFood, {
+    onMutate: async () => {
+      // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
+      await queryClient.cancelQueries(['allfoods']);
+      await queryClient.cancelQueries([`${title}`]);
+    },
+    // If the mutation fails, use the context we returned above
+    onError: () => {
+      showMessage({
+        message: 'Error',
+        description: 'delete food item failed',
+        type: 'danger',
+      });
+    },
+    onSuccess: () => {
+      showMessage({
+        message: 'Success',
+        description: 'Food item removed',
+        type: 'success',
+      });
+    },
+    // Always refetch after error or success:
+    onSettled: () => {
+      queryClient.invalidateQueries(['allfoods']);
+      queryClient.invalidateQueries([`${title}`]);
+    },
+  });
 
   const handleTrashing = (option: string) => {
     // based on option increase record data
@@ -164,14 +187,10 @@ const TrashModal: React.FC<Props> = ({visible, close, item}) => {
     // if option === donate, show donate modal & update or delete item
     if (option === 'donate') {
       setDonateViewVisible(true);
-      setTimeout(() => {
-        setDonateViewVisible(false);
-      }, 5000);
-
       if (trashQty < quantity) {
         // increase donate count
         // update item quantity
-        updateMutation({
+        donateUpdateMutation({
           id,
           storageId,
           name,
@@ -181,7 +200,7 @@ const TrashModal: React.FC<Props> = ({visible, close, item}) => {
       } else {
         // increase donate count
         // delete item
-        deleteMutation(id);
+        donateDeleteMutation(id);
       }
     } else {
       if (trashQty < quantity) {
@@ -195,7 +214,7 @@ const TrashModal: React.FC<Props> = ({visible, close, item}) => {
           quantity: quantity - trashQty,
         });
       } else {
-        // ncrease count based on option & qty
+        // increase count based on option & qty
         // delete item
         deleteMutation(id);
       }
@@ -206,18 +225,27 @@ const TrashModal: React.FC<Props> = ({visible, close, item}) => {
     <Modal transparent visible={visible} animationType="slide">
       <TouchableWithoutFeedback
         onPress={close}
-        disabled={updateLoading || deleteLoading}>
+        disabled={updateLoading || deleteLoading || donateViewVisible}>
         <View style={styles.trashModalContainer}>
           {donateViewVisible && (
             <Animatable.View
               animation="slideInDown"
-              duration={1000}
+              duration={600}
               style={[styles.trashModalContent, styles.donateView]}>
               <Text style={styles.modalheaderTitle}>Donate!</Text>
               <Text
                 style={[styles.modalText, {maxWidth: widthPercentage(198)}]}>
                 Have extra food? Find your local food bank and donate today!
               </Text>
+              <CustomButton
+                onPress={() => {
+                  setDonateViewVisible(false);
+                  close();
+                }}
+                buttonText="okay"
+                buttonStyle={styles.btn}
+                buttonTextStyle={[styles.modalText, {color: COLORS.white}]}
+              />
             </Animatable.View>
           )}
           <View style={styles.trashModalContent}>
@@ -241,17 +269,17 @@ const TrashModal: React.FC<Props> = ({visible, close, item}) => {
             <View style={styles.icons}>
               <TouchableOpacity
                 onPress={() => handleTrashing('ate')}
-                disabled={updateLoading || deleteLoading}>
+                disabled={updateLoading || deleteLoading || donateViewVisible}>
                 <Ate />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => handleTrashing('trash')}
-                disabled={updateLoading || deleteLoading}>
+                disabled={updateLoading || deleteLoading || donateViewVisible}>
                 <Trash />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => handleTrashing('donate')}
-                disabled={updateLoading || deleteLoading}>
+                disabled={updateLoading || deleteLoading || donateViewVisible}>
                 <Donate />
               </TouchableOpacity>
             </View>
@@ -330,6 +358,12 @@ const styles = StyleSheet.create({
     marginBottom: heightPercentage(35),
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  btn: {
+    marginTop: heightPercentage(25),
+    paddingVertical: heightPercentage(10),
+    width: widthPercentage(75),
+    // paddingHorizontal: widthPercentage(5),
   },
 });
 
