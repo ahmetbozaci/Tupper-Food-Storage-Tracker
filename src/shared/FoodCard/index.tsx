@@ -9,32 +9,39 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import moment from 'moment';
-import {fontSz, heightPercentage, widthPercentage} from '../config';
-import COLORS from '../color';
-// import Progress from '../../assets/svg/progress.svg';
-import Edit from '../../assets/svg/edit.svg';
-import Delete from '../../assets/svg/delete.svg';
-import Food from '../interfaces/Food';
+import {fontSz, heightPercentage, widthPercentage} from '../../config';
+import COLORS from '../../color';
+import Edit from '../../../assets/svg/edit.svg';
+import Delete from '../../../assets/svg/delete.svg';
+import Food from '../../interfaces/Food';
 import {Calendar} from 'react-native-calendars';
-import Calender from '../../assets/svg/calender.svg';
-import CustomButton from '../shared/Button';
+import Calender from '../../../assets/svg/calender.svg';
+import CustomButton from '../Button';
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query';
-import {fetchStorages, updateFood} from '../api/food';
-import ArrowDown from '../../assets/svg/arrow-down.svg';
-import Minus from '../../assets/svg/circle-minus.svg';
-import Plus from '../../assets/svg/circle-plus.svg';
+import {fetchStorages, updateFood} from '../../api/food';
+import ArrowDown from '../../../assets/svg/arrow-down.svg';
+import Minus from '../../../assets/svg/circle-minus.svg';
+import Plus from '../../../assets/svg/circle-plus.svg';
 import {showMessage} from 'react-native-flash-message';
-import TrashModal from '../shared/TrashModal';
+import TrashModal from '../TrashModal';
+import Donut from './donut';
 
 interface Props {
   item: Food;
+  color: string;
 }
 
-const FoodCard: React.FC<Props> = ({item}) => {
+const FoodCard: React.FC<Props> = ({item, color}) => {
   const {name, createdDate, expiryDate, quantity, id, storageId} = item;
   const now = moment();
   const isYesterday =
     moment(now).diff(createdDate, 'days') === 1 ? true : false;
+
+  let expiry_percentage: number;
+  const daysSpent = moment(now).diff(createdDate, 'days');
+  const remainingDays = moment(expiryDate).diff(now, 'days');
+  const remainder = remainingDays < 1 ? 0 : remainingDays;
+  expiry_percentage = (daysSpent / (daysSpent + remainder)) * 100;
 
   const [calendarVisible, setIsCalendarVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
@@ -122,31 +129,16 @@ const FoodCard: React.FC<Props> = ({item}) => {
   const queryClient = useQueryClient();
   const {mutate, isLoading} = useMutation(updateFood, {
     onMutate: async () => {
-      // console.log('updatedFood', updatedFood);
+      // console.log(storageLocation?.title);
       // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
       await queryClient.cancelQueries(['allfoods']);
-      await queryClient.cancelQueries(['Fridge']);
-      await queryClient.cancelQueries(['Freezer']);
-      await queryClient.cancelQueries(['Pantry']);
-
-      // Snapshot the previous value
-      // const previousFood = queryClient.getQueryData([
-      //   'allfoods',
-      //   updatedFood.id,
-      // ]);
-
-      // Optimistically update to the new value
-      // queryClient.setQueryData(['allfoods', updatedFood.id], updatedFood);
-
-      // Return a context with the previous and new todo
-      // return {previousFood, updatedFood};
+      await queryClient.cancelQueries([`${storageLocation.title}`]);
+      // await queryClient.cancelQueries(['Fridge']);
+      // await queryClient.cancelQueries(['Freezer']);
+      // await queryClient.cancelQueries(['Pantry']);
     },
     // If the mutation fails, use the context we returned above
     onError: () => {
-      // queryClient.setQueryData(
-      //   ['allfoods', context?.updatedFood.id],
-      //   context?.previousFood,
-      // );
       showMessage({
         message: 'Error',
         description: 'Edit food item failed',
@@ -164,9 +156,10 @@ const FoodCard: React.FC<Props> = ({item}) => {
     // Always refetch after error or success:
     onSettled: () => {
       queryClient.invalidateQueries(['allfoods']);
-      queryClient.invalidateQueries(['Fridge']);
-      queryClient.invalidateQueries(['Pantry']);
-      queryClient.invalidateQueries(['Freezer']);
+      queryClient.invalidateQueries([`${storageLocation.title}`]);
+      // queryClient.invalidateQueries(['Fridge']);
+      // queryClient.invalidateQueries(['Pantry']);
+      // queryClient.invalidateQueries(['Freezer']);
     },
   });
 
@@ -218,7 +211,7 @@ const FoodCard: React.FC<Props> = ({item}) => {
               <Delete />
             </TouchableOpacity>
           </View>
-          {/* <Progress /> */}
+          <Donut color={color} percentage={expiry_percentage} />
         </View>
       </View>
 
