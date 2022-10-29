@@ -1,4 +1,7 @@
-export const applyBackgroundColor = (item, styles) => {
+import {IData} from './Data';
+import styles from './styles';
+
+export const applyBackgroundColor = (item: IData) => {
   if (item.id === 1) {
     return styles.backgroundColor1;
   }

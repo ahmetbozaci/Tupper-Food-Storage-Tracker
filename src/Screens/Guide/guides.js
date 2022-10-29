@@ -23,7 +23,7 @@ const TemperatureStorage = () => {
         return (
           <View
             key={item.id}
-            style={[applyBackgroundColor(item, styles), styles.guideContainer]}>
+            style={[applyBackgroundColor(item), styles.guideContainer]}>
             <View style={styles.headerContainer}>
               <Text style={styles.title}>{item.title}</Text>
               <TouchableOpacity
