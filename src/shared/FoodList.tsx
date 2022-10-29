@@ -2,15 +2,13 @@ import {
   StyleSheet,
   Text,
   View,
-  // SectionList,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  FlatList,
+  SectionList,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {fontSz, heightPercentage, widthPercentage} from '../config';
 import COLORS from '../color';
-// import moment from 'moment';
 // import AddIcon from '../../assets/svg/add.svg';
 import Sort from '../../assets/svg/sort.svg';
 import Arrow from '../../assets/svg/arrow-down.svg';
@@ -62,70 +60,7 @@ const FoodList: React.FC<Props> = ({headerTitle}) => {
   }, [allFoodSortRefetch, sortBy]);
 
   const DATA = headerTitle === 'All Food' ? allFoodSort : storageSort;
-  // const [sortedData, setSortedData] = useState<any>();
 
-  // const {storageData} = useAppSelector((state: RootState) => state.storage);
-  // const Data = storageData.find(store => store.title === headerTitle)?.items;
-
-  // useEffect(() => {
-  //   if (sortBy === 'alphabetically') {
-  //     const sorting = Data?.sort((a: any, b: any) =>
-  //       a.name > b.name ? 1 : -1,
-  //     );
-  //     setSortedData(sorting);
-  //   } else {
-  //     const sorting = Data?.sort((a: any, b: any) =>
-  //       a.expiry_date > b.expiry_date ? 1 : -1,
-  //     );
-  //     setSortedData(sorting);
-  //   }
-  // }, [sortBy, Data]);
-  /*
-    expires soon: 3days,
-    expires in a week: 7days,
-    expires in a month: 30days
-    not soon: >30days
-  */
-  // const expired: Food[] = [];
-  // const expireSoon: Food[] = [];
-  // // const expiresInAWeek = [];
-  // // const expiresInAMonth = [];
-  // const notSoon: Food[] = [];
-
-  // const now = moment();
-
-  // sortedData?.map((item: any) => {
-  //   const {expiry_date} = item;
-  //   const value = moment(expiry_date).diff(now, 'days');
-  //   if (value < 0) {
-  //     expired.push(item);
-  //   } else if (value < 7) {
-  //     expireSoon.push(item);
-  //   } else {
-  //     notSoon.push(item);
-  //   }
-  // });
-
-  // const sectionedData = [
-  //   {
-  //     title: 'Expired',
-  //     data: expired,
-  //   },
-  //   {
-  //     title: 'Expires Soon',
-  //     data: expireSoon,
-  //   },
-  //   {
-  //     title: 'Not soon',
-  //     data: notSoon,
-  //   },
-  // ];
-
-  // const handleSortSelect = (value: string) => {
-  //   console.log('i was called');
-  //   setSortBy(value);
-  //   setSortDropVisible(false);
-  // };
   return (
     <View style={styles.screen}>
       <View style={styles.header}>
@@ -167,24 +102,33 @@ const FoodList: React.FC<Props> = ({headerTitle}) => {
           })}
         </View>
       )}
-      {/* <SectionList
+      <SectionList
         contentContainerStyle={styles.sectionList}
         stickySectionHeadersEnabled={false}
         showsVerticalScrollIndicator={false}
-        sections={sectionedData}
+        sections={DATA}
         keyExtractor={(item, index) => index + '123'}
-        renderSectionHeader={({section: {title, data: sectionData}}) => (
+        renderSectionHeader={({section: {title: sectionTitle, data}}) => (
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionHeaderText}>
-              {sectionData.length !== 0 ? title : ''}
+              {data.length !== 0 ? sectionTitle : ''}
             </Text>
           </View>
         )}
-        renderItem={({item}) => {
-          return <FoodCard item={item} />;
+        renderItem={({item, index, section}) => {
+          const {title: _sectionTitle} = section;
+          const color =
+            _sectionTitle === 'Expired'
+              ? COLORS.red
+              : _sectionTitle === 'Expires soon'
+              ? COLORS.red
+              : _sectionTitle === 'Expires in a week'
+              ? COLORS.yellow
+              : COLORS.lightGreen;
+          return <FoodCard item={item} color={color} />;
         }}
-      /> */}
-      <FlatList
+      />
+      {/* <FlatList
         contentContainerStyle={styles.sectionList}
         showsVerticalScrollIndicator={false}
         // style={{backgroundColor: 'white'}}
@@ -193,7 +137,7 @@ const FoodList: React.FC<Props> = ({headerTitle}) => {
         renderItem={({item}) => {
           return <FoodCard item={item} />;
         }}
-      />
+      /> */}
     </View>
   );
 };
@@ -270,6 +214,8 @@ const styles = StyleSheet.create({
   },
   sectionHeaderText: {
     color: COLORS.black,
+    fontWeight: '500',
+    fontSize: fontSz(12),
   },
 });
 

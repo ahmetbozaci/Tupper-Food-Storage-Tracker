@@ -29,10 +29,6 @@ interface Props {
   navigation: any;
 }
 
-// interface CardProp {
-//   item: any;
-// }
-
 const Home: React.FC<Props> = ({navigation}) => {
   const [logoutModalVisible, setLogoutModalVisible] = useState<boolean>(false);
   const {data, isLoading} = useQuery(['storages'], () => fetchStorages(), {
@@ -68,37 +64,6 @@ const Home: React.FC<Props> = ({navigation}) => {
     }, 300);
   };
 
-  // const Card: React.FC<CardProp> = ({item}) => {
-  //   const {id, title, items, logo} = item;
-  //   return (
-  //     <TouchableWithoutFeedback
-  //       key={id}
-  //       onPress={() => navigation.navigate('Foods', {screen: title})}>
-  //       <View style={styles.storageView}>
-  //         <ImageBackground
-  //           source={logo}
-  //           resizeMode="cover"
-  //           style={styles.backgroundImage}>
-  //           <View style={styles.spacedView}>
-  //             <View>
-  //               <View style={styles.row}>
-  //                 <Text style={styles.title}>{title}</Text>
-  //                 <TouchableOpacity>
-  //                   <AddIcon width={widthPercentage(22)} />
-  //                 </TouchableOpacity>
-  //               </View>
-  //               <Text style={styles.unit}>{items.length} items</Text>
-  //             </View>
-  //             <TouchableOpacity>
-  //               <ChevronRight width={widthPercentage(12)} />
-  //             </TouchableOpacity>
-  //           </View>
-  //         </ImageBackground>
-  //       </View>
-  //     </TouchableWithoutFeedback>
-  //   );
-  // };
-
   return (
     <SafeAreaView style={styles.screen}>
       <AppHeader onLogoutPress={toggleLogoutModal} />
@@ -106,9 +71,6 @@ const Home: React.FC<Props> = ({navigation}) => {
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}>
         <Text style={styles.headerText}>Welcome!</Text>
-        {/* <Card item={fridge} />
-        <Card item={pantry} />
-        <Card item={freezer} /> */}
         {isLoading ? (
           <ActivityIndicator />
         ) : (
