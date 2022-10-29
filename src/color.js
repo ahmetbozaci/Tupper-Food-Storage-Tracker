@@ -19,7 +19,6 @@ const COLORS = {
   green2: '#27AE60',
   green3: '#07AF87',
   green4: '#8EF19E',
-  red: '#EB5757',
   blue: '#146CF0',
   shadow: '#8A959E',
   background: '#F5F5F5',
@@ -28,8 +27,9 @@ const COLORS = {
   blue3: 'A4F6E8',
   purple: 'CBA3FF',
   green5: '91E183',
-  red2: 'FF8267',
-  yellow: 'FFC656',
+  red: '#E92C20',
+  yellow: '#FCAF3C',
+  lightGreen: '#45EBC3',
 };
 
 export default COLORS;
