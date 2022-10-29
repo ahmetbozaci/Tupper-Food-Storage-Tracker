@@ -1,4 +1,10 @@
-const guideData = [
+interface IData {
+  id: number;
+  title: string;
+  subtitle: string;
+  text: string;
+}
+const guideData: IData[] = [
   {
     id: 1,
     title: 'Temperature Storage',
