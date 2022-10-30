@@ -4,7 +4,8 @@ import {
   View,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  SectionList,
+  // SectionList,
+  FlatList,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {fontSz, heightPercentage, widthPercentage} from '../config';
@@ -102,7 +103,7 @@ const FoodList: React.FC<Props> = ({headerTitle}) => {
           })}
         </View>
       )}
-      <SectionList
+      {/* <SectionList
         contentContainerStyle={styles.sectionList}
         stickySectionHeadersEnabled={false}
         showsVerticalScrollIndicator={false}
@@ -127,17 +128,17 @@ const FoodList: React.FC<Props> = ({headerTitle}) => {
               : COLORS.lightGreen;
           return <FoodCard item={item} color={color} />;
         }}
-      />
-      {/* <FlatList
+      /> */}
+      <FlatList
         contentContainerStyle={styles.sectionList}
         showsVerticalScrollIndicator={false}
         // style={{backgroundColor: 'white'}}
         data={DATA}
         keyExtractor={(item, index) => index + '123'}
         renderItem={({item}) => {
-          return <FoodCard item={item} />;
+          return <FoodCard item={item} color="red" />;
         }}
-      /> */}
+      />
     </View>
   );
 };
