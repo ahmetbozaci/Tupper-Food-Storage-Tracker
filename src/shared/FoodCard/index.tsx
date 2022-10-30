@@ -41,7 +41,16 @@ const FoodCard: React.FC<Props> = ({item, color}) => {
   const daysSpent = moment(now).diff(createdDate, 'days');
   const remainingDays = moment(expiryDate).diff(now, 'days');
   const remainder = remainingDays < 1 ? 0 : remainingDays;
-  expiry_percentage = (daysSpent / (daysSpent + remainder)) * 100;
+  if (daysSpent === 0 && remainder === 0) {
+    expiry_percentage = 100;
+  } else {
+    expiry_percentage = (daysSpent / (daysSpent + remainder)) * 100;
+  }
+  // console.log({
+  //   daysSpent: daysSpent,
+  //   remainingDays: remainingDays,
+  //   remainder: remainder,
+  // });
 
   const [calendarVisible, setIsCalendarVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
