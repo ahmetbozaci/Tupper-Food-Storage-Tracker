@@ -6,20 +6,27 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   SafeAreaView,
+  Pressable,
 } from 'react-native';
 import {Formik} from 'formik';
-import styles from '../loginSignupStyles';
+import styles from '../styles';
 import validationSchema from './validationSchema';
-import CustomButton from '../../shared/Button';
+import CustomButton from '../../../shared/Button';
 import {showMessage} from 'react-native-flash-message';
-import {heightPercentage} from '../../config';
-import AuthHeader from '../../shared/AuthHeader';
-import {userLogin} from '../../api/auth';
-import {useAppDispatch, useAppSelector, RootState} from '../../features/store';
-import {login as loginReducer} from '../../features/loginSlice';
-import {LoginData} from '../../interfaces/Auth';
-import COLORS from '../../color';
-// import { selectAuthState } from '../../features/authSlice';
+import {heightPercentage} from '../../../config';
+import AuthHeader from '../../../shared/AuthHeader';
+import {userLogin} from '../../../api/auth';
+import {
+  useAppDispatch,
+  useAppSelector,
+  RootState,
+} from '../../../features/store';
+import {login as loginReducer} from '../../../features/loginSlice';
+import {LoginData} from '../../../interfaces/Auth';
+import COLORS from '../../../color';
+import EyeClose from '../../../../assets/svg/eye-close.svg';
+import EyeOpen from '../../../../assets/svg/eye-open.svg';
+import {useTogglePasswordVisibility} from '../hooks/useTogglePasswordVisibility';
 
 interface Props {
   navigation: any;
@@ -27,10 +34,7 @@ interface Props {
 
 const LoginForm: React.FC<Props> = ({navigation}) => {
   const loading = useAppSelector((state: RootState) => state.auth.loading);
-
-  //email //omodauda@yahoo.com
-  //password //testing
-
+  const {passwordVisibility, hideShowPassword} = useTogglePasswordVisibility();
   const initialValues = {
     email: '',
     password: '',
@@ -64,9 +68,8 @@ const LoginForm: React.FC<Props> = ({navigation}) => {
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
-              onSubmit={(values, actions) => {
+              onSubmit={values => {
                 login(values);
-                actions.resetForm();
               }}>
               {({values, handleChange, errors, touched, handleSubmit}) => (
                 <View>
@@ -75,26 +78,33 @@ const LoginForm: React.FC<Props> = ({navigation}) => {
                     placeholder="Email"
                     onChangeText={handleChange('email')}
                     value={values.email}
-                    // name="email"
                     autoCapitalize="none"
                     placeholderTextColor={COLORS.gray8}
                   />
                   {touched.email && errors.email && (
                     <Text style={styles.errorText}>{errors.email}</Text>
                   )}
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Password"
-                    onChangeText={handleChange('password')}
-                    value={values.password}
-                    // name="password"
-                    secureTextEntry={true}
-                    autoCapitalize="none"
-                    placeholderTextColor={COLORS.gray8}
-                  />
-                  {touched.password && errors.password && (
-                    <Text style={styles.errorText}>{errors.password}</Text>
-                  )}
+                  <View style={styles.passwordContainer}>
+                    <TextInput
+                      style={styles.input}
+                      placeholder="Password"
+                      onChangeText={handleChange('password')}
+                      value={values.password}
+                      secureTextEntry={passwordVisibility}
+                      autoCapitalize="none"
+                      placeholderTextColor={COLORS.gray8}
+                    />
+                    <Pressable onPress={hideShowPassword}>
+                      {passwordVisibility ? (
+                        <EyeOpen style={styles.eye} />
+                      ) : (
+                        <EyeClose style={styles.eye} />
+                      )}
+                    </Pressable>
+                    {touched.password && errors.password && (
+                      <Text style={styles.errorText}>{errors.password}</Text>
+                    )}
+                  </View>
                   <CustomButton
                     onPress={() => {
                       handleSubmit();

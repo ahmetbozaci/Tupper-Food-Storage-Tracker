@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     borderColor: COLORS.green3,
     borderWidth: 2.5,
-    // borderRadius: 25,
   },
   buttonText: {
     fontWeight: '500',
@@ -43,6 +42,8 @@ const styles = StyleSheet.create({
   },
   forgotPassword: {
     marginBottom: heightPercentage(200),
+    marginTop: heightPercentage(15),
+    fontSize: fontSz(20),
   },
   signup: {
     color: COLORS.blue,
