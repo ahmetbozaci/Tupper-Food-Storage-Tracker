@@ -72,8 +72,9 @@ const SignupForm: React.FC<Props> = ({navigation}) => {
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={values => {
+            onSubmit={(values, actions) => {
               signup(values);
+              actions.resetForm();
             }}>
             {({values, handleChange, errors, touched, handleSubmit}) => (
               <View>

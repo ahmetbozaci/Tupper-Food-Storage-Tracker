@@ -32,8 +32,7 @@ const HomeStack = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-      }}
-    >
+      }}>
       <Stack.Screen name="HomeIndex" component={HomeScreen} />
       <Stack.Screen name="Foods" component={FoodsScreen} />
     </Stack.Navigator>
@@ -48,8 +47,7 @@ const Tabs = () => {
         headerShown: false,
         tabBarActiveTintColor: COLORS.primary,
         tabBarInactiveTintColor: COLORS.gray,
-      }}
-    >
+      }}>
       <Tab.Screen name="Home" component={HomeStack} />
       <Tab.Screen name="Guide" component={GuideScreen} />
     </Tab.Navigator>
@@ -68,8 +66,7 @@ const MainStack = () => {
         initialRouteName={isOnboarded ? 'Main' : 'Onboarding'}
         screenOptions={{
           headerShown: false,
-        }}
-      >
+        }}>
         <Stack.Screen name="Onboarding" component={OnboardingScreen} />
         <Stack.Screen name="Main" component={MainScreen} />
         <Stack.Screen name="Signup" component={SignupScreen} />
@@ -85,8 +82,7 @@ const MainStack = () => {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
-        }}
-      >
+        }}>
         {!isAuthenticated ? (
           <Stack.Screen name="Auth" component={AuthStack} />
         ) : (
