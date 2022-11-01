@@ -6,6 +6,7 @@ import AppHeader from '../../shared/AppHeader';
 import {useAppDispatch} from '../../features/store';
 import {logout} from '../../features/loginSlice';
 import LogoutModal from '../../shared/LogoutModal';
+import {removeNotificationToken} from '../../api/auth';
 
 const Guide = () => {
   const [logoutModalVisible, setLogoutModalVisible] = useState(false);
@@ -17,6 +18,7 @@ const Guide = () => {
   const dispatch = useAppDispatch();
   const handleLogout = () => {
     toggleLogoutModal();
+    removeNotificationToken();
     setTimeout(() => {
       dispatch(logout());
     }, 300);
