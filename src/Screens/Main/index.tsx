@@ -3,7 +3,6 @@ import React from 'react';
 import styles from './styles';
 import CustomButton from '../../shared/Button';
 import COLORS from '../../color';
-
 interface Props {
   navigation: any;
 }
@@ -32,7 +31,8 @@ const Main: React.FC<Props> = ({navigation}) => {
         <View>
           <Text
             style={[styles.text, styles.forgotPassword]}
-            onPress={() => navigation.navigate('EnterEmail')}>
+            onPress={() => navigation.navigate('EnterEmail')}
+          >
             Forgot password?
           </Text>
         </View>
@@ -41,7 +41,8 @@ const Main: React.FC<Props> = ({navigation}) => {
             Don't have an account?
             <Text
               onPress={() => navigation.navigate('Signup')}
-              style={styles.signup}>
+              style={styles.signup}
+            >
               {' '}
               Signup
             </Text>
