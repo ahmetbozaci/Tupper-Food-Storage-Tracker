@@ -6,8 +6,8 @@ import {
   BottomTabBarProps,
 } from '@react-navigation/bottom-tabs';
 
-import SignupScreen from '../Screens/Signup';
-import LoginScreen from '../Screens/Login';
+import SignupScreen from '../Screens/SignupLogin/Signup';
+import LoginScreen from '../Screens/SignupLogin/Login';
 import MainScreen from '../Screens/Main';
 
 // Bottom Tab Screens
