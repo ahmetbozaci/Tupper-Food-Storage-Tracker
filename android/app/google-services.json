@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "369857658112",
+    "project_id": "tupper-a1efd",
+    "storage_bucket": "tupper-a1efd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369857658112:android:14e429ba905569da0207e5",
+        "android_client_info": {
+          "package_name": "com.waste"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369857658112-vialega1llon8v6vt0g68h95h9m5mtm7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk6RzV2RcOvTbEpOLizEcskrVACymae4g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369857658112-vialega1llon8v6vt0g68h95h9m5mtm7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
