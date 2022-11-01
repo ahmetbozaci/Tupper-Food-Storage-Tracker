@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     color: '#FF0D10',
   },
   input: {
+    width: '100%',
     borderWidth: 2,
     borderColor: COLORS.gray7,
     paddingVertical: heightPercentage(15),
@@ -44,6 +45,15 @@ const styles = StyleSheet.create({
   btnText: {
     fontWeight: '500',
     fontSize: fontSz(16),
+  },
+  passwordContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  eye: {
+    marginLeft: -35,
+    fontSize: 100,
   },
 });
 

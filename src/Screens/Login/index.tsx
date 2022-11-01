@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   SafeAreaView,
+  Pressable,
 } from 'react-native';
 import {Formik} from 'formik';
 import styles from '../loginSignupStyles';
@@ -19,6 +20,9 @@ import {useAppDispatch, useAppSelector, RootState} from '../../features/store';
 import {login as loginReducer} from '../../features/loginSlice';
 import {LoginData} from '../../interfaces/Auth';
 import COLORS from '../../color';
+import EyeClose from '../../../assets/svg/eye-close.svg';
+import EyeOpen from '../../../assets/svg/eye-open.svg';
+import {useTogglePasswordVisibility} from './useTogglePasswordVisibility';
 
 interface Props {
   navigation: any;
@@ -26,7 +30,7 @@ interface Props {
 
 const LoginForm: React.FC<Props> = ({navigation}) => {
   const loading = useAppSelector((state: RootState) => state.auth.loading);
-
+  const {passwordVisibility, hideShowPassword} = useTogglePasswordVisibility();
   const initialValues = {
     email: '',
     password: '',
@@ -76,18 +80,27 @@ const LoginForm: React.FC<Props> = ({navigation}) => {
                   {touched.email && errors.email && (
                     <Text style={styles.errorText}>{errors.email}</Text>
                   )}
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Password"
-                    onChangeText={handleChange('password')}
-                    value={values.password}
-                    secureTextEntry={true}
-                    autoCapitalize="none"
-                    placeholderTextColor={COLORS.gray8}
-                  />
-                  {touched.password && errors.password && (
-                    <Text style={styles.errorText}>{errors.password}</Text>
-                  )}
+                  <View style={styles.passwordContainer}>
+                    <TextInput
+                      style={styles.input}
+                      placeholder="Password"
+                      onChangeText={handleChange('password')}
+                      value={values.password}
+                      secureTextEntry={passwordVisibility}
+                      autoCapitalize="none"
+                      placeholderTextColor={COLORS.gray8}
+                    />
+                    <Pressable onPress={hideShowPassword}>
+                      {passwordVisibility ? (
+                        <EyeOpen style={styles.eye} />
+                      ) : (
+                        <EyeClose style={styles.eye} />
+                      )}
+                    </Pressable>
+                    {touched.password && errors.password && (
+                      <Text style={styles.errorText}>{errors.password}</Text>
+                    )}
+                  </View>
                   <CustomButton
                     onPress={() => {
                       handleSubmit();
