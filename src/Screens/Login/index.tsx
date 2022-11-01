@@ -19,7 +19,6 @@ import {useAppDispatch, useAppSelector, RootState} from '../../features/store';
 import {login as loginReducer} from '../../features/loginSlice';
 import {LoginData} from '../../interfaces/Auth';
 import COLORS from '../../color';
-// import { selectAuthState } from '../../features/authSlice';
 
 interface Props {
   navigation: any;
@@ -27,9 +26,6 @@ interface Props {
 
 const LoginForm: React.FC<Props> = ({navigation}) => {
   const loading = useAppSelector((state: RootState) => state.auth.loading);
-
-  //email //omodauda@yahoo.com
-  //password //testing
 
   const initialValues = {
     email: '',
@@ -64,9 +60,8 @@ const LoginForm: React.FC<Props> = ({navigation}) => {
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
-              onSubmit={(values, actions) => {
+              onSubmit={values => {
                 login(values);
-                actions.resetForm();
               }}>
               {({values, handleChange, errors, touched, handleSubmit}) => (
                 <View>
@@ -75,7 +70,6 @@ const LoginForm: React.FC<Props> = ({navigation}) => {
                     placeholder="Email"
                     onChangeText={handleChange('email')}
                     value={values.email}
-                    // name="email"
                     autoCapitalize="none"
                     placeholderTextColor={COLORS.gray8}
                   />
@@ -87,7 +81,6 @@ const LoginForm: React.FC<Props> = ({navigation}) => {
                     placeholder="Password"
                     onChangeText={handleChange('password')}
                     value={values.password}
-                    // name="password"
                     secureTextEntry={true}
                     autoCapitalize="none"
                     placeholderTextColor={COLORS.gray8}
