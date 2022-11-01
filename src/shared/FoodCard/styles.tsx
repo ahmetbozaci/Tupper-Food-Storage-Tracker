@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   expired: {
-    color: 'red',
+    color: COLORS.red,
   },
   // trashModalContainer: {
   //   backgroundColor: 'rgba(0,0,0,0.25)',
