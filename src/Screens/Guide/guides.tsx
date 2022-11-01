@@ -5,15 +5,23 @@ import ArrowRight from '../../../assets/svg/arrow-right.svg';
 import ArrowDown from '../../../assets/svg/arrow-down2.svg';
 import guideData from './Data';
 import {applyBackgroundColor} from './logic';
-const TemperatureStorage = () => {
-  const [state, setState] = useState({
-    1: false,
-    2: false,
-    3: false,
-    4: false,
-    5: false,
+
+interface IState {
+  '1': boolean;
+  '2': boolean;
+  '3': boolean;
+  '4': boolean;
+  '5': boolean;
+}
+const Guides: React.FC = () => {
+  const [state, setState] = useState<IState>({
+    '1': false,
+    '2': false,
+    '3': false,
+    '4': false,
+    '5': false,
   });
-  const changeState = id => {
+  const hideAndShowContainer = (id: string) => {
     setState({[id]: !state[id]});
   };
 
@@ -28,7 +36,7 @@ const TemperatureStorage = () => {
               <Text style={styles.title}>{item.title}</Text>
               <TouchableOpacity
                 style={styles.arrow}
-                onPress={() => changeState(item.id)}>
+                onPress={() => hideAndShowContainer(item.id)}>
                 {state[item.id] ? <ArrowDown /> : <ArrowRight />}
               </TouchableOpacity>
             </View>
@@ -47,4 +55,4 @@ const TemperatureStorage = () => {
   );
 };
 
-export default TemperatureStorage;
+export default Guides;
