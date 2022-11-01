@@ -181,7 +181,8 @@ const styles = StyleSheet.create({
   flexEnd: {
     alignItems: 'flex-end',
   },
-  icon: {
+  expired: {
+    color: 'red',
   },
   // trashModalContainer: {
   //   backgroundColor: 'rgba(0,0,0,0.25)',

@@ -33,6 +33,7 @@ interface Props {
 const FoodCard: React.FC<Props> = ({item, color}) => {
   const {name, createdDate, expiryDate, quantity, id, storageId} = item;
   const now = moment();
+  const nowString = moment().format('YYYY-MM-DD').toLocaleString();
   const isYesterday =
     moment(now).diff(createdDate, 'days') === 1 ? true : false;
 
@@ -191,32 +192,39 @@ const FoodCard: React.FC<Props> = ({item, color}) => {
   const closeTrashModal = () => {
     setTrashModalVisible(false);
   };
-
+  const isExpired = () => {
+    if (expiryDate < nowString) {
+      return styles.expired;
+    }
+  };
   return (
     <>
       <View style={styles.itemCard}>
-        <View style={styles.details}>
-          <Text style={styles.name}>{name}</Text>
-          <Text style={styles.itemLabel}>
+        <View style={styles.name}>
+          <Text style={[styles.name, isExpired()]}>{name}</Text>
+          <Text style={[styles.itemLabel, isExpired()]}>
             Added:{' '}
-            <Text style={styles.value}>
+            <Text style={[styles.value, isExpired()]}>
               {isYesterday ? 'Yesterday' : createdDate}
             </Text>
           </Text>
-          <Text style={styles.itemLabel}>
-            Expires: <Text style={styles.value}>{expiryDate}</Text>
+          <Text style={[styles.itemLabel, isExpired()]}>
+            {expiryDate < nowString ? 'Expired' : 'Expires:'}
+            <Text style={styles.value}>
+              {expiryDate < nowString ? '' : expiryDate}
+            </Text>
           </Text>
         </View>
         <View style={styles.action}>
           <View style={styles.row}>
-            <View>
+            <View style={styles.qtyWrapper}>
               <Text style={styles.qty}>{quantity}</Text>
             </View>
-            <TouchableOpacity onPress={() => openEditModal(id)}>
-              <Edit style={styles.icon} width="25" height="25" />
+            <TouchableOpacity onPress={isExpired}>
+              <Edit width="25" height="25" />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => openTrashModal()}>
-              <Delete width="25" height="25" style={styles.icon}/>
+              <Delete width="25" height="25" />
             </TouchableOpacity>
           </View>
           <Donut color={color} percentage={expiry_percentage} />
