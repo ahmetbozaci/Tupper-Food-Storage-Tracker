@@ -4,12 +4,11 @@ import {
   StyleSheet,
   Text,
   View,
-  // TouchableOpacity,
   ImageBackground,
   TouchableWithoutFeedback,
   ActivityIndicator,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import COLORS from '../../color';
 import AppHeader from '../../shared/AppHeader';
 import {fontSz, heightPercentage, widthPercentage} from '../../config';
@@ -24,10 +23,25 @@ import {
 } from '../../api/food';
 import {useQuery} from '@tanstack/react-query';
 import {useAppDispatch} from '../../features/store';
+import messaging from '@react-native-firebase/messaging';
+import {saveTokenToDB, removeNotificationToken} from '../../api/auth';
 
 interface Props {
   navigation: any;
 }
+
+const requestFCMPermission = async () => {
+  const response = await messaging().requestPermission();
+  const enabled =
+    response === messaging.AuthorizationStatus.AUTHORIZED ||
+    response === messaging.AuthorizationStatus.PROVISIONAL;
+
+  if (enabled) {
+    const fcmToken = await messaging().getToken();
+    // console.log('fcmToken', fcmToken);
+    saveTokenToDB(fcmToken);
+  }
+};
 
 const Home: React.FC<Props> = ({navigation}) => {
   const [logoutModalVisible, setLogoutModalVisible] = useState<boolean>(false);
@@ -52,6 +66,15 @@ const Home: React.FC<Props> = ({navigation}) => {
     retry: true,
   });
 
+  useEffect(() => {
+    requestFCMPermission();
+
+    // listen to token change
+    return messaging().onTokenRefresh(token => {
+      saveTokenToDB(token);
+    });
+  }, []);
+
   const toggleLogoutModal = () => {
     setLogoutModalVisible(!logoutModalVisible);
   };
@@ -59,6 +82,7 @@ const Home: React.FC<Props> = ({navigation}) => {
   const dispatch = useAppDispatch();
   const handleLogout = () => {
     toggleLogoutModal();
+    removeNotificationToken();
     setTimeout(() => {
       dispatch(logout());
     }, 300);
