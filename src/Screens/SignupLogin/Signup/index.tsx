@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Platform,
+  Pressable,
 } from 'react-native';
 import {Formik} from 'formik';
 import styles from '../styles';
@@ -23,6 +24,9 @@ import {heightPercentage} from '../../../config';
 import {userSignUp} from '../../../api/auth';
 import {showMessage} from 'react-native-flash-message';
 import {SignupData} from '../../../interfaces/Auth';
+import {useTogglePasswordVisibility} from '../hooks/useTogglePasswordVisibility';
+import EyeClose from '../../../../assets/svg/eye-close.svg';
+import EyeOpen from '../../../../assets/svg/eye-open.svg';
 
 interface Props {
   navigation: any;
@@ -31,6 +35,7 @@ interface Props {
 const SignupForm: React.FC<Props> = ({navigation}) => {
   const loading = useAppSelector((state: RootState) => state.signup.loading);
   const dispatch = useAppDispatch();
+  const {passwordVisibility, hideShowPassword} = useTogglePasswordVisibility();
 
   const initialValues = {
     name: '',
@@ -106,32 +111,51 @@ const SignupForm: React.FC<Props> = ({navigation}) => {
                 {touched.zipCode && errors.zipCode && (
                   <Text style={styles.errorText}>{errors.zipCode}</Text>
                 )}
-                <TextInput
-                  style={styles.input}
-                  placeholder="Password"
-                  placeholderTextColor={COLORS.gray8}
-                  onChangeText={handleChange('password')}
-                  value={values.password}
-                  secureTextEntry={true}
-                  autoCapitalize="none"
-                />
-                {touched.password && errors.password && (
-                  <Text style={styles.errorText}>{errors.password}</Text>
-                )}
-                <TextInput
-                  style={styles.input}
-                  placeholderTextColor={COLORS.gray8}
-                  placeholder="Confirm Password"
-                  onChangeText={handleChange('passwordConfirmation')}
-                  secureTextEntry={true}
-                  autoCapitalize="none"
-                />
-                {touched.passwordConfirmation &&
-                  errors.passwordConfirmation && (
-                    <Text style={styles.errorText}>
-                      {errors.passwordConfirmation}
-                    </Text>
+                <View style={styles.passwordContainer}>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Password"
+                    placeholderTextColor={COLORS.gray8}
+                    onChangeText={handleChange('password')}
+                    value={values.password}
+                    secureTextEntry={passwordVisibility}
+                    autoCapitalize="none"
+                  />
+                  <Pressable onPress={hideShowPassword}>
+                    {passwordVisibility ? (
+                      <EyeOpen style={styles.eye} />
+                    ) : (
+                      <EyeClose style={styles.eye} />
+                    )}
+                  </Pressable>
+                  {touched.password && errors.password && (
+                    <Text style={styles.errorText}>{errors.password}</Text>
                   )}
+                </View>
+                <View style={styles.passwordContainer}>
+                  <TextInput
+                    style={styles.input}
+                    placeholderTextColor={COLORS.gray8}
+                    placeholder="Confirm Password"
+                    onChangeText={handleChange('passwordConfirmation')}
+                    secureTextEntry={passwordVisibility}
+                    value={values.passwordConfirmation}
+                    autoCapitalize="none"
+                  />
+                  <Pressable onPress={hideShowPassword}>
+                    {passwordVisibility ? (
+                      <EyeOpen style={styles.eye} />
+                    ) : (
+                      <EyeClose style={styles.eye} />
+                    )}
+                  </Pressable>
+                  {touched.passwordConfirmation &&
+                    errors.passwordConfirmation && (
+                      <Text style={styles.errorText}>
+                        {errors.passwordConfirmation}
+                      </Text>
+                    )}
+                </View>
                 <CustomButton
                   loading={loading}
                   onPress={() => {

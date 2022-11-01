@@ -1,7 +1,7 @@
 import {useState} from 'react';
 
 export const useTogglePasswordVisibility = () => {
-  const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [passwordVisibility, setPasswordVisibility] = useState(true);
 
   const hideShowPassword = () => {
     setPasswordVisibility(!passwordVisibility);

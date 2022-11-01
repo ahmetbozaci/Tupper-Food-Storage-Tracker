@@ -24,8 +24,8 @@ import {
 import {login as loginReducer} from '../../../features/loginSlice';
 import {LoginData} from '../../../interfaces/Auth';
 import COLORS from '../../../color';
-import EyeClose from '../../../assets/svg/eye-close.svg';
-import EyeOpen from '../../../assets/svg/eye-open.svg';
+import EyeClose from '../../../../assets/svg/eye-close.svg';
+import EyeOpen from '../../../../assets/svg/eye-open.svg';
 import {useTogglePasswordVisibility} from '../hooks/useTogglePasswordVisibility';
 
 interface Props {
