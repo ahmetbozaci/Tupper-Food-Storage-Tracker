@@ -9,16 +9,20 @@ import {
   Platform,
 } from 'react-native';
 import {Formik} from 'formik';
-import styles from '../loginSignupStyles';
+import styles from '../styles';
 import validationSchema from './validationSchema';
-import CustomButton from '../../shared/Button';
-import {RootState, useAppDispatch, useAppSelector} from '../../features/store';
-import COLORS from '../../color';
-import AuthHeader from '../../shared/AuthHeader';
-import {heightPercentage} from '../../config';
-import {userSignUp} from '../../api/auth';
+import CustomButton from '../../../shared/Button';
+import {
+  RootState,
+  useAppDispatch,
+  useAppSelector,
+} from '../../../features/store';
+import COLORS from '../../../color';
+import AuthHeader from '../../../shared/AuthHeader';
+import {heightPercentage} from '../../../config';
+import {userSignUp} from '../../../api/auth';
 import {showMessage} from 'react-native-flash-message';
-import {SignupData} from '../../interfaces/Auth';
+import {SignupData} from '../../../interfaces/Auth';
 
 interface Props {
   navigation: any;

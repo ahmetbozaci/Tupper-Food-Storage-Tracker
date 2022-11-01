@@ -9,20 +9,24 @@ import {
   Pressable,
 } from 'react-native';
 import {Formik} from 'formik';
-import styles from '../loginSignupStyles';
+import styles from '../styles';
 import validationSchema from './validationSchema';
-import CustomButton from '../../shared/Button';
+import CustomButton from '../../../shared/Button';
 import {showMessage} from 'react-native-flash-message';
-import {heightPercentage} from '../../config';
-import AuthHeader from '../../shared/AuthHeader';
-import {userLogin} from '../../api/auth';
-import {useAppDispatch, useAppSelector, RootState} from '../../features/store';
-import {login as loginReducer} from '../../features/loginSlice';
-import {LoginData} from '../../interfaces/Auth';
-import COLORS from '../../color';
+import {heightPercentage} from '../../../config';
+import AuthHeader from '../../../shared/AuthHeader';
+import {userLogin} from '../../../api/auth';
+import {
+  useAppDispatch,
+  useAppSelector,
+  RootState,
+} from '../../../features/store';
+import {login as loginReducer} from '../../../features/loginSlice';
+import {LoginData} from '../../../interfaces/Auth';
+import COLORS from '../../../color';
 import EyeClose from '../../../assets/svg/eye-close.svg';
 import EyeOpen from '../../../assets/svg/eye-open.svg';
-import {useTogglePasswordVisibility} from './useTogglePasswordVisibility';
+import {useTogglePasswordVisibility} from '../hooks/useTogglePasswordVisibility';
 
 interface Props {
   navigation: any;
