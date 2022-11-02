@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     marginVertical: heightPercentage(38),
   },
   titleTextLogin: {
-    marginVertical: heightPercentage(60),
+    marginVertical: heightPercentage(80),
   },
   errorText: {
     fontSize: 12,
