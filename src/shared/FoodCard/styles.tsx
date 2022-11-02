@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
     paddingLeft: widthPercentage(20),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: heightPercentage(90),
-    shadowColor: 'rgba(0, 0, 0, 0.25)',
+    height: heightPercentage(120),
+    shadowColor: 'rgba(0, 0, 0, 1)',
     shadowOffset: {
       width: 0,
       height: 1,
