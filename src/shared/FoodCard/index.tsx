@@ -274,7 +274,7 @@ const FoodCard: React.FC<Props> = ({item, color}) => {
             <View style={styles.qtyWrapper}>
               <Text style={styles.qty}>{quantity}</Text>
             </View>
-            <TouchableOpacity onPress={isExpired}>
+            <TouchableOpacity>
               <Edit width="25" height="25" />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => openTrashModal()}>
