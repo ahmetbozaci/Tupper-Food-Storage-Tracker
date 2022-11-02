@@ -55,9 +55,8 @@ const EnterEmail: React.FC<Props> = ({navigation}) => {
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
-              onSubmit={(values, actions) => {
+              onSubmit={values => {
                 enterEmail(values);
-                actions.resetForm();
               }}>
               {({values, handleChange, errors, touched, handleSubmit}) => (
                 <View>
