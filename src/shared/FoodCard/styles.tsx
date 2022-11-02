@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {fontSz, heightPercentage, widthPercentage} from '../../config';
 import COLORS from '../../color';
-
 const styles = StyleSheet.create({
   itemCard: {
     marginVertical: heightPercentage(10),
@@ -11,8 +10,8 @@ const styles = StyleSheet.create({
     paddingLeft: widthPercentage(20),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: heightPercentage(110),
-    shadowColor: 'rgba(0, 0, 0, 0.75)',
+    height: heightPercentage(90),
+    shadowColor: 'rgba(0, 0, 0, 0.25)',
     shadowOffset: {
       width: 0,
       height: 1,
@@ -24,21 +23,21 @@ const styles = StyleSheet.create({
   details: {
     justifyContent: 'center',
   },
+  cardHeader: {
+    flexDirection: 'row',
+  },
   name: {
     fontWeight: '600',
     fontSize: fontSz(16),
-    color: COLORS.black,
     marginBottom: heightPercentage(4),
   },
   itemLabel: {
     fontWeight: '500',
     fontSize: fontSz(10),
-    color: '#9F9F9F',
   },
   value: {
     fontWeight: '300',
     fontSize: fontSz(10),
-    color: '#9F9F9F',
   },
   action: {
     justifyContent: 'space-between',
@@ -48,20 +47,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: widthPercentage(75),
+    width: widthPercentage(85),
   },
   qtyWrapper: {
     width: widthPercentage(18),
     height: heightPercentage(18),
-    borderRadius: 9,
-    backgroundColor: '#D9D9D9',
+    borderRadius: 4,
+    borderColor: COLORS.purple,
+    borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   qty: {
-    fontWeight: '500',
+    fontWeight: '600',
     fontSize: fontSz(10),
-    color: COLORS.black,
+    color: COLORS.purple,
   },
   modalContainer: {
     backgroundColor: 'rgba(0,0,0,0.25)',
@@ -181,8 +181,18 @@ const styles = StyleSheet.create({
   flexEnd: {
     alignItems: 'flex-end',
   },
-  expired: {
-    color: COLORS.red,
+  locationBadge: {
+    borderWidth: 1,
+    borderRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: widthPercentage(44),
+    height: heightPercentage(18),
+    marginLeft: widthPercentage(4),
+  },
+  locationBadgeText: {
+    fontWeight: '500',
+    fontSize: fontSz(10),
   },
   // trashModalContainer: {
   //   backgroundColor: 'rgba(0,0,0,0.25)',
