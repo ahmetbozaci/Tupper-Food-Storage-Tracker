@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: widthPercentage(24),
   },
   content: {
-    paddingHorizontal: widthPercentage(40),
+    paddingHorizontal: widthPercentage(30),
   },
   title: {
     fontWeight: '700',
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     borderColor: COLORS.gray7,
     textAlign: 'center',
     textAlignVertical: 'center',
+    color: COLORS.black,
   },
   focusCell: {
     borderColor: '#000',
