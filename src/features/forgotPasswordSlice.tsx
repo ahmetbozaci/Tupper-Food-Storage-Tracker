@@ -55,7 +55,7 @@ const forgotPasswordSlice = createSlice({
       (state, {payload}: PayloadAction<state>) => {
         const {status, message} = payload;
         if (status === 'success') {
-          state.loading = true;
+          state.loading = false;
           state.status = status;
           state.message = message;
         } else {

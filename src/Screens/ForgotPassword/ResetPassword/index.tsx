@@ -79,13 +79,12 @@ const ResetPassword: React.FC<Props> = ({route, navigation}) => {
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
-              onSubmit={(values, actions) => {
+              onSubmit={values => {
                 resetPassword({
                   password: values.password,
                   email: route.email,
                   otp: route.code,
                 });
-                actions.resetForm();
               }}>
               {({values, handleChange, errors, touched, handleSubmit}) => (
                 <View>
