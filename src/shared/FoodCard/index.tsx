@@ -1,5 +1,4 @@
 import {
-  StyleSheet,
   Text,
   View,
   TouchableOpacity,
@@ -9,7 +8,6 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import moment from 'moment';
-import {fontSz, heightPercentage, widthPercentage} from '../../config';
 import COLORS from '../../color';
 import Edit from '../../../assets/svg/edit-big.svg';
 import Delete from '../../../assets/svg/trash-big.svg';
@@ -25,6 +23,7 @@ import Plus from '../../../assets/svg/circle-plus.svg';
 import {showMessage} from 'react-native-flash-message';
 import TrashModal from '../TrashModal';
 import Donut from './donut';
+import styles from './styles';
 
 interface Props {
   item: Food;
@@ -34,6 +33,7 @@ interface Props {
 const FoodCard: React.FC<Props> = ({item, color}) => {
   const {name, createdDate, expiryDate, quantity, id, storageId} = item;
   const now = moment();
+  const nowString = moment().format('YYYY-MM-DD').toLocaleString();
   const isYesterday =
     moment(now).diff(createdDate, 'days') === 1 ? true : false;
 
@@ -275,11 +275,11 @@ const FoodCard: React.FC<Props> = ({item, color}) => {
             <View style={styles.qtyWrapper}>
               <Text style={styles.qty}>{quantity}</Text>
             </View>
-            <TouchableOpacity onPress={() => openEditModal(id)}>
-              <Edit />
+            <TouchableOpacity onPress={isExpired}>
+              <Edit width="25" height="25" />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => openTrashModal()}>
-              <Delete />
+              <Delete width="25" height="25" />
             </TouchableOpacity>
           </View>
           <Donut color={color} percentage={expiry_percentage} />

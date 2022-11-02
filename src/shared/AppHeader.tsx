@@ -2,6 +2,7 @@ import {StyleSheet, Text, Pressable, View} from 'react-native';
 import React from 'react';
 import {heightPercentage, fontSz, widthPercentage} from '../config';
 import COLORS from '../color';
+import Tupper from '../../assets/svg/tupper.svg';
 
 interface Props {
   onLogoutPress: () => void;
@@ -10,7 +11,7 @@ interface Props {
 const AppHeader: React.FC<Props> = ({onLogoutPress}) => {
   return (
     <View style={styles.header}>
-      <Text style={styles.logoText}>Tupper</Text>
+      <Tupper />
       <Pressable onPress={onLogoutPress}>
         <Text style={styles.logout}>Logout</Text>
       </Pressable>
@@ -25,15 +26,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingLeft: '43.6%',
+    paddingLeft: '33%',
     paddingRight: widthPercentage(21),
     paddingVertical: heightPercentage(20),
   },
-  logoText: {
-    fontSize: fontSz(24),
-    color: COLORS.primary,
-    fontWeight: '900',
-  },
+
   logout: {
     fontWeight: '400',
     fontSize: fontSz(15),
