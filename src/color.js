@@ -25,11 +25,13 @@ const COLORS = {
   primary: '#07AF87',
   blue2: '#14B9FF',
   blue3: 'A4F6E8',
-  purple: 'CBA3FF',
+  purple: '#3C1470',
   green5: '91E183',
   red: '#E92C20',
   yellow: '#FCAF3C',
   lightGreen: '#45EBC3',
+  pantry: '#FFA723',
+  freezer: '#14B9FF',
 };
 
 export default COLORS;

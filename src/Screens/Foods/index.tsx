@@ -6,6 +6,7 @@ import TopTab from '../../navigation/TopTab';
 import LogoutModal from '../../shared/LogoutModal';
 import {useAppDispatch} from '../../features/store';
 import {logout} from '../../features/loginSlice';
+import {removeNotificationToken} from '../../api/auth';
 
 const Foods: React.FC = () => {
   const [logoutModalVisible, setLogoutModalVisible] = useState<boolean>(false);
@@ -17,6 +18,7 @@ const Foods: React.FC = () => {
   const dispatch = useAppDispatch();
   const handleLogout = () => {
     toggleLogoutModal();
+    removeNotificationToken();
     setTimeout(() => {
       dispatch(logout());
     }, 300);

@@ -58,7 +58,10 @@ const LoginForm: React.FC<Props> = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.screen}>
-      <AuthHeader navigation={navigation} />
+      <AuthHeader
+        navigation={navigation}
+        onPress={() => navigation.navigate('Main')}
+      />
       <View style={styles.content}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View>

@@ -9,8 +9,8 @@ import {
 import React, {useState} from 'react';
 import moment from 'moment';
 import COLORS from '../../color';
-import Edit from '../../../assets/svg/edit.svg';
-import Delete from '../../../assets/svg/delete.svg';
+import Edit from '../../../assets/svg/edit-big.svg';
+import Delete from '../../../assets/svg/trash-big.svg';
 import Food from '../../interfaces/Food';
 import {Calendar} from 'react-native-calendars';
 import Calender from '../../../assets/svg/calender.svg';
@@ -36,6 +36,8 @@ const FoodCard: React.FC<Props> = ({item, color}) => {
   const nowString = moment().format('YYYY-MM-DD').toLocaleString();
   const isYesterday =
     moment(now).diff(createdDate, 'days') === 1 ? true : false;
+
+  const isExpired = moment(now).isAfter(expiryDate) ? true : false;
 
   let expiry_percentage: number;
   const daysSpent = moment(now).diff(createdDate, 'days');
@@ -69,7 +71,7 @@ const FoodCard: React.FC<Props> = ({item, color}) => {
     name: '',
     quantity: 1,
     storage: 'Fridge',
-    expiryDate: moment().format('YYYY-MM-DD').toLocaleString(),
+    expiryDate: moment().format('YY/MM/DD').toLocaleString(),
   });
 
   const [locationModalVisible, setLocationModalVisible] = useState(false);
@@ -130,7 +132,7 @@ const FoodCard: React.FC<Props> = ({item, color}) => {
         name: '',
         quantity: 1,
         storage: 'Fridge',
-        expiryDate: moment().format('YYYY-MM-DD').toLocaleString(),
+        expiryDate: moment().format('YY/MM/DD').toLocaleString(),
       };
     });
   };
@@ -192,28 +194,81 @@ const FoodCard: React.FC<Props> = ({item, color}) => {
   const closeTrashModal = () => {
     setTrashModalVisible(false);
   };
-  const isExpired = () => {
-    if (expiryDate < nowString) {
-      return styles.expired;
-    }
-  };
+
+  const badgeColor =
+    storageLocation?.title === 'Fridge'
+      ? COLORS.primary
+      : storageLocation?.title === 'Freezer'
+      ? COLORS.freezer
+      : storageLocation?.title === 'Pantry'
+      ? COLORS.pantry
+      : COLORS.black;
+
+  const badgebackground =
+    storageLocation?.title === 'Fridge'
+      ? '#CFFFF4'
+      : storageLocation?.title === 'Freezer'
+      ? '#D6F3FF'
+      : storageLocation?.title === 'Pantry'
+      ? '#FFF1DD'
+      : COLORS.white;
+
   return (
     <>
       <View style={styles.itemCard}>
-        <View style={styles.name}>
-          <Text style={[styles.name, isExpired()]}>{name}</Text>
-          <Text style={[styles.itemLabel, isExpired()]}>
+        <View style={styles.details}>
+          <View style={styles.cardHeader}>
+            <Text
+              style={[
+                styles.name,
+                {color: isExpired ? COLORS.red : COLORS.black},
+              ]}>
+              {name}
+            </Text>
+            <View
+              style={[
+                styles.locationBadge,
+                {backgroundColor: badgebackground, borderColor: badgeColor},
+              ]}>
+              <Text style={[styles.locationBadgeText, {color: badgeColor}]}>
+                {storageLocation?.title}
+              </Text>
+            </View>
+          </View>
+          <Text
+            style={[
+              styles.itemLabel,
+              {color: isExpired ? COLORS.red : COLORS.gray},
+            ]}>
             Added:{' '}
-            <Text style={[styles.value, isExpired()]}>
-              {isYesterday ? 'Yesterday' : createdDate}
+            <Text
+              style={[
+                styles.value,
+                {color: isExpired ? COLORS.red : COLORS.gray},
+              ]}>
+              {isYesterday
+                ? 'Yesterday'
+                : moment(createdDate).format('YY/MM/DD').toLocaleString()}
             </Text>
           </Text>
-          <Text style={[styles.itemLabel, isExpired()]}>
-            {expiryDate < nowString ? 'Expired' : 'Expires:'}
-            <Text style={styles.value}>
-              {expiryDate < nowString ? '' : expiryDate}
+          {isExpired ? (
+            <Text style={[styles.itemLabel, {color: COLORS.red}]}>Expired</Text>
+          ) : (
+            <Text
+              style={[
+                styles.itemLabel,
+                {color: isExpired ? COLORS.red : COLORS.gray},
+              ]}>
+              Expires:{' '}
+              <Text
+                style={[
+                  styles.value,
+                  {color: isExpired ? COLORS.red : COLORS.gray},
+                ]}>
+                {moment(expiryDate).format('YY/MM/DD').toLocaleString()}
+              </Text>
             </Text>
-          </Text>
+          )}
         </View>
         <View style={styles.action}>
           <View style={styles.row}>
@@ -235,6 +290,7 @@ const FoodCard: React.FC<Props> = ({item, color}) => {
       <View>
         <Modal transparent visible={editModalVisible} animationType="slide">
           <TouchableWithoutFeedback
+            disabled={isLoading}
             onPress={() => {
               closeEditModal();
               // onRequestClose();
@@ -367,5 +423,218 @@ const FoodCard: React.FC<Props> = ({item, color}) => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  itemCard: {
+    marginVertical: heightPercentage(10),
+    borderRadius: 8,
+    backgroundColor: COLORS.white,
+    padding: widthPercentage(7),
+    paddingLeft: widthPercentage(20),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: heightPercentage(90),
+    shadowColor: 'rgba(0, 0, 0, 0.25)',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
+    elevation: 10,
+  },
+  details: {
+    justifyContent: 'center',
+  },
+  cardHeader: {
+    flexDirection: 'row',
+  },
+  name: {
+    fontWeight: '600',
+    fontSize: fontSz(16),
+    marginBottom: heightPercentage(4),
+  },
+  itemLabel: {
+    fontWeight: '500',
+    fontSize: fontSz(10),
+  },
+  value: {
+    fontWeight: '300',
+    fontSize: fontSz(10),
+  },
+  action: {
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: widthPercentage(85),
+  },
+  qtyWrapper: {
+    width: widthPercentage(18),
+    height: heightPercentage(18),
+    borderRadius: 4,
+    borderColor: COLORS.purple,
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  qty: {
+    fontWeight: '600',
+    fontSize: fontSz(10),
+    color: COLORS.purple,
+  },
+  modalContainer: {
+    backgroundColor: 'rgba(0,0,0,0.25)',
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: heightPercentage(82),
+    paddingTop: heightPercentage(70),
+  },
+  modalContent: {
+    backgroundColor: COLORS.white,
+    borderTopRightRadius: 16,
+    borderTopLeftRadius: 16,
+    paddingTop: heightPercentage(22),
+    paddingBottom: heightPercentage(40),
+    paddingHorizontal: widthPercentage(27),
+    width: '94%',
+  },
+  modalheaderTitle: {
+    fontWeight: '600',
+    fontSize: fontSz(20),
+    color: COLORS.primary,
+    marginBottom: heightPercentage(10),
+  },
+  itemInput: {
+    borderWidth: 1,
+    borderColor: COLORS.gray7,
+    borderRadius: 12,
+    backgroundColor: COLORS.white,
+    paddingVertical: heightPercentage(10),
+    paddingHorizontal: widthPercentage(15),
+    marginBottom: heightPercentage(30),
+  },
+  inputText: {
+    fontWeight: '500',
+    fontSize: fontSz(16),
+    color: COLORS.gray7,
+  },
+  spacedRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  label: {
+    fontWeight: '400',
+    fontSize: fontSz(16),
+    color: COLORS.black,
+    marginBottom: heightPercentage(10),
+  },
+  select: {
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderColor: COLORS.gray7,
+    borderRadius: 7,
+    paddingVertical: heightPercentage(6),
+    paddingHorizontal: widthPercentage(10),
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: widthPercentage(134),
+  },
+  alignView: {
+    alignItems: 'center',
+  },
+  unit: {
+    fontWeight: '700',
+    fontSize: fontSz(30),
+    color: COLORS.black,
+  },
+  unitControl: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: widthPercentage(95),
+  },
+  dateView: {
+    marginTop: heightPercentage(25),
+  },
+  locationDrop: {
+    backgroundColor: COLORS.white,
+    borderBottomLeftRadius: 6,
+    borderBottomRightRadius: 6,
+    borderWidth: 2,
+    borderColor: COLORS.white,
+    zIndex: 2,
+    shadowColor: COLORS.gray,
+    shadowOffset: {
+      width: 4,
+      height: 6,
+    },
+    shadowOpacity: 0.3,
+    elevation: 1,
+  },
+  storageLocation: {
+    paddingVertical: 6,
+    borderColor: COLORS.gray7,
+    paddingHorizontal: widthPercentage(10),
+  },
+  selectText: {
+    fontWeight: '500',
+    fontSize: fontSz(14),
+    color: COLORS.black,
+  },
+  btn: {
+    paddingVertical: heightPercentage(15),
+    paddingHorizontal: widthPercentage(46),
+    // height: heightPercentage(50),
+  },
+  btnText: {
+    fontWeight: '500',
+    fontSize: fontSz(16),
+  },
+  calendarView: {
+    width: '94%',
+  },
+  calendar: {
+    borderRadius: 13,
+  },
+  flexEnd: {
+    alignItems: 'flex-end',
+  },
+  locationBadge: {
+    borderWidth: 1,
+    borderRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: widthPercentage(44),
+    height: heightPercentage(18),
+    marginLeft: widthPercentage(4),
+  },
+  locationBadgeText: {
+    fontWeight: '500',
+    fontSize: fontSz(10),
+  },
+  // trashModalContainer: {
+  //   backgroundColor: 'rgba(0,0,0,0.25)',
+  //   flex: 1,
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   marginBottom: heightPercentage(82),
+  //   paddingTop: heightPercentage(70),
+  // },
+  // trashModalContent: {
+  //   backgroundColor: COLORS.white,
+  //   borderRadius: 16,
+  //   // borderTopRightRadius: 16,
+  //   // borderTopLeftRadius: 16,
+  //   paddingTop: heightPercentage(22),
+  //   paddingBottom: heightPercentage(40),
+  //   paddingHorizontal: widthPercentage(27),
+  //   width: '94%',
+  // },
+});
 
 export default FoodCard;
