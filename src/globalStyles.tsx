@@ -22,6 +22,9 @@ const globalStyles = StyleSheet.create({
     fontFamily: 'POPPINS-MEDIUM',
   },
   poppinsRegular: {
-    fontFamily: 'POPPINS-REGULAR',
+    fontFamily: 'KolkerBrush-Regular',
+    color: 'black',
   },
 });
+
+export default globalStyles;

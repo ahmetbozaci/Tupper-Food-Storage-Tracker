@@ -52,6 +52,8 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>UIAppFonts</key>
-	<array/>
+	<array>
+		<string>KolkerBrush-Regular.ttf</string>
+	</array>
 </dict>
 </plist>

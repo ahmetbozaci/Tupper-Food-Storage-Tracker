@@ -19,7 +19,7 @@ const Footer: React.FC<Props> = ({goToNextSlide, currentSlideIndex}) => {
   };
   return (
     <View>
-      <View style={styles.indicatorContainer}>
+      <View style={[styles.indicatorContainer]}>
         {DATA.map((_, index) => (
           <View
             key={index}
