@@ -11,8 +11,8 @@ import React, {useState} from 'react';
 import moment from 'moment';
 import {fontSz, heightPercentage, widthPercentage} from '../../config';
 import COLORS from '../../color';
-import Edit from '../../../assets/svg/edit.svg';
-import Delete from '../../../assets/svg/delete.svg';
+import Edit from '../../../assets/svg/edit-big.svg';
+import Delete from '../../../assets/svg/trash-big.svg';
 import Food from '../../interfaces/Food';
 import {Calendar} from 'react-native-calendars';
 import Calender from '../../../assets/svg/calender.svg';
@@ -36,6 +36,8 @@ const FoodCard: React.FC<Props> = ({item, color}) => {
   const now = moment();
   const isYesterday =
     moment(now).diff(createdDate, 'days') === 1 ? true : false;
+
+  const isExpired = moment(now).isAfter(expiryDate) ? true : false;
 
   let expiry_percentage: number;
   const daysSpent = moment(now).diff(createdDate, 'days');
@@ -69,7 +71,7 @@ const FoodCard: React.FC<Props> = ({item, color}) => {
     name: '',
     quantity: 1,
     storage: 'Fridge',
-    expiryDate: moment().format('YYYY-MM-DD').toLocaleString(),
+    expiryDate: moment().format('YY/MM/DD').toLocaleString(),
   });
 
   const [locationModalVisible, setLocationModalVisible] = useState(false);
@@ -130,7 +132,7 @@ const FoodCard: React.FC<Props> = ({item, color}) => {
         name: '',
         quantity: 1,
         storage: 'Fridge',
-        expiryDate: moment().format('YYYY-MM-DD').toLocaleString(),
+        expiryDate: moment().format('YY/MM/DD').toLocaleString(),
       };
     });
   };
@@ -193,20 +195,80 @@ const FoodCard: React.FC<Props> = ({item, color}) => {
     setTrashModalVisible(false);
   };
 
+  const badgeColor =
+    storageLocation?.title === 'Fridge'
+      ? COLORS.primary
+      : storageLocation?.title === 'Freezer'
+      ? COLORS.freezer
+      : storageLocation?.title === 'Pantry'
+      ? COLORS.pantry
+      : COLORS.black;
+
+  const badgebackground =
+    storageLocation?.title === 'Fridge'
+      ? '#CFFFF4'
+      : storageLocation?.title === 'Freezer'
+      ? '#D6F3FF'
+      : storageLocation?.title === 'Pantry'
+      ? '#FFF1DD'
+      : COLORS.white;
+
   return (
     <>
       <View style={styles.itemCard}>
         <View style={styles.details}>
-          <Text style={styles.name}>{name}</Text>
-          <Text style={styles.itemLabel}>
+          <View style={styles.cardHeader}>
+            <Text
+              style={[
+                styles.name,
+                {color: isExpired ? COLORS.red : COLORS.black},
+              ]}>
+              {name}
+            </Text>
+            <View
+              style={[
+                styles.locationBadge,
+                {backgroundColor: badgebackground, borderColor: badgeColor},
+              ]}>
+              <Text style={[styles.locationBadgeText, {color: badgeColor}]}>
+                {storageLocation?.title}
+              </Text>
+            </View>
+          </View>
+          <Text
+            style={[
+              styles.itemLabel,
+              {color: isExpired ? COLORS.red : COLORS.gray},
+            ]}>
             Added:{' '}
-            <Text style={styles.value}>
-              {isYesterday ? 'Yesterday' : createdDate}
+            <Text
+              style={[
+                styles.value,
+                {color: isExpired ? COLORS.red : COLORS.gray},
+              ]}>
+              {isYesterday
+                ? 'Yesterday'
+                : moment(createdDate).format('YY/MM/DD').toLocaleString()}
             </Text>
           </Text>
-          <Text style={styles.itemLabel}>
-            Expires: <Text style={styles.value}>{expiryDate}</Text>
-          </Text>
+          {isExpired ? (
+            <Text style={[styles.itemLabel, {color: COLORS.red}]}>Expired</Text>
+          ) : (
+            <Text
+              style={[
+                styles.itemLabel,
+                {color: isExpired ? COLORS.red : COLORS.gray},
+              ]}>
+              Expires:{' '}
+              <Text
+                style={[
+                  styles.value,
+                  {color: isExpired ? COLORS.red : COLORS.gray},
+                ]}>
+                {moment(expiryDate).format('YY/MM/DD').toLocaleString()}
+              </Text>
+            </Text>
+          )}
         </View>
         <View style={styles.action}>
           <View style={styles.row}>
@@ -228,6 +290,7 @@ const FoodCard: React.FC<Props> = ({item, color}) => {
       <View>
         <Modal transparent visible={editModalVisible} animationType="slide">
           <TouchableWithoutFeedback
+            disabled={isLoading}
             onPress={() => {
               closeEditModal();
               // onRequestClose();
@@ -370,7 +433,7 @@ const styles = StyleSheet.create({
     paddingLeft: widthPercentage(20),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: heightPercentage(80),
+    height: heightPercentage(90),
     shadowColor: 'rgba(0, 0, 0, 0.25)',
     shadowOffset: {
       width: 0,
@@ -383,21 +446,21 @@ const styles = StyleSheet.create({
   details: {
     justifyContent: 'center',
   },
+  cardHeader: {
+    flexDirection: 'row',
+  },
   name: {
     fontWeight: '600',
     fontSize: fontSz(16),
-    color: COLORS.black,
     marginBottom: heightPercentage(4),
   },
   itemLabel: {
     fontWeight: '500',
     fontSize: fontSz(10),
-    color: '#9F9F9F',
   },
   value: {
     fontWeight: '300',
     fontSize: fontSz(10),
-    color: '#9F9F9F',
   },
   action: {
     justifyContent: 'space-between',
@@ -407,20 +470,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: widthPercentage(75),
+    width: widthPercentage(85),
   },
   qtyWrapper: {
     width: widthPercentage(18),
     height: heightPercentage(18),
-    borderRadius: 9,
-    backgroundColor: '#D9D9D9',
+    borderRadius: 4,
+    borderColor: COLORS.purple,
+    borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   qty: {
-    fontWeight: '500',
+    fontWeight: '600',
     fontSize: fontSz(10),
-    color: COLORS.black,
+    color: COLORS.purple,
   },
   modalContainer: {
     backgroundColor: 'rgba(0,0,0,0.25)',
@@ -539,6 +603,19 @@ const styles = StyleSheet.create({
   },
   flexEnd: {
     alignItems: 'flex-end',
+  },
+  locationBadge: {
+    borderWidth: 1,
+    borderRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: widthPercentage(44),
+    height: heightPercentage(18),
+    marginLeft: widthPercentage(4),
+  },
+  locationBadgeText: {
+    fontWeight: '500',
+    fontSize: fontSz(10),
   },
   // trashModalContainer: {
   //   backgroundColor: 'rgba(0,0,0,0.25)',
