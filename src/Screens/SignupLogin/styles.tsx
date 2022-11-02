@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     color: COLORS.green3,
   },
   titleTextSignup: {
-    marginVertical: heightPercentage(45),
+    marginVertical: heightPercentage(38),
   },
   titleTextLogin: {
     marginVertical: heightPercentage(60),
@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: COLORS.gray7,
     paddingVertical: heightPercentage(15),
-    paddingHorizontal: widthPercentage(30),
-    marginVertical: heightPercentage(10),
+    paddingHorizontal: widthPercentage(20),
+    marginVertical: heightPercentage(8),
     fontSize: fontSz(16),
     borderRadius: 12,
     color: COLORS.green,
