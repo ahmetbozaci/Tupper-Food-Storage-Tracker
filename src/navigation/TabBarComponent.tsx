@@ -7,10 +7,12 @@ import {
 } from 'react-native';
 import React, {useCallback, useState} from 'react';
 
-import Home_Inactive from '../../assets/svg/home-inactive.svg';
+import Home_active from '../../assets/svg/home-active.svg';
+import Home_inactive from '../../assets/svg/home-inactive.svg';
 import Add_Inactive from '../../assets/svg/add-inactive.svg';
 import Add_Active from '../../assets/svg/add-active.svg';
 import Guide_Inactive from '../../assets/svg/guide-inactive.svg';
+import Guide_active from '../../assets/svg/guide-active.svg';
 import {heightPercentage, widthPercentage, fontSz} from '../config';
 import COLORS from '../color';
 import AddModal from '../Screens/Add';
@@ -18,16 +20,13 @@ import AddModal from '../Screens/Add';
 const iconsObj = {
   Home: {
     inActive: (
-      <Home_Inactive
+      <Home_inactive
         height={heightPercentage(31)}
         width={widthPercentage(33)}
       />
     ),
     isActive: (
-      <Home_Inactive
-        height={heightPercentage(31)}
-        width={widthPercentage(33)}
-      />
+      <Home_active height={heightPercentage(31)} width={widthPercentage(33)} />
     ),
   },
   Add: {
@@ -46,10 +45,7 @@ const iconsObj = {
       />
     ),
     isActive: (
-      <Guide_Inactive
-        height={heightPercentage(31)}
-        width={widthPercentage(33)}
-      />
+      <Guide_active height={heightPercentage(31)} width={widthPercentage(33)} />
     ),
   },
 };
@@ -92,7 +88,10 @@ const TabBarComponent: React.FC<TabBarComponentProps> = ({
         <TouchableOpacity
           style={styles.addBtn}
           onPress={() => setModalVisible(true)}>
-          <Add_Active width={33} />
+          <Add_Active
+            height={heightPercentage(31)}
+            width={widthPercentage(33)}
+          />
           <Text
             style={[
               styles.tabLabel,
@@ -171,10 +170,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingTop: heightPercentage(16),
+    justifyContent: 'center',
   },
   tabLabel: {
     fontWeight: '500',
     fontSize: fontSz(15),
+    textAlign: 'center',
   },
   addBtn: {
     marginTop: heightPercentage(13),
