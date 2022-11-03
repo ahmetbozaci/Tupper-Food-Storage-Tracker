@@ -4,24 +4,26 @@ import COLORS from '../../color';
 const styles = StyleSheet.create({
   itemCard: {
     marginVertical: heightPercentage(10),
+    marginHorizontal: widthPercentage(5),
     borderRadius: 8,
     backgroundColor: COLORS.white,
     padding: widthPercentage(7),
-    paddingLeft: widthPercentage(20),
+    // paddingHorizontal: widthPercentage(20),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: heightPercentage(120),
-    shadowColor: 'rgba(0, 0, 0, 1)',
+    height: heightPercentage(125),
+    shadowColor: 'rgba(12, 104, 128, 1)',
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: 0,
     },
     shadowOpacity: 0.8,
     shadowRadius: 3,
-    elevation: 10,
+    elevation: 15,
   },
   details: {
     justifyContent: 'center',
+    paddingLeft: widthPercentage(15),
   },
   cardHeader: {
     flexDirection: 'row',
@@ -43,26 +45,29 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
   },
+
   row: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: widthPercentage(85),
   },
   qtyWrapper: {
-    width: widthPercentage(18),
-    height: heightPercentage(18),
     borderRadius: 4,
     borderColor: COLORS.purple,
-    borderWidth: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    borderWidth: 1.5,
   },
   qty: {
     fontWeight: '600',
-    fontSize: fontSz(10),
+    fontSize: fontSz(15),
     color: COLORS.purple,
+    paddingHorizontal: 4.5,
+    paddingVertical: 1.5,
   },
+  editIcon: {
+    marginLeft: 10,
+    marginRight: 4,
+  },
+
   modalContainer: {
     backgroundColor: 'rgba(0,0,0,0.25)',
     flex: 1,

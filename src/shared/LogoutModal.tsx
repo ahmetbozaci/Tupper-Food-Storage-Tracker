@@ -12,14 +12,11 @@ interface Props {
 }
 
 const LogoutModal: React.FC<Props> = ({visible, close, logout}) => {
-  // const [logoutModalVisible, setLogoutModalVisible] = useState<boolean>(false);
-
-  // const toggleLogoutModal = () => {
-  //   setLogoutModalVisible(!logoutModalVisible);
-  // };
   return (
     <CustomModal visible={visible} contentStyle={styles.modalContent}>
-      <Text style={styles.modalTitle}>Are you sure you want to log out?</Text>
+      <Text style={styles.modalTitle}>
+        Are you sure you want to {'\n'}log out?
+      </Text>
       <View style={styles.btnWrapper}>
         <CustomButton
           buttonText="No"
@@ -40,23 +37,23 @@ const LogoutModal: React.FC<Props> = ({visible, close, logout}) => {
 
 const styles = StyleSheet.create({
   modalContent: {
-    paddingTop: heightPercentage(20),
-    paddingBottom: heightPercentage(30),
-    paddingHorizontal: widthPercentage(43),
+    padding: widthPercentage(35),
+    paddingVertical: heightPercentage(40),
   },
   modalTitle: {
     fontWeight: '600',
     fontSize: fontSz(20),
     color: COLORS.primary,
     textAlign: 'center',
-    marginBottom: heightPercentage(37),
+    lineHeight: 25,
+    marginBottom: heightPercentage(50),
   },
   btnWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   button: {
-    width: widthPercentage(114),
+    width: widthPercentage(120),
     paddingVertical: heightPercentage(13),
   },
   btnText: {

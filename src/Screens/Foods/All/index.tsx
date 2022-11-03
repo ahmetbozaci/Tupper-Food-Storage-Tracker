@@ -1,5 +1,5 @@
 import React from 'react';
-import FoodList from '../../../shared/FoodList';
+import FoodList from '../FoodList';
 // import {useQuery} from '@tanstack/react-query';
 // import {fetchAllFoods} from '../../../api/food';
 

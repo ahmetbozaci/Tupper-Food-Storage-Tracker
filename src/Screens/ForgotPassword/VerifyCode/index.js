@@ -30,7 +30,7 @@ const VerifyCode = ({route, navigation}) => {
     navigation.navigate('ResetPassword', {
       otp: value,
       email,
-    }); // Navigate to reset password screen
+    });
   };
   return (
     <SafeAreaView style={styles.screen}>
