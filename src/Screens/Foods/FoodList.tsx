@@ -106,7 +106,9 @@ const FoodList: React.FC<Props> = ({headerTitle}) => {
         data={DATA}
         keyExtractor={(item, index) => index + '123'}
         renderItem={({item}) => {
-          return <FoodCard item={item} color="red" />;
+          return (
+            <FoodCard storageTitle={headerTitle} item={item} color="red" />
+          );
         }}
       />
     </View>

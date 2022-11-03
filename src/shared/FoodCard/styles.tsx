@@ -8,22 +8,16 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: COLORS.white,
     padding: widthPercentage(7),
-    // paddingHorizontal: widthPercentage(20),
     flexDirection: 'row',
     justifyContent: 'space-between',
-<<<<<<< HEAD
     shadowColor: 'rgba(0, 0, 0, 1)',
-=======
-    height: heightPercentage(125),
-    shadowColor: 'rgba(12, 104, 128, 1)',
->>>>>>> b4182e1161b2d3d145cf6d25f89890f56b852c49
     shadowOffset: {
       width: 0,
-      height: 0,
+      height: 1,
     },
     shadowOpacity: 0.8,
     shadowRadius: 3,
-    elevation: 15,
+    elevation: 10,
   },
   details: {
     justifyContent: 'center',
@@ -49,34 +43,31 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
   },
-
   row: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-<<<<<<< HEAD
     width: widthPercentage(85),
     marginBottom: heightPercentage(16),
-=======
->>>>>>> b4182e1161b2d3d145cf6d25f89890f56b852c49
   },
   qtyWrapper: {
     borderRadius: 4,
     borderColor: COLORS.purple,
     borderWidth: 1.5,
+    width: widthPercentage(16),
+    height: widthPercentage(16),
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   qty: {
     fontWeight: '600',
-    fontSize: fontSz(15),
+    fontSize: fontSz(10),
     color: COLORS.purple,
-    paddingHorizontal: 4.5,
-    paddingVertical: 1.5,
   },
   editIcon: {
     marginLeft: 10,
     marginRight: 4,
   },
-
   modalContainer: {
     backgroundColor: 'rgba(0,0,0,0.25)',
     flex: 1,
