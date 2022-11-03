@@ -21,10 +21,13 @@
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome!
+Issues, and feature requests are welcome!
 
 Feel free to check the [issues page](../../issues/).
 
+## 🤝 Acknowledgements
+
+to Paolo Shin the author of the original design, as required by the Creative Commons License.
 ## Show your support
 
 Give a ⭐️ if you like this project!
