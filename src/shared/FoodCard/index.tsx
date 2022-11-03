@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Text,
   View,
@@ -51,12 +52,6 @@ const FoodCard: React.FC<Props> = ({item, color, storageTitle}) => {
   } else {
     expiry_percentage = (daysSpent / (daysSpent + remainder)) * 100;
   }
-  // console.log({
-  //   daysSpent: daysSpent,
-  //   remainingDays: remainingDays,
-  //   remainder: remainder,
-  // });
-
   const [calendarVisible, setIsCalendarVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
   const [trashModalVisible, setTrashModalVisible] = useState<boolean>(false);
@@ -114,7 +109,6 @@ const FoodCard: React.FC<Props> = ({item, color, storageTitle}) => {
     setIsCalendarVisible(!calendarVisible);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const openEditModal = (itemId: string) => {
     setEditModalVisible(true);
     setFoodItem(() => {
@@ -143,13 +137,9 @@ const FoodCard: React.FC<Props> = ({item, color, storageTitle}) => {
   const queryClient = useQueryClient();
   const {mutate, isLoading} = useMutation(updateFood, {
     onMutate: async () => {
-      // console.log(storageLocation?.title);
       // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
       await queryClient.cancelQueries(['allfoods']);
       await queryClient.cancelQueries([`${storageLocation.title}`]);
-      // await queryClient.cancelQueries(['Fridge']);
-      // await queryClient.cancelQueries(['Freezer']);
-      // await queryClient.cancelQueries(['Pantry']);
     },
     // If the mutation fails, use the context we returned above
     onError: () => {
@@ -171,9 +161,6 @@ const FoodCard: React.FC<Props> = ({item, color, storageTitle}) => {
     onSettled: () => {
       queryClient.invalidateQueries(['allfoods']);
       queryClient.invalidateQueries([`${storageLocation.title}`]);
-      // queryClient.invalidateQueries(['Fridge']);
-      // queryClient.invalidateQueries(['Pantry']);
-      // queryClient.invalidateQueries(['Freezer']);
     },
   });
 
@@ -280,11 +267,16 @@ const FoodCard: React.FC<Props> = ({item, color, storageTitle}) => {
             <View style={styles.qtyWrapper}>
               <Text style={styles.qty}>{quantity}</Text>
             </View>
+<<<<<<< HEAD
             <TouchableOpacity onPress={() => openEditModal(id)}>
               <Edit width="25" height="25" />
+=======
+            <TouchableOpacity style={styles.editIcon}>
+              <Edit width="28" height="28" />
+>>>>>>> b4182e1161b2d3d145cf6d25f89890f56b852c49
             </TouchableOpacity>
             <TouchableOpacity onPress={() => openTrashModal()}>
-              <Delete width="25" height="25" />
+              <Delete width="28" height="28" />
             </TouchableOpacity>
           </View>
           <Donut color={color} percentage={expiry_percentage} />
@@ -298,7 +290,6 @@ const FoodCard: React.FC<Props> = ({item, color, storageTitle}) => {
             disabled={isLoading}
             onPress={() => {
               closeEditModal();
-              // onRequestClose();
             }}>
             <View style={styles.modalContainer}>
               <View style={styles.calendarView}>
@@ -306,7 +297,6 @@ const FoodCard: React.FC<Props> = ({item, color, storageTitle}) => {
                   <Calendar
                     style={styles.calendar}
                     hideExtraDays={true}
-                    // hideDayNames={true}
                     minDate={moment().toLocaleString()}
                     disableAllTouchEventsForDisabledDays={true}
                     onDayPress={day => {

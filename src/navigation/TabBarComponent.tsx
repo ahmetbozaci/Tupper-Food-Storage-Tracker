@@ -20,6 +20,7 @@ import AddModal from '../Screens/Add';
 const iconsObj = {
   Home: {
     inActive: (
+<<<<<<< HEAD
       <Home_inactive
         height={heightPercentage(31)}
         width={widthPercentage(33)}
@@ -27,25 +28,44 @@ const iconsObj = {
     ),
     isActive: (
       <Home_active height={heightPercentage(31)} width={widthPercentage(33)} />
+=======
+      <Home_Inactive
+        height={heightPercentage(30)}
+        width={widthPercentage(30)}
+      />
+    ),
+    isActive: (
+      <Home_Inactive
+        height={heightPercentage(30)}
+        width={widthPercentage(30)}
+      />
+>>>>>>> b4182e1161b2d3d145cf6d25f89890f56b852c49
     ),
   },
   Add: {
     inActive: (
-      <Add_Inactive height={heightPercentage(31)} width={widthPercentage(33)} />
+      <Add_Inactive height={heightPercentage(30)} width={widthPercentage(30)} />
     ),
     isActive: (
-      <Add_Active height={heightPercentage(31)} width={widthPercentage(33)} />
+      <Add_Active height={heightPercentage(30)} width={widthPercentage(30)} />
     ),
   },
   Guide: {
     inActive: (
       <Guide_Inactive
-        height={heightPercentage(31)}
-        width={widthPercentage(33)}
+        height={heightPercentage(30)}
+        width={widthPercentage(30)}
       />
     ),
     isActive: (
+<<<<<<< HEAD
       <Guide_active height={heightPercentage(31)} width={widthPercentage(33)} />
+=======
+      <Guide_Inactive
+        height={heightPercentage(30)}
+        width={widthPercentage(30)}
+      />
+>>>>>>> b4182e1161b2d3d145cf6d25f89890f56b852c49
     ),
   },
 };
@@ -88,10 +108,14 @@ const TabBarComponent: React.FC<TabBarComponentProps> = ({
         <TouchableOpacity
           style={styles.addBtn}
           onPress={() => setModalVisible(true)}>
+<<<<<<< HEAD
           <Add_Active
             height={heightPercentage(31)}
             width={widthPercentage(33)}
           />
+=======
+          <Add_Active width={25} height={25} />
+>>>>>>> b4182e1161b2d3d145cf6d25f89890f56b852c49
           <Text
             style={[
               styles.tabLabel,
@@ -160,17 +184,19 @@ const styles = StyleSheet.create({
   tabBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingBottom: heightPercentage(16),
+    paddingTop: heightPercentage(16),
     backgroundColor: COLORS.white,
-    borderTopWidth: 2,
+    borderTopWidth: 3,
     borderColor: COLORS.background,
-    height: heightPercentage(82),
   },
   tab: {
     flex: 1,
     alignItems: 'center',
+<<<<<<< HEAD
     paddingTop: heightPercentage(16),
     justifyContent: 'center',
+=======
+>>>>>>> b4182e1161b2d3d145cf6d25f89890f56b852c49
   },
   tabLabel: {
     fontWeight: '500',
@@ -178,19 +204,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   addBtn: {
-    marginTop: heightPercentage(13),
-  },
-  modalContainer: {
-    backgroundColor: 'rgba(0,0,0,0.25)',
-    flex: 1,
-    justifyContent: 'flex-end',
-    marginBottom: heightPercentage(82),
-  },
-  modalContent: {
-    backgroundColor: 'red',
-    borderTopRightRadius: 16,
-    borderTopLeftRadius: 16,
-    height: 200,
+    // paddingTop: heightPercentage(16),
   },
 });
 

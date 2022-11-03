@@ -18,10 +18,10 @@ const styles = StyleSheet.create({
     marginTop: heightPercentage(42),
     marginBottom: heightPercentage(102),
   },
-  codeFieldRoot: {marginTop: 20},
+  codeFieldRoot: {marginTop: 50},
   cell: {
     width: widthPercentage(60),
-    height: heightPercentage(72),
+    height: heightPercentage(90),
     borderRadius: 12,
     lineHeight: 60,
     fontSize: fontSz(24),

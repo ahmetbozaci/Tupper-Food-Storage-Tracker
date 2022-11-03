@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     color: COLORS.green3,
   },
   buttonWrapper: {
-    marginTop: heightPercentage(138),
+    marginTop: heightPercentage(100),
   },
   button: {
     width: widthPercentage(230),
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
     fontSize: fontSz(16),
   },
   forgotPassword: {
-    marginBottom: heightPercentage(200),
-    marginTop: heightPercentage(15),
+    marginBottom: heightPercentage(145),
+    marginTop: heightPercentage(20),
     fontSize: fontSz(20),
   },
   signup: {

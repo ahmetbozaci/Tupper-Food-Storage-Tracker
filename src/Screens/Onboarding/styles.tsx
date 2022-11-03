@@ -1,24 +1,22 @@
 import {StyleSheet} from 'react-native';
 import COLORS from '../../color';
 import {fontSz, widthPercentage, heightPercentage} from '../../config';
-
 const styles = StyleSheet.create({
   subtitle: {
     color: COLORS.black,
-    fontSize: fontSz(20),
+    fontSize: fontSz(22),
     textAlign: 'center',
     lineHeight: 24,
-    marginHorizontal: widthPercentage(30),
-    marginBottom: heightPercentage(20),
+    marginHorizontal: widthPercentage(50),
+    marginBottom: heightPercentage(25),
     fontWeight: 'bold',
   },
   title: {
     color: COLORS.green3,
     fontWeight: 'bold',
-    fontSize: fontSz(50),
-    width: '90%',
+    fontSize: fontSz(55),
     marginVertical: heightPercentage(20),
-    // fontFamily: 'POPPINS-BOLD',
+    marginHorizontal: widthPercentage(30),
   },
   indicator: {
     height: 8,
@@ -36,7 +34,7 @@ const styles = StyleSheet.create({
   button: {
     alignSelf: 'flex-end',
     marginRight: heightPercentage(25),
-    width: '35%',
+    width: '32%',
   },
   btnText: {
     fontWeight: '500',
