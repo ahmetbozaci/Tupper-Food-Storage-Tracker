@@ -19,36 +19,36 @@ const iconsObj = {
   Home: {
     inActive: (
       <Home_Inactive
-        height={heightPercentage(31)}
-        width={widthPercentage(33)}
+        height={heightPercentage(30)}
+        width={widthPercentage(30)}
       />
     ),
     isActive: (
       <Home_Inactive
-        height={heightPercentage(31)}
-        width={widthPercentage(33)}
+        height={heightPercentage(30)}
+        width={widthPercentage(30)}
       />
     ),
   },
   Add: {
     inActive: (
-      <Add_Inactive height={heightPercentage(31)} width={widthPercentage(33)} />
+      <Add_Inactive height={heightPercentage(30)} width={widthPercentage(30)} />
     ),
     isActive: (
-      <Add_Active height={heightPercentage(31)} width={widthPercentage(33)} />
+      <Add_Active height={heightPercentage(30)} width={widthPercentage(30)} />
     ),
   },
   Guide: {
     inActive: (
       <Guide_Inactive
-        height={heightPercentage(31)}
-        width={widthPercentage(33)}
+        height={heightPercentage(30)}
+        width={widthPercentage(30)}
       />
     ),
     isActive: (
       <Guide_Inactive
-        height={heightPercentage(31)}
-        width={widthPercentage(33)}
+        height={heightPercentage(30)}
+        width={widthPercentage(30)}
       />
     ),
   },
@@ -92,7 +92,7 @@ const TabBarComponent: React.FC<TabBarComponentProps> = ({
         <TouchableOpacity
           style={styles.addBtn}
           onPress={() => setModalVisible(true)}>
-          <Add_Active width={33} />
+          <Add_Active width={25} height={25} />
           <Text
             style={[
               styles.tabLabel,
@@ -161,35 +161,21 @@ const styles = StyleSheet.create({
   tabBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingBottom: heightPercentage(16),
+    paddingTop: heightPercentage(16),
     backgroundColor: COLORS.white,
-    borderTopWidth: 2,
+    borderTopWidth: 3,
     borderColor: COLORS.background,
-    height: heightPercentage(82),
   },
   tab: {
     flex: 1,
     alignItems: 'center',
-    paddingTop: heightPercentage(16),
   },
   tabLabel: {
     fontWeight: '500',
     fontSize: fontSz(15),
   },
   addBtn: {
-    marginTop: heightPercentage(13),
-  },
-  modalContainer: {
-    backgroundColor: 'rgba(0,0,0,0.25)',
-    flex: 1,
-    justifyContent: 'flex-end',
-    marginBottom: heightPercentage(82),
-  },
-  modalContent: {
-    backgroundColor: 'red',
-    borderTopRightRadius: 16,
-    borderTopLeftRadius: 16,
-    height: 200,
+    // paddingTop: heightPercentage(16),
   },
 });
 
