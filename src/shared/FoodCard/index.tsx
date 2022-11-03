@@ -28,15 +28,19 @@ import styles from './styles';
 interface Props {
   item: Food;
   color: string;
+  storageTitle: string;
 }
 
-const FoodCard: React.FC<Props> = ({item, color}) => {
+const FoodCard: React.FC<Props> = ({item, color, storageTitle}) => {
   const {name, createdDate, expiryDate, quantity, id, storageId} = item;
   const now = moment();
   const isYesterday =
     moment(now).diff(createdDate, 'days') === 1 ? true : false;
 
   const isExpired = moment(now).isAfter(expiryDate) ? true : false;
+
+  const isStorageLocationBadgeVisible =
+    storageTitle === 'All Food' ? true : false;
 
   let expiry_percentage: number;
   const daysSpent = moment(now).diff(createdDate, 'days');
@@ -224,15 +228,17 @@ const FoodCard: React.FC<Props> = ({item, color}) => {
               ]}>
               {name}
             </Text>
-            <View
-              style={[
-                styles.locationBadge,
-                {backgroundColor: badgebackground, borderColor: badgeColor},
-              ]}>
-              <Text style={[styles.locationBadgeText, {color: badgeColor}]}>
-                {storageLocation?.title}
-              </Text>
-            </View>
+            {isStorageLocationBadgeVisible && (
+              <View
+                style={[
+                  styles.locationBadge,
+                  {backgroundColor: badgebackground, borderColor: badgeColor},
+                ]}>
+                <Text style={[styles.locationBadgeText, {color: badgeColor}]}>
+                  {storageLocation?.title}
+                </Text>
+              </View>
+            )}
           </View>
           <Text
             style={[
@@ -274,7 +280,7 @@ const FoodCard: React.FC<Props> = ({item, color}) => {
             <View style={styles.qtyWrapper}>
               <Text style={styles.qty}>{quantity}</Text>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => openEditModal(id)}>
               <Edit width="25" height="25" />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => openTrashModal()}>

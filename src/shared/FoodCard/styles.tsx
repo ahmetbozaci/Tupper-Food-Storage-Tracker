@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
     paddingLeft: widthPercentage(20),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: heightPercentage(120),
     shadowColor: 'rgba(0, 0, 0, 1)',
     shadowOffset: {
       width: 0,
@@ -48,6 +47,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: widthPercentage(85),
+    marginBottom: heightPercentage(16),
   },
   qtyWrapper: {
     width: widthPercentage(18),
