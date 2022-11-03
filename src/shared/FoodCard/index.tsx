@@ -261,11 +261,11 @@ const FoodCard: React.FC<Props> = ({item, color}) => {
             <View style={styles.qtyWrapper}>
               <Text style={styles.qty}>{quantity}</Text>
             </View>
-            <TouchableOpacity>
-              <Edit width="25" height="25" />
+            <TouchableOpacity style={styles.editIcon}>
+              <Edit width="28" height="28" />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => openTrashModal()}>
-              <Delete width="25" height="25" />
+              <Delete width="28" height="28" />
             </TouchableOpacity>
           </View>
           <Donut color={color} percentage={expiry_percentage} />
