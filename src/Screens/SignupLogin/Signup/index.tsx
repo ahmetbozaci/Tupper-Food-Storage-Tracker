@@ -18,6 +18,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../../features/store';
+import {login as loginReducer} from '../../../features/loginSlice';
 import COLORS from '../../../color';
 import AuthHeader from '../../../shared/AuthHeader';
 import {heightPercentage} from '../../../config';
@@ -54,7 +55,9 @@ const SignupForm: React.FC<Props> = ({navigation}) => {
         type: 'danger',
       });
     } else if (data?.payload.status === 'success') {
-      navigation.navigate('Login');
+      dispatch(
+        loginReducer({token: data.payload.token, user: data.payload.data}),
+      );
     }
   };
 
