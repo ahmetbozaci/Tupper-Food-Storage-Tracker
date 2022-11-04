@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
   },
   logoText: {
     fontSize: fontSz(70),
-    fontWeight: 'bold',
+    fontWeight: '600',
+    fontFamily: 'Poppins-Bold',
     color: COLORS.green3,
   },
   buttonWrapper: {
@@ -30,6 +31,7 @@ const styles = StyleSheet.create({
   text: {
     color: COLORS.black,
     textAlign: 'center',
+    fontFamily: 'Helvetica-Regular',
   },
   signupButton: {
     backgroundColor: COLORS.white,
@@ -39,11 +41,14 @@ const styles = StyleSheet.create({
   buttonText: {
     fontWeight: '500',
     fontSize: fontSz(16),
+    fontFamily: 'Helvetica-Medium',
   },
   forgotPassword: {
     marginBottom: heightPercentage(145),
     marginTop: heightPercentage(20),
     fontSize: fontSz(20),
+    fontFamily: 'Helvetica-Regular',
+    fontWeight: '400',
   },
   signup: {
     color: COLORS.blue,
