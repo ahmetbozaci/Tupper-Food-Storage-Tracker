@@ -1,6 +1,19 @@
-# Tupper Mobile APP
+# Tupper - Food Storage Tracker!
 
-Tupper helps American, millennial individuals decrease their personal food waste. Our MVP features provide food inventory management, proper food storage tips, and expiration tracking with push notifications. By using our mobile application, users are empowered to throw away less food, save money, and help the environment.
+## Track expiry dates & combat food waste! 
+
+- Tupper’s goal is to empower you to throw away less food, save money and help the environment.
+  
+- It is estimated that up to 30-40% of the food supply in the United States is wasted and nearly 1/2 of all fruit and vegetables produced globally are wasted each year1. That, in turn, is a waste of energy, water, labor, and money resources.  Especially during this global recession, you can save money simply by buying only what you need, eating what you buy, and avoiding throwing away food. 
+
+- Tupper is a mobile application that empowers you to quickly inventory and manage your food, track and be alerted to items that are going bad, and encourages you to use or donate your food items instead of just throwing them away. 
+
+![](readme-pictures/app_store1.png)
+![](readme-pictures/app_store2.png)
+![](readme-pictures/app_store3.png)
+![](readme-pictures/app_store4.png)
+
+
 
 ## Built With
 
@@ -27,27 +40,28 @@ Tupper helps American, millennial individuals decrease their personal food waste
 
 ## Tupper Team
 
-👤 **Ahmet Bozacı- Developer**
+👤 **Christina Knoll - Product Manager**
 
-- Github:[ahmtbozaci](https://github.com/ahmetbozaci)
-- Twitter:[ahmtbozaci](https://twitter.com/ahmtbozaci)
-- LinkedIn:[Ahmet Bozaci](https://www.linkedin.com/in/ahmetbozaci/)
+- LinkedIn: [Christina Knoll](https://www.linkedin.com/in/christina-knoll-83442969/)
 
-👤 **Lawal Dauda- Developer**
+👤 **Paolo Suarez - Designer**
 
-- Github:[omodauda](https://github.com/omodauda)
-- LinkedIn:[Lawal Dauda](https://www.linkedin.com/in/omodauda/)
+- LinkedIn: [Paolo Suarez](https://www.linkedin.com/in/pmsuarez/)
 
-👤 **Christina Knoll- PM**
+👤 **Ahmet Bozacı - Developer**
 
-- LinkedIn:[Christina Knoll](https://www.linkedin.com/in/christina-knoll-83442969/)
+- LinkedIn: [Ahmet Bozaci](https://www.linkedin.com/in/ahmetbozaci/)
+- Github: [ahmtbozaci](https://github.com/ahmetbozaci)
+- Twitter: [ahmtbozaci](https://twitter.com/ahmtbozaci)
 
-👤 **Paolo Suarez- Designer**
 
-- LinkedIn:[Paolo Suarez](https://www.linkedin.com/in/pmsuarez/)
+👤 **Lawal Dauda - Developer**
+
+- LinkedIn: [Lawal Dauda](https://www.linkedin.com/in/omodauda/)
+- Github: [omodauda](https://github.com/omodauda)
+
+
 
 Give a ⭐️ if you like this project!
 
-## 📝 License
 
-This project is [MIT](./LICENCE) licensed.
