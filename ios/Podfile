@@ -4,7 +4,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '12.4'
 install! 'cocoapods', :deterministic_uuids => false
 
-target 'Waste' do
+target 'Tupper' do
   config = use_native_modules!
 
   # Flags change depending on the env values.
@@ -31,7 +31,7 @@ target 'Waste' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'WasteTests' do
+  target 'TupperTests' do
     inherit! :complete
     # Pods for testing
   end

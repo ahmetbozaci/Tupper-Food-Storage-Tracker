@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "369857658112",
-    "project_id": "tupper-a1efd",
-    "storage_bucket": "tupper-a1efd.appspot.com"
+    "project_number": "601853290237",
+    "project_id": "tupper-bcc63",
+    "storage_bucket": "tupper-bcc63.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:369857658112:android:14e429ba905569da0207e5",
+        "mobilesdk_app_id": "1:601853290237:android:192d8e9dc30580d4894094",
         "android_client_info": {
-          "package_name": "com.waste"
+          "package_name": "com.tupper"
         }
       },
       "oauth_client": [
         {
-          "client_id": "369857658112-vialega1llon8v6vt0g68h95h9m5mtm7.apps.googleusercontent.com",
+          "client_id": "601853290237-8lmmogla62i2qs5h09p4tumnkbp75t35.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBk6RzV2RcOvTbEpOLizEcskrVACymae4g"
+          "current_key": "AIzaSyBYNNbomyTcR5BsY9DnuSzS0mjmB1UyAU0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "369857658112-vialega1llon8v6vt0g68h95h9m5mtm7.apps.googleusercontent.com",
+              "client_id": "601853290237-8lmmogla62i2qs5h09p4tumnkbp75t35.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

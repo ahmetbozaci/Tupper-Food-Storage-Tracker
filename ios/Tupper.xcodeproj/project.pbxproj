@@ -7,27 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* WasteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* WasteTests.m */; };
-		0C80B921A6F3F58F76C31292 /* libPods-Waste.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-Waste.a */; };
+		00E356F31AD99517003FC87E /* TupperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* TupperTests.m */; };
+		057F132E161F451590DB4B5C /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 990E586E999C40DAB839327F /* Poppins-Black.ttf */; };
+		0C80B921A6F3F58F76C31292 /* libPods-Tupper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-Tupper.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		7699B88040F8A987B510C191 /* libPods-Waste-WasteTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Waste-WasteTests.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		DEA1D54328FDE9CA00069E3C /* hermes.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA1D54128FDE72700069E3C /* hermes.xcframework */; };
-		DEA1D54428FDE9CA00069E3C /* hermes.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DEA1D54128FDE72700069E3C /* hermes.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AC974540AD984482AF867C2B /* KolkerBrush-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15A7CD39144347D1A9C0AB78 /* KolkerBrush-Regular.ttf */; };
-		4549DFB846094FF785163499 /* Fonts-Free.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28ABC9771BCD4516A5FB1C0B /* Fonts-Free.ttf */; };
-		62DCEAABB64D49CB8331FE1F /* Helvetica-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E03E0FE79911425C8F502405 /* Helvetica-Medium.ttf */; };
-		FD2833A63D0D4DD2A1883655 /* Helvetica-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2075367257EB4A2F9BB945DB /* Helvetica-Regular.ttf */; };
-		057F132E161F451590DB4B5C /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 990E586E999C40DAB839327F /* Poppins-Black.ttf */; };
-		D81E1D1BD829459FB2F40DA3 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC6E66E151164FEDBA1629E5 /* Poppins-Bold.ttf */; };
-		5ED003CC7F774D7786ACD0C0 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 762397A8E4BA442DB8EDF64A /* Poppins-ExtraBold.ttf */; };
-		AF74BFC8D96648A396BC9CCA /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCE8374545174B2689BEA5D4 /* Poppins-ExtraLight.ttf */; };
+		19DBD4BF4EA344469AA4020F /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 308DF49839C84E4ABA7D58FD /* Poppins-Regular.ttf */; };
 		33578EDA34AC4C12B52EBF32 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3510660EFD1646558F281AC2 /* Poppins-Light.ttf */; };
 		35ACF2F346634842820EC2F6 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE5ABBBDF4D34608A01CCEEC /* Poppins-Medium.ttf */; };
-		19DBD4BF4EA344469AA4020F /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 308DF49839C84E4ABA7D58FD /* Poppins-Regular.ttf */; };
+		4549DFB846094FF785163499 /* Fonts-Free.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28ABC9771BCD4516A5FB1C0B /* Fonts-Free.ttf */; };
+		5ED003CC7F774D7786ACD0C0 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 762397A8E4BA442DB8EDF64A /* Poppins-ExtraBold.ttf */; };
+		62DCEAABB64D49CB8331FE1F /* Helvetica-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E03E0FE79911425C8F502405 /* Helvetica-Medium.ttf */; };
+		7699B88040F8A987B510C191 /* libPods-Tupper-TupperTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Tupper-TupperTests.a */; };
+		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		A110C2451C5747D88CF54622 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CAF0582AB1246A799FD5140 /* Poppins-SemiBold.ttf */; };
+		AC974540AD984482AF867C2B /* KolkerBrush-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15A7CD39144347D1A9C0AB78 /* KolkerBrush-Regular.ttf */; };
+		AF74BFC8D96648A396BC9CCA /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCE8374545174B2689BEA5D4 /* Poppins-ExtraLight.ttf */; };
+		D81E1D1BD829459FB2F40DA3 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC6E66E151164FEDBA1629E5 /* Poppins-Bold.ttf */; };
+		DEA1D54328FDE9CA00069E3C /* hermes.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA1D54128FDE72700069E3C /* hermes.xcframework */; };
+		DEA1D54428FDE9CA00069E3C /* hermes.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DEA1D54128FDE72700069E3C /* hermes.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FD2833A63D0D4DD2A1883655 /* Helvetica-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2075367257EB4A2F9BB945DB /* Helvetica-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,7 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = Waste;
+			remoteInfo = Tupper;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -55,36 +55,36 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* WasteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WasteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* TupperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TupperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* WasteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WasteTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* Waste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waste.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Waste/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = Waste/AppDelegate.mm; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Waste/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Waste/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Waste/main.m; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-Waste-WasteTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Waste-WasteTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B4392A12AC88292D35C810B /* Pods-Waste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waste.debug.xcconfig"; path = "Target Support Files/Pods-Waste/Pods-Waste.debug.xcconfig"; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-Waste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waste.release.xcconfig"; path = "Target Support Files/Pods-Waste/Pods-Waste.release.xcconfig"; sourceTree = "<group>"; };
-		5B7EB9410499542E8C5724F5 /* Pods-Waste-WasteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waste-WasteTests.debug.xcconfig"; path = "Target Support Files/Pods-Waste-WasteTests/Pods-Waste-WasteTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-Waste.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Waste.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Waste/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		89C6BE57DB24E9ADA2F236DE /* Pods-Waste-WasteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waste-WasteTests.release.xcconfig"; path = "Target Support Files/Pods-Waste-WasteTests/Pods-Waste-WasteTests.release.xcconfig"; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* TupperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TupperTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* Tupper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tupper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Tupper/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = Tupper/AppDelegate.mm; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Tupper/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Tupper/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Tupper/main.m; sourceTree = "<group>"; };
+		15A7CD39144347D1A9C0AB78 /* KolkerBrush-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "KolkerBrush-Regular.ttf"; path = "../assets/fonts/KolkerBrush-Regular.ttf"; sourceTree = "<group>"; };
+		19F6CBCC0A4E27FBF8BF4A61 /* libPods-Tupper-TupperTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tupper-TupperTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2075367257EB4A2F9BB945DB /* Helvetica-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Helvetica-Regular.ttf"; path = "../assets/fonts/Helvetica-Regular.ttf"; sourceTree = "<group>"; };
+		28ABC9771BCD4516A5FB1C0B /* Fonts-Free.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Fonts-Free.ttf"; path = "../assets/fonts/Fonts-Free.ttf"; sourceTree = "<group>"; };
+		308DF49839C84E4ABA7D58FD /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		3510660EFD1646558F281AC2 /* Poppins-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Light.ttf"; path = "../assets/fonts/Poppins-Light.ttf"; sourceTree = "<group>"; };
+		3B4392A12AC88292D35C810B /* Pods-Tupper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tupper.debug.xcconfig"; path = "Target Support Files/Pods-Tupper/Pods-Tupper.debug.xcconfig"; sourceTree = "<group>"; };
+		5709B34CF0A7D63546082F79 /* Pods-Tupper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tupper.release.xcconfig"; path = "Target Support Files/Pods-Tupper/Pods-Tupper.release.xcconfig"; sourceTree = "<group>"; };
+		5B7EB9410499542E8C5724F5 /* Pods-Tupper-TupperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tupper-TupperTests.debug.xcconfig"; path = "Target Support Files/Pods-Tupper-TupperTests/Pods-Tupper-TupperTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5DCACB8F33CDC322A6C60F78 /* libPods-Tupper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tupper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CAF0582AB1246A799FD5140 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBold.ttf"; path = "../assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		762397A8E4BA442DB8EDF64A /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraBold.ttf"; path = "../assets/fonts/Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Tupper/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		89C6BE57DB24E9ADA2F236DE /* Pods-Tupper-TupperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tupper-TupperTests.release.xcconfig"; path = "Target Support Files/Pods-Tupper-TupperTests/Pods-Tupper-TupperTests.release.xcconfig"; sourceTree = "<group>"; };
+		990E586E999C40DAB839327F /* Poppins-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Black.ttf"; path = "../assets/fonts/Poppins-Black.ttf"; sourceTree = "<group>"; };
+		BC6E66E151164FEDBA1629E5 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Bold.ttf"; path = "../assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		BCE8374545174B2689BEA5D4 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraLight.ttf"; path = "../assets/fonts/Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
+		BE5ABBBDF4D34608A01CCEEC /* Poppins-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Medium.ttf"; path = "../assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		DEA1D54128FDE72700069E3C /* hermes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = hermes.xcframework; path = "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework"; sourceTree = "<group>"; };
+		E03E0FE79911425C8F502405 /* Helvetica-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Helvetica-Medium.ttf"; path = "../assets/fonts/Helvetica-Medium.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		15A7CD39144347D1A9C0AB78 /* KolkerBrush-Regular.ttf */ = {isa = PBXFileReference; name = "KolkerBrush-Regular.ttf"; path = "../assets/fonts/KolkerBrush-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		28ABC9771BCD4516A5FB1C0B /* Fonts-Free.ttf */ = {isa = PBXFileReference; name = "Fonts-Free.ttf"; path = "../assets/fonts/Fonts-Free.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E03E0FE79911425C8F502405 /* Helvetica-Medium.ttf */ = {isa = PBXFileReference; name = "Helvetica-Medium.ttf"; path = "../assets/fonts/Helvetica-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		2075367257EB4A2F9BB945DB /* Helvetica-Regular.ttf */ = {isa = PBXFileReference; name = "Helvetica-Regular.ttf"; path = "../assets/fonts/Helvetica-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		990E586E999C40DAB839327F /* Poppins-Black.ttf */ = {isa = PBXFileReference; name = "Poppins-Black.ttf"; path = "../assets/fonts/Poppins-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		BC6E66E151164FEDBA1629E5 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; name = "Poppins-Bold.ttf"; path = "../assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		762397A8E4BA442DB8EDF64A /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Poppins-ExtraBold.ttf"; path = "../assets/fonts/Poppins-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		BCE8374545174B2689BEA5D4 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; name = "Poppins-ExtraLight.ttf"; path = "../assets/fonts/Poppins-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		3510660EFD1646558F281AC2 /* Poppins-Light.ttf */ = {isa = PBXFileReference; name = "Poppins-Light.ttf"; path = "../assets/fonts/Poppins-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		BE5ABBBDF4D34608A01CCEEC /* Poppins-Medium.ttf */ = {isa = PBXFileReference; name = "Poppins-Medium.ttf"; path = "../assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		308DF49839C84E4ABA7D58FD /* Poppins-Regular.ttf */ = {isa = PBXFileReference; name = "Poppins-Regular.ttf"; path = "../assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		6CAF0582AB1246A799FD5140 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; name = "Poppins-SemiBold.ttf"; path = "../assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7699B88040F8A987B510C191 /* libPods-Waste-WasteTests.a in Frameworks */,
+				7699B88040F8A987B510C191 /* libPods-Tupper-TupperTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-Waste.a in Frameworks */,
+				0C80B921A6F3F58F76C31292 /* libPods-Tupper.a in Frameworks */,
 				DEA1D54328FDE9CA00069E3C /* hermes.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,13 +108,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* WasteTests */ = {
+		00E356EF1AD99517003FC87E /* TupperTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* WasteTests.m */,
+				00E356F21AD99517003FC87E /* TupperTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = WasteTests;
+			path = TupperTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -125,7 +125,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* Waste */ = {
+		13B07FAE1A68108700A75B9A /* Tupper */ = {
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -135,7 +135,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = Waste;
+			name = Tupper;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -143,8 +143,8 @@
 			children = (
 				DEA1D54128FDE72700069E3C /* hermes.xcframework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-Waste.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-Waste-WasteTests.a */,
+				5DCACB8F33CDC322A6C60F78 /* libPods-Tupper.a */,
+				19F6CBCC0A4E27FBF8BF4A61 /* libPods-Tupper-TupperTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,9 +159,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* Waste */,
+				13B07FAE1A68108700A75B9A /* Tupper */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* WasteTests */,
+				00E356EF1AD99517003FC87E /* TupperTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -175,8 +175,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* Waste.app */,
-				00E356EE1AD99517003FC87E /* WasteTests.xctest */,
+				13B07F961A680F5B00A75B9A /* Tupper.app */,
+				00E356EE1AD99517003FC87E /* TupperTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -203,10 +203,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-Waste.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-Waste.release.xcconfig */,
-				5B7EB9410499542E8C5724F5 /* Pods-Waste-WasteTests.debug.xcconfig */,
-				89C6BE57DB24E9ADA2F236DE /* Pods-Waste-WasteTests.release.xcconfig */,
+				3B4392A12AC88292D35C810B /* Pods-Tupper.debug.xcconfig */,
+				5709B34CF0A7D63546082F79 /* Pods-Tupper.release.xcconfig */,
+				5B7EB9410499542E8C5724F5 /* Pods-Tupper-TupperTests.debug.xcconfig */,
+				89C6BE57DB24E9ADA2F236DE /* Pods-Tupper-TupperTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -214,9 +214,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* WasteTests */ = {
+		00E356ED1AD99517003FC87E /* TupperTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "WasteTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "TupperTests" */;
 			buildPhases = (
 				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -230,14 +230,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = WasteTests;
-			productName = WasteTests;
-			productReference = 00E356EE1AD99517003FC87E /* WasteTests.xctest */;
+			name = TupperTests;
+			productName = TupperTests;
+			productReference = 00E356EE1AD99517003FC87E /* TupperTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* Waste */ = {
+		13B07F861A680F5B00A75B9A /* Tupper */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Waste" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Tupper" */;
 			buildPhases = (
 				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -254,9 +254,9 @@
 			);
 			dependencies = (
 			);
-			name = Waste;
-			productName = Waste;
-			productReference = 13B07F961A680F5B00A75B9A /* Waste.app */;
+			name = Tupper;
+			productName = Tupper;
+			productReference = 13B07F961A680F5B00A75B9A /* Tupper.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -276,7 +276,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Waste" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Tupper" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -289,8 +289,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* Waste */,
-				00E356ED1AD99517003FC87E /* WasteTests */,
+				13B07F861A680F5B00A75B9A /* Tupper */,
+				00E356ED1AD99517003FC87E /* TupperTests */,
 			);
 		};
 /* End PBXProject section */
@@ -349,15 +349,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Waste/Pods-Waste-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Tupper/Pods-Tupper-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Waste/Pods-Waste-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Tupper/Pods-Tupper-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Waste/Pods-Waste-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tupper/Pods-Tupper-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9E0C957A29AB7E85FF4565BB /* [CP-User] [RNFB] Core Configuration */ = {
@@ -388,7 +388,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Waste-WasteTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Tupper-TupperTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -410,7 +410,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Waste-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Tupper-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -423,15 +423,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Waste-WasteTests/Pods-Waste-WasteTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Tupper-TupperTests/Pods-Tupper-TupperTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Waste-WasteTests/Pods-Waste-WasteTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Tupper-TupperTests/Pods-Tupper-TupperTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Waste-WasteTests/Pods-Waste-WasteTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tupper-TupperTests/Pods-Tupper-TupperTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
@@ -440,15 +440,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Waste/Pods-Waste-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Tupper/Pods-Tupper-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Waste/Pods-Waste-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Tupper/Pods-Tupper-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Waste/Pods-Waste-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tupper/Pods-Tupper-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
@@ -457,15 +457,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Waste-WasteTests/Pods-Waste-WasteTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Tupper-TupperTests/Pods-Tupper-TupperTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Waste-WasteTests/Pods-Waste-WasteTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Tupper-TupperTests/Pods-Tupper-TupperTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Waste-WasteTests/Pods-Waste-WasteTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tupper-TupperTests/Pods-Tupper-TupperTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -494,7 +494,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* WasteTests.m in Sources */,
+				00E356F31AD99517003FC87E /* TupperTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,7 +512,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* Waste */;
+			target = 13B07F861A680F5B00A75B9A /* Tupper */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -520,14 +520,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-Waste-WasteTests.debug.xcconfig */;
+			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-Tupper-TupperTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = WasteTests/Info.plist;
+				INFOPLIST_FILE = TupperTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -541,17 +541,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Waste.app/Waste";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tupper.app/Tupper";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-Waste-WasteTests.release.xcconfig */;
+			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-Tupper-TupperTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = WasteTests/Info.plist;
+				INFOPLIST_FILE = TupperTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -565,19 +565,19 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Waste.app/Waste";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tupper.app/Tupper";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-Waste.debug.xcconfig */;
+			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-Tupper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = Waste/Info.plist;
+				INFOPLIST_FILE = Tupper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -588,7 +588,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = Waste;
+				PRODUCT_NAME = Tupper;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -597,12 +597,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-Waste.release.xcconfig */;
+			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-Tupper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = Waste/Info.plist;
+				INFOPLIST_FILE = Tupper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -613,7 +613,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = Waste;
+				PRODUCT_NAME = Tupper;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -759,7 +759,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "WasteTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "TupperTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -768,7 +768,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Waste" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Tupper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -777,7 +777,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Waste" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Tupper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

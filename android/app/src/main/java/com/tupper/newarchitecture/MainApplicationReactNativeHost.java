@@ -1,4 +1,4 @@
-package com.waste.newarchitecture;
+package com.tupper.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.waste.BuildConfig;
-import com.waste.newarchitecture.components.MainComponentsRegistry;
-import com.waste.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.tupper.BuildConfig;
+import com.tupper.newarchitecture.components.MainComponentsRegistry;
+import com.tupper.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 
