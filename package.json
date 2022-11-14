@@ -1,6 +1,6 @@
 {
-  "name": "waste",
-  "version": "0.0.1",
+  "name": "tupper",
+  "version": "1.0.0",
   "private": true,
   "rnpm": {
     "assets": ["./assets/fonts/"]

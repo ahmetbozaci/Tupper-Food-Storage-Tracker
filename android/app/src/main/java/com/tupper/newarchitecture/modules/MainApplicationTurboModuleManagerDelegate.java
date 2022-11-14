@@ -1,4 +1,4 @@
-package com.waste.newarchitecture.modules;
+package com.tupper.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;
